@@ -3,7 +3,8 @@ AnchorPane {
     -fx-background-size: cover;
 }
 
-TextField {
+Label {
     -fx-background-color: black;
     -fx-text-fill: white;
+    -fx-background-radius: 7px;
 }
