@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="300.0" prefWidth="450.0" stylesheets="@HomeMenuStyle.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.game.BrickDestroy.HomeMenuController">
+    <children>
+        <TextField fx:id="gameTitle" alignment="CENTER" editable="false" layoutX="74.0" layoutY="38.0" prefWidth="302.0" stylesheets="@HomeMenuStyle.css" text="Brick Destroy" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="74.0" AnchorPane.topAnchor="38.0">
+            <font>
+                <Font name="Garamond Bold" size="40.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="greeting" alignment="CENTER" editable="false" layoutX="130.0" layoutY="14.0" prefHeight="23.0" prefWidth="190.0" stylesheets="@HomeMenuStyle.css" text="Welcome To:" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="14.0">
+            <font>
+                <Font name="Garamond" size="25.0" />
+            </font></TextField>
+        <TextField fx:id="credits" alignment="CENTER" editable="false" layoutX="175.0" layoutY="90.0" prefHeight="23.0" prefWidth="94.0" stylesheets="@HomeMenuStyle.css" text="Version 1.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="181.0" AnchorPane.topAnchor="89.0">
+            <font>
+                <Font name="Monospaced Regular" size="10.0" />
+            </font>
+        </TextField>
+        <Button fx:id="startButton" alignment="CENTER" layoutX="175.0" layoutY="150.0" mnemonicParsing="false" onAction="#startButtonClicked" prefHeight="38.0" prefWidth="100.0" text="Start" AnchorPane.bottomAnchor="107.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="175.0">
+         <font>
+            <Font name="Monospaced Regular" size="18.0" />
+         </font></Button>
+        <Button fx:id="infoButton" alignment="CENTER" layoutX="175.0" layoutY="203.0" mnemonicParsing="false" onAction="#infoButtonClicked" prefHeight="38.0" prefWidth="100.0" text="Info" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="175.0">
+            <font>
+                <Font name="Monospaced Regular" size="18.0" />
+            </font>
+        </Button>
+        <Button fx:id="exitButton" alignment="CENTER" layoutX="175.0" layoutY="247.0" mnemonicParsing="false" onAction="#exitButtonClicked" prefHeight="38.0" prefWidth="100.0" text="Exit" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="175.0">
+            <font>
+                <Font name="Monospaced Regular" size="18.0" />
+            </font>
+        </Button>
+    </children>
+</AnchorPane>
