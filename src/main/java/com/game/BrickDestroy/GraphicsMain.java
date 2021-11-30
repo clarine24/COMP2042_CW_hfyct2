@@ -14,6 +14,7 @@ public class GraphicsMain extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Brick Destroy");
         stage.setScene(scene);
+        //stage.init;
         stage.show();
     }
 
