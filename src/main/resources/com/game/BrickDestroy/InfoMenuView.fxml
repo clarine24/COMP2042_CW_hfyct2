@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="pane" prefHeight="300.0" prefWidth="450.0" stylesheets="@InfoMenuStyle.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.game.BrickDestroy.InfoMenuController">
+   <children>
+      <Pane fx:id="opaqueLayer" prefHeight="300.0" prefWidth="450.0" stylesheets="@InfoMenuStyle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <BorderPane layoutX="200.0" layoutY="65.0" stylesheets="@InfoMenuStyle.css" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="61.0" AnchorPane.rightAnchor="61.0" AnchorPane.topAnchor="13.0">
+         <top>
+            <Pane prefHeight="47.0" prefWidth="328.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="title" layoutX="101.0" layoutY="13.0" textAlignment="CENTER">
+                     <font>
+                        <Font name="Gill Sans Ultra Bold Condensed" size="24.0" />
+                     </font></Label>
+                  <Button fx:id="closeButton" cancelButton="true" layoutX="290.0" layoutY="14.0" mnemonicParsing="false" onAction="#closeButtonClicked" text="X" />
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </Pane>
+         </top>
+         <center>
+            <VBox fx:id="content" prefHeight="58.0" prefWidth="328.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="content1">
+                     <padding>
+                        <Insets bottom="5.0" />
+                     </padding></Label>
+                  <Label fx:id="content2" />
+                  <Label fx:id="content3" />
+                  <Label fx:id="content4" />
+                  <Label fx:id="content5" />
+                  <Label fx:id="content6" />
+                  <Label fx:id="content7" layoutX="20.0" layoutY="20.0" prefHeight="60.0">
+                     <padding>
+                        <Insets bottom="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <BorderPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </BorderPane.margin>
+            </VBox>
+         </center></BorderPane>
+   </children>
+</AnchorPane>
