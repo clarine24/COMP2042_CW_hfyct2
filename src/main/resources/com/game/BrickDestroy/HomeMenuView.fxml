@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="300.0" prefWidth="450.0" stylesheets="@HomeMenuStyle.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.game.BrickDestroy.HomeMenuController">
+<AnchorPane fx:id="background" prefHeight="300.0" prefWidth="450.0" stylesheets="@HomeMenuStyle.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.game.BrickDestroy.HomeMenuController">
     <children>
       <Label alignment="CENTER" layoutX="68.0" layoutY="144.0" prefHeight="76.0" prefWidth="302.0" stylesheets="@HomeMenuStyle.css" text="Brick Destroy" textFill="#fffefe" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="74.0" AnchorPane.topAnchor="38.0">
          <font>
