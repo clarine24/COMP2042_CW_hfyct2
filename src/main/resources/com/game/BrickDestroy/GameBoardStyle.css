@@ -7,7 +7,13 @@
     -fx-stroke: "#2460A7";
 }
 
-#ball {
+#rubberBall {
     -fx-fill: "#FFD801";
     -fx-stroke: "#d9b48f";
+}
+
+#playButton {
+    -fx-background-image: url("playButton.png");
+    -fx-background-size: cover;
+    -fx-cursor: hand;
 }
