@@ -7,11 +7,11 @@ public class WallModel {
     private PlayerModel player;
     private BallModel ball;
 
-    private Rectangle area;
+    private Rectangle wall;
 
     public WallModel(Rectangle wall, Rectangle player, Circle ball) {
-        area = new Rectangle(wall.getX(), wall.getY(), wall.getWidth(), wall.getHeight());
-        this.player = new PlayerModel(player, area);
+        this.wall = new Rectangle(wall.getX(), wall.getY(), wall.getWidth(), wall.getHeight());
+        this.player = new PlayerModel(player, this.wall);
         this.ball = new RubberBallModel(ball);
     }
 
@@ -20,8 +20,12 @@ public class WallModel {
         player.move();
     }
 
-    public Rectangle getArea() {
-        return area;
+    public void findImpacts() {
+        //if(ball.getBallFace().intersects(wall))
+    }
+
+    public Rectangle getWall() {
+        return wall;
     }
 
     public PlayerModel getPlayer() {
