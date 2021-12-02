@@ -8,3 +8,7 @@ Label {
     -fx-text-fill: white;
     -fx-background-radius: 7px;
 }
+
+Button {
+    -fx-cursor: hand;
+}

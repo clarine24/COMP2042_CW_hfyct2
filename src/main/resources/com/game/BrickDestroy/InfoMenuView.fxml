@@ -7,8 +7,8 @@
 
 <AnchorPane fx:id="pane" prefHeight="300.0" prefWidth="450.0" stylesheets="@InfoMenuStyle.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.game.BrickDestroy.InfoMenuController">
    <children>
-      <Pane fx:id="opaqueLayer" prefHeight="300.0" prefWidth="450.0" stylesheets="@InfoMenuStyle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <BorderPane layoutX="200.0" layoutY="65.0" stylesheets="@InfoMenuStyle.css" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="61.0" AnchorPane.rightAnchor="61.0" AnchorPane.topAnchor="13.0">
+      <Pane fx:id="opaqueLayer" prefHeight="300.0" prefWidth="450.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <BorderPane layoutX="200.0" layoutY="65.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="61.0" AnchorPane.rightAnchor="61.0" AnchorPane.topAnchor="13.0">
          <top>
             <Pane prefHeight="47.0" prefWidth="328.0" BorderPane.alignment="CENTER">
                <children>
