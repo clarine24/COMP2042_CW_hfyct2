@@ -28,6 +28,9 @@ public class WallModel {
         else if(impactTopBorder()) {
             ball.reverseY();
         }
+        else if (ball.getBallFace().intersects(player.getPlayerFace().getBoundsInLocal())) {
+            ball.reverseY();
+        }
     }
 
     private boolean impactSideBorder() {
