@@ -22,6 +22,8 @@ public class GameBoardController {
 
         //Link Model with View
         player.xProperty().bind(model.getWallModel().getPlayer().getPlayerFace().xProperty());
+        rubberBall.centerXProperty().bind(model.getWallModel().getBall().getBallFace().centerXProperty());
+        rubberBall.centerYProperty().bind(model.getWallModel().getBall().getBallFace().centerYProperty());
 
         playButton.setVisible(true);
     }

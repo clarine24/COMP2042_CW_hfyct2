@@ -7,27 +7,38 @@ public abstract class BallModel {
     private double centerX;
     private double centerY;
 
-    private double speedX;
-    private double speedY;
+    private double moveX;
+    private double moveY;
 
     public BallModel(Circle ball) {
         centerX = ball.getCenterX();
         centerY = ball.getCenterY();
 
         ballFace = makeBall(ball);
+
+        moveX = -3;
+        moveY = -2;
     }
 
     protected abstract Circle makeBall(Circle ball);
+
+    public void move() {
+        centerX += moveX;
+        centerY += moveY;
+
+        ballFace.setCenterX(centerX);
+        ballFace.setCenterY(centerY);
+    }
 
     public Circle getBallFace() {
         return ballFace;
     }
 
-    public double getSpeedX(){
-        return speedX;
+    public double getMoveX(){
+        return moveX;
     }
 
-    public double getSpeedY(){
-        return speedY;
+    public double getMoveY(){
+        return moveY;
     }
 }

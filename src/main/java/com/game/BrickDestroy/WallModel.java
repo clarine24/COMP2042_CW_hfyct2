@@ -16,7 +16,7 @@ public class WallModel {
     }
 
     public void move() {
-        //ball.move();
+        ball.move();
         player.move();
     }
 
