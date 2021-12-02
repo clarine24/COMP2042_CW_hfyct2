@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<AnchorPane onKeyPressed="#playerMove" prefHeight="450.0" prefWidth="600.0" stylesheets="@GameBoardStyle.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.game.BrickDestroy.GameBoardController">
+   <children>
+      <Rectangle fx:id="wall" arcHeight="5.0" arcWidth="5.0" height="450.0" strokeType="INSIDE" width="600.0" />
+      <Circle fx:id="ball" layoutX="300.0" layoutY="407.0" radius="8.0" strokeType="INSIDE" AnchorPane.bottomAnchor="35.0" />
+      <Rectangle fx:id="player" arcHeight="5.0" arcWidth="5.0" height="15.0" strokeType="INSIDE" strokeWidth="2.0" width="150.0" x="225.0" y="415.0" AnchorPane.bottomAnchor="20.0" />
+   </children>
+</AnchorPane>
