@@ -61,11 +61,11 @@ public class GameBoardController {
     @FXML
     private void play() {
         playButton.setVisible(false);
-        model.gameTimer.start();
+        model.getGameTimer().start();
     }
 
     private void stop() {
         playButton.setVisible(true);
-        model.gameTimer.stop();
+        model.getGameTimer().stop();
     }
 }

@@ -7,7 +7,7 @@ import javafx.scene.shape.Rectangle;
 public class GameBoardModel {
     private WallModel wallModel;
 
-    AnimationTimer gameTimer;
+    private AnimationTimer gameTimer;
 
     public GameBoardModel(Rectangle wall, Rectangle player, Circle ball) {
         wallModel = new WallModel(wall, player, ball);
@@ -17,5 +17,9 @@ public class GameBoardModel {
 
     public WallModel getWallModel() {
         return wallModel;
+    }
+
+    public AnimationTimer getGameTimer() {
+        return gameTimer;
     }
 }
