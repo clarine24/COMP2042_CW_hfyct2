@@ -18,15 +18,23 @@ public class Stages {
 
     private static Scene scene;
 
-    public Stages(javafx.stage.Stage stage) {
+    private static Stages instance;
+
+    public Stages(Stage stage) {
         homeStage = stage;
         gameStage = new Stage();
+
+        instance = this;
+    }
+
+    public static Stages getInstance() {
+        return instance;
     }
 
     public void initialize(Stage stage) {
         stage.setTitle(DEF_TITLE);
         stage.setScene(scene);
-        //stage.setResizable(false);
+        stage.setResizable(false);
         stage.show();
         autoLocate(stage);
     }
@@ -37,10 +45,13 @@ public class Stages {
         initialize(homeStage);
     }
 
-    public void gameStage() {
-        //homeStage.hide();
-        //gameStage.initStyle(StageStyle.DECORATED);
-        //initialize(gameStage, scene);
+    public void gameStage() throws IOException {
+        homeStage.hide();
+        Parent root = loadFXML("GameBoardView");
+        scene = new Scene(root);
+        gameStage.initStyle(StageStyle.DECORATED);
+        initialize(gameStage);
+        root.requestFocus();
     }
 
     static void setRoot(String fxml) throws IOException {
