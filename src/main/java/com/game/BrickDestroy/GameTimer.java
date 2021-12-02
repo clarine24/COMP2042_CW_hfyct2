@@ -12,6 +12,6 @@ public class GameTimer extends AnimationTimer {
     @Override
     public void handle(long l) {
         wall.move();
-        //wall.findImpacts();
+        wall.findImpacts();
     }
 }

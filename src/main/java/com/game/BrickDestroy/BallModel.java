@@ -30,6 +30,14 @@ public abstract class BallModel {
         ballFace.setCenterY(centerY);
     }
 
+    public void reverseX() {
+        moveX *= -1;
+    }
+
+    public void reverseY() {
+        moveY *= -1;
+    }
+
     public Circle getBallFace() {
         return ballFace;
     }
