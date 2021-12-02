@@ -6,8 +6,9 @@ import java.io.IOException;
 
 public class HomeMenuController {
     @FXML
-    private void startButtonClicked() {
-        System.out.println("button start test pass");
+    private void startButtonClicked() throws IOException {
+        Stages stages = Stages.getInstance();
+        stages.gameStage();
     }
 
     @FXML
