@@ -3,11 +3,12 @@ package com.game.BrickDestroy;
 import javafx.scene.shape.Rectangle;
 
 public class PlayerModel {
-    private static final int DEF_MOVE_AMOUNT = 5;
-
     private Rectangle playerFace;
     private double centerX;
     private double centerY;
+
+    private static final int DEF_MOVE_AMOUNT = 5;
+    private int moveAmount;
 
     private double min;
     private double max;
@@ -18,6 +19,8 @@ public class PlayerModel {
 
         playerFace = new Rectangle(centerX, centerY, player.getWidth(), player.getHeight());
 
+        moveAmount = 0;
+
         min = wall.getX();
         max = min + wall.getWidth() - playerFace.getWidth();
     }
@@ -26,22 +29,28 @@ public class PlayerModel {
         return playerFace;
     }
 
-    private void move(int moveAmount) {
+    public void move() {
         double x = playerFace.getX() + moveAmount;
         if (x < min || x > max) {
-            System.out.println("player stopped");
             return;
         }
         playerFace.setX(x);
     }
 
     public void moveLeft() {
-        int moveAmount = -DEF_MOVE_AMOUNT;
-        move(moveAmount);
+        moveAmount = -DEF_MOVE_AMOUNT;
     }
 
     public void moveRight() {
-        int moveAmount = DEF_MOVE_AMOUNT;
-        move(moveAmount);
+        moveAmount = DEF_MOVE_AMOUNT;
+    }
+
+    public void stop() {
+        moveAmount = 0;
+    }
+
+    public void moveTo() {
+        playerFace.setX(centerX);
+        playerFace.setY(centerY);
     }
 }

@@ -15,6 +15,11 @@ public class WallModel {
         this.ball = new RubberBallModel(ball);
     }
 
+    public void move() {
+        //ball.move();
+        player.move();
+    }
+
     public Rectangle getArea() {
         return area;
     }
