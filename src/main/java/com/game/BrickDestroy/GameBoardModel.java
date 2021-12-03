@@ -6,6 +6,7 @@ import javafx.scene.shape.Rectangle;
 public class GameBoardModel {
     private WallModel wallModel;
     private PauseMenuModel pauseMenuModel;
+    private GameOverModel gameOverModel;
 
     private GameTimer gameTimer;
 
@@ -14,6 +15,7 @@ public class GameBoardModel {
     public GameBoardModel(Rectangle wall, Rectangle player, Circle ball) {
         wallModel = new WallModel(wall, player, ball);
         pauseMenuModel = PauseMenuModel.getInstance();
+        gameOverModel = GameOverModel.getInstance();
 
         gameTimer = new GameTimer(wallModel);
 
@@ -30,6 +32,10 @@ public class GameBoardModel {
 
     public PauseMenuModel getPauseMenuModel() {
         return pauseMenuModel;
+    }
+
+    public GameOverModel getGameOverModel() {
+        return gameOverModel;
     }
 
     public GameTimer getGameTimer() {

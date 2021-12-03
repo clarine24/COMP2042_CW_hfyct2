@@ -21,12 +21,12 @@ public class GameBoardController {
     @FXML private Circle rubberBall;
     @FXML private Pane playButton;
     @FXML private Pane pauseMenu;
+    @FXML private Pane gameOverMenu;
 
     @FXML
     public void initialize() throws IOException {
-        //Load PauseMenuView to pauseMenu pane
-        AnchorPane pauseMenuView = FXMLLoader.load(GameBoardController.class.getResource("PauseMenuView.fxml"));
-        pauseMenu.getChildren().add(pauseMenuView);
+        loadFXML("PauseMenuView", pauseMenu);
+        loadFXML("GameOverView", gameOverMenu);
 
         //Get model
         model = new GameBoardModel(wall, player, rubberBall);
@@ -42,6 +42,17 @@ public class GameBoardController {
             public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
                 if(!newValue) {
                     stop();
+                }
+            }
+        });
+
+        model.getGameTimer().isGameOver().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
+                if(newValue) {
+                    stop();
+                    gameOverMenu.setVisible(true);
+                    model.getGameTimer().setGameOver(false);
                 }
             }
         });
@@ -68,19 +79,36 @@ public class GameBoardController {
             }
         });
 
+        model.getGameOverModel().isRestart().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
+                if(newValue) {
+                    gameOverMenu.setVisible(false);
+                    model.getGameOverModel().setRestart(false);
+                    Stages.getInstance().setFocus();
+                }
+            }
+        });
+
         playButton.setVisible(true);
         pauseMenu.setVisible(false);
+        gameOverMenu.setVisible(false);
+    }
+
+    private void loadFXML(String fxml, Pane pane) throws IOException {
+        AnchorPane view = FXMLLoader.load(GameBoardController.class.getResource(fxml + ".fxml"));
+        pane.getChildren().add(view);
     }
 
     @FXML
     private void keyPressed(KeyEvent event) {
         KeyCode key = event.getCode();
         if (key == KeyCode.SPACE) {
-            if(playButton.isVisible() && !pauseMenu.isVisible()) {
-                play();
-            }
-            else {
+            if(!playButton.isVisible()) {
                 stop();
+            }
+            else if(!pauseMenu.isVisible() && !gameOverMenu.isVisible()) {
+                play();
             }
         }
         else if (key == KeyCode.A || key == KeyCode.D) {
@@ -90,7 +118,7 @@ public class GameBoardController {
             if(pauseMenu.isVisible()) {
                 pauseMenu.setVisible(false);
             }
-            else {
+            else if (!gameOverMenu.isVisible()){
                 stop();
                 pauseMenu.setVisible(true);
             }

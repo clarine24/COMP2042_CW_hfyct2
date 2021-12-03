@@ -10,6 +10,9 @@ public class WallModel {
 
     private Rectangle wall;
 
+    private static final int LEVELS_COUNT = 4;
+    private int level;
+
     private int ballCount;
     private boolean ballLost;
 
@@ -17,6 +20,10 @@ public class WallModel {
         this.wall = new Rectangle(wall.getX(), wall.getY(), wall.getWidth(), wall.getHeight());
         this.player = new PlayerModel(player, this.wall);
         this.ball = new RubberBallModel(ball);
+
+        level = 0;
+        ballCount = 3;
+        ballLost = false;
     }
 
     public void move() {
@@ -87,6 +94,10 @@ public class WallModel {
 
     public BallModel getBall() {
         return ball;
+    }
+
+    public boolean ballEnd(){
+        return ballCount == 0;
     }
 
     public boolean isBallLost() {

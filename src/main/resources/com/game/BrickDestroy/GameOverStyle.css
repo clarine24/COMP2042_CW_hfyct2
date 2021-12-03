@@ -1,0 +1,46 @@
+#opaqueLayer {
+    -fx-background-color: black;
+    -fx-opacity: 0.8px;
+}
+
+#gameOverMenu {
+    -fx-fill: "#E4D3CF";
+    -fx-stroke: "#E2BCB7";
+    -fx-stroke-width: 5px;
+    -fx-arc-height: 10px;
+    -fx-arc-width: 10px;
+}
+
+#title {
+    -fx-font-family: "Bahnschrift";
+    -fx-font-size: 54px;
+    -fx-font-weight: bold;
+    -fx-text-fill: "#968C83";
+}
+
+#scoreTitle {
+    -fx-font-family: "Bahnschrift";
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: "#968C83";
+}
+
+#score {
+    -fx-font-family: "Bahnschrift";
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: "#968C83";
+    -fx-background-color: white;
+}
+
+Button {
+    -fx-font-family: "Bahnschrift";
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: "#B67162";
+    -fx-background-color: transparent;
+    -fx-border-color: "#B67162";
+    -fx-border-radius: 30px;
+    -fx-border-width: 5px;
+    -fx-cursor: hand;
+}
