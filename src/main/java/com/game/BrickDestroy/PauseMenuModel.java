@@ -9,15 +9,14 @@ public class PauseMenuModel {
     private BooleanProperty resume;
     private BooleanProperty restart;
 
-    private PauseMenuModel() {
+    public PauseMenuModel() {
         resume = new SimpleBooleanProperty(false);
         restart = new SimpleBooleanProperty(false);
+
+        instance = this;
     }
 
     public static PauseMenuModel getInstance() {
-        if(instance == null) {
-            instance = new PauseMenuModel();
-        }
         return instance;
     }
 

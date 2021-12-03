@@ -10,7 +10,7 @@ public class PauseMenuController {
     @FXML
     public void initialize() {
         //Get model
-        model = PauseMenuModel.getInstance();
+        model = new PauseMenuModel();
     }
 
     @FXML
