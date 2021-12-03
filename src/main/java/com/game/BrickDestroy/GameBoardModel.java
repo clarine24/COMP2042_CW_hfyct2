@@ -11,7 +11,7 @@ public class GameBoardModel {
 
     public GameBoardModel(Rectangle wall, Rectangle player, Circle ball) {
         wallModel = new WallModel(wall, player, ball);
-        pauseMenuModel = new PauseMenuModel();
+        pauseMenuModel = PauseMenuModel.getInstance();
 
         gameTimer = new GameTimer(wallModel);
     }

@@ -51,6 +51,8 @@ public class GameBoardController {
             public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
                 if(newValue) {
                     pauseMenu.setVisible(false);
+                    model.getPauseMenuModel().setResume(false);
+                    Stages.getInstance().setFocus();
                 }
             }
         });
@@ -60,6 +62,8 @@ public class GameBoardController {
             public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
                 if(newValue){
                     pauseMenu.setVisible(false);
+                    model.getPauseMenuModel().setRestart(false);
+                    Stages.getInstance().setFocus();
                 }
             }
         });

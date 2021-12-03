@@ -1,7 +1,6 @@
 package com.game.BrickDestroy;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 
 import java.io.IOException;
 
@@ -11,19 +10,17 @@ public class PauseMenuController {
     @FXML
     public void initialize() {
         //Get model
-        model = new PauseMenuModel();
+        model = PauseMenuModel.getInstance();
     }
 
     @FXML
     private void resumeButtonClicked() {
         model.setResume(true);
-        System.out.println("resume button clicked");
     }
 
     @FXML
     private void restartButtonClicked() {
         model.setRestart(true);
-        System.out.println("restart button clicked");
     }
 
     @FXML
