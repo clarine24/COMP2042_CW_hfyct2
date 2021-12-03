@@ -20,8 +20,6 @@ public class Stages {
 
     private static Stages instance;
 
-    private Parent root;
-
     public Stages(Stage stage) {
         homeStage = stage;
         homeStage.initStyle(StageStyle.UNDECORATED); //remove window decoration
@@ -36,27 +34,27 @@ public class Stages {
         return instance;
     }
 
-    public void initialize(Stage stage) {
+    public void initialize(Stage stage, Parent root) {
         stage.setTitle(DEF_TITLE);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
         autoLocate(stage);
-        setFocus();
+        root.requestFocus();
     }
 
     public void homeStage() throws IOException {
         gameStage.hide();
-        root = loadFXML("HomeMenuView");
+        Parent root = loadFXML("HomeMenuView");
         scene = new Scene(root);
-        initialize(homeStage);
+        initialize(homeStage, root);
     }
 
     public void gameStage() throws IOException {
         homeStage.hide();
-        root = loadFXML("GameBoardView");
+        Parent root = loadFXML("GameBoardView");
         scene = new Scene(root);
-        initialize(gameStage);
+        initialize(gameStage, root);
     }
 
     static void setRoot(String fxml) throws IOException {
@@ -73,9 +71,5 @@ public class Stages {
 
         stage.setX((primaryScreen.getWidth() - stage.getWidth()) / 2);
         stage.setY((primaryScreen.getHeight() - stage.getHeight()) / 2);
-    }
-
-    public void setFocus() {
-        root.requestFocus();
     }
 }
