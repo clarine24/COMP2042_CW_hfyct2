@@ -4,8 +4,8 @@
 }
 
 #pauseMenu {
-    -fx-fill: "#F3F1F5";
-    -fx-stroke: "#F0D9FF";
+    -fx-fill: "#E4D3CF";
+    -fx-stroke: "#E2BCB7";
     -fx-stroke-width: 5px;
     -fx-arc-height: 10px;
     -fx-arc-width: 10px;
@@ -15,16 +15,16 @@
     -fx-font-family: "Bahnschrift";
     -fx-font-size: 54px;
     -fx-font-weight: bold;
-    -fx-text-fill: "#7F7C82";
+    -fx-text-fill: "#968C83";
 }
 
 Button {
     -fx-font-family: "Bahnschrift";
     -fx-font-size: 22px;
     -fx-font-weight: bold;
-    -fx-text-fill: "#BFA2DB";
+    -fx-text-fill: "#B67162";
     -fx-background-color: transparent;
-    -fx-border-color: "#BFA2DB";
+    -fx-border-color: "#B67162";
     -fx-border-radius: 30px;
     -fx-border-width: 5px;
     -fx-cursor: hand;
