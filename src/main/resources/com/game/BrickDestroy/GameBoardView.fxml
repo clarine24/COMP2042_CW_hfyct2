@@ -9,5 +9,6 @@
       <Circle fx:id="rubberBall" centerX="300.0" centerY="407.0" radius="8.0" strokeType="INSIDE" />
       <Rectangle fx:id="player" arcHeight="5.0" arcWidth="5.0" height="15.0" strokeType="INSIDE" strokeWidth="2.0" width="150.0" x="225.0" y="415.0" AnchorPane.bottomAnchor="20.0" />
       <Pane fx:id="playButton" layoutX="200.0" layoutY="125.0" onMouseClicked="#play" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="125.39999999999998" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="125.0" />
+      <Pane fx:id="pauseMenu" prefHeight="450.4" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>

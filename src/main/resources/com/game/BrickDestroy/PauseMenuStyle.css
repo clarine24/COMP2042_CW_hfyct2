@@ -1,0 +1,31 @@
+#opaqueLayer {
+    -fx-background-color: black;
+    -fx-opacity: 0.8px;
+}
+
+#pauseMenu {
+    -fx-fill: "#F3F1F5";
+    -fx-stroke: "#F0D9FF";
+    -fx-stroke-width: 5px;
+    -fx-arc-height: 10px;
+    -fx-arc-width: 10px;
+}
+
+#title {
+    -fx-font-family: "Bahnschrift";
+    -fx-font-size: 54px;
+    -fx-font-weight: bold;
+    -fx-text-fill: "#7F7C82";
+}
+
+Button {
+    -fx-font-family: "Bahnschrift";
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: "#BFA2DB";
+    -fx-background-color: transparent;
+    -fx-border-color: "#BFA2DB";
+    -fx-border-radius: 30px;
+    -fx-border-width: 5px;
+    -fx-cursor: hand;
+}

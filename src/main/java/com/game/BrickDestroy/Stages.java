@@ -22,7 +22,10 @@ public class Stages {
 
     public Stages(Stage stage) {
         homeStage = stage;
+        homeStage.initStyle(StageStyle.UNDECORATED); //remove window decoration
+
         gameStage = new Stage();
+        gameStage.initStyle(StageStyle.DECORATED);
 
         instance = this;
     }
@@ -31,27 +34,27 @@ public class Stages {
         return instance;
     }
 
-    public void initialize(Stage stage) {
+    public void initialize(Stage stage, Parent root) {
         stage.setTitle(DEF_TITLE);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
         autoLocate(stage);
+        root.requestFocus();
     }
 
     public void homeStage() throws IOException {
-        scene = new Scene(loadFXML("HomeMenuView"));
-        homeStage.initStyle(StageStyle.UNDECORATED); //remove window decoration
-        initialize(homeStage);
+        gameStage.hide();
+        Parent root = loadFXML("HomeMenuView");
+        scene = new Scene(root);
+        initialize(homeStage, root);
     }
 
     public void gameStage() throws IOException {
         homeStage.hide();
         Parent root = loadFXML("GameBoardView");
         scene = new Scene(root);
-        gameStage.initStyle(StageStyle.DECORATED);
-        initialize(gameStage);
-        root.requestFocus();
+        initialize(gameStage, root);
     }
 
     static void setRoot(String fxml) throws IOException {
