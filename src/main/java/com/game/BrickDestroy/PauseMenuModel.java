@@ -4,21 +4,12 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
 public class PauseMenuModel {
-    private static PauseMenuModel instance;
-
     private BooleanProperty resume;
     private BooleanProperty restart;
 
-    private PauseMenuModel() {
+    public PauseMenuModel() {
         resume = new SimpleBooleanProperty(false);
         restart = new SimpleBooleanProperty(false);
-    }
-
-    public static PauseMenuModel getInstance() {
-        if(instance == null) {
-            instance = new PauseMenuModel();
-        }
-        return instance;
     }
 
     public void setRestart(boolean restart) {
