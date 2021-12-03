@@ -77,6 +77,17 @@ public class WallModel {
         return ball.getBallFace().intersects(player.getPlayerFace().getBoundsInLocal());
     }
 
+    public void wallReset() {
+        /*
+        for(Brick b : bricks)
+            b.repair();
+        brickCount = bricks.length;
+         */
+
+        ballCount = 3;
+        ballPlayerReset();
+    }
+
     public void ballPlayerReset() {
         player.moveToStart();
         ball.moveToStart();

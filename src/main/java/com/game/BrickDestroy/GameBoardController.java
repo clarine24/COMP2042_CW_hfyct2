@@ -75,6 +75,7 @@ public class GameBoardController {
                     pauseMenu.setVisible(false);
                     model.getPauseMenuModel().setRestart(false);
                     Stages.getInstance().setFocus();
+                    model.getWallModel().wallReset();
                 }
             }
         });
@@ -86,6 +87,7 @@ public class GameBoardController {
                     gameOverMenu.setVisible(false);
                     model.getGameOverModel().setRestart(false);
                     Stages.getInstance().setFocus();
+                    model.getWallModel().wallReset();
                 }
             }
         });
