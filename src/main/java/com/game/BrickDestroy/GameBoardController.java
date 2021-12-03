@@ -1,5 +1,7 @@
 package com.game.BrickDestroy;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -22,8 +24,18 @@ public class GameBoardController {
 
         //Link Model with View
         player.xProperty().bind(model.getWallModel().getPlayer().getPlayerFace().xProperty());
+
         rubberBall.centerXProperty().bind(model.getWallModel().getBall().getBallFace().centerXProperty());
         rubberBall.centerYProperty().bind(model.getWallModel().getBall().getBallFace().centerYProperty());
+
+        model.getGameTimer().isRunning().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
+                if(!newValue) {
+                    stop();
+                }
+            }
+        });
 
         playButton.setVisible(true);
     }
@@ -36,6 +48,7 @@ public class GameBoardController {
                 play();
             }
             else {
+                model.getGameTimer().stop();
                 stop();
             }
         }
@@ -66,6 +79,5 @@ public class GameBoardController {
 
     private void stop() {
         playButton.setVisible(true);
-        model.getGameTimer().stop();
     }
 }

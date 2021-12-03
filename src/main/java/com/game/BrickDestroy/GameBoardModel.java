@@ -1,13 +1,12 @@
 package com.game.BrickDestroy;
 
-import javafx.animation.AnimationTimer;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 public class GameBoardModel {
     private WallModel wallModel;
 
-    private AnimationTimer gameTimer;
+    private GameTimer gameTimer;
 
     public GameBoardModel(Rectangle wall, Rectangle player, Circle ball) {
         wallModel = new WallModel(wall, player, ball);
@@ -19,7 +18,7 @@ public class GameBoardModel {
         return wallModel;
     }
 
-    public AnimationTimer getGameTimer() {
+    public GameTimer getGameTimer() {
         return gameTimer;
     }
 }

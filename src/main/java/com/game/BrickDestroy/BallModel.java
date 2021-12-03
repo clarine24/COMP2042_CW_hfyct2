@@ -4,30 +4,39 @@ import javafx.scene.shape.Circle;
 
 public abstract class BallModel {
     private Circle ballFace;
-    private double centerX;
-    private double centerY;
+    private double startX;
+    private double startY;
 
     private double moveX;
     private double moveY;
 
     public BallModel(Circle ball) {
-        centerX = ball.getCenterX();
-        centerY = ball.getCenterY();
+        startX = ball.getCenterX();
+        startY = ball.getCenterY();
 
         ballFace = makeBall(ball);
 
-        moveX = -3;
-        moveY = -2;
+        setMoveDirection();
     }
 
     protected abstract Circle makeBall(Circle ball);
 
     public void move() {
-        centerX += moveX;
-        centerY += moveY;
+        double x = ballFace.getCenterX() + moveX;
+        double y = ballFace.getCenterY() + moveY;
 
-        ballFace.setCenterX(centerX);
-        ballFace.setCenterY(centerY);
+        ballFace.setCenterX(x);
+        ballFace.setCenterY(y);
+    }
+
+    public void moveToStart() {
+        ballFace.setCenterX(startX);
+        ballFace.setCenterY(startY);
+    }
+
+    public void setMoveDirection() {
+        moveX = -3;
+        moveY = -2;
     }
 
     public void reverseX() {

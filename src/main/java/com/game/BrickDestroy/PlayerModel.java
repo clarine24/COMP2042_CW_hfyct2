@@ -4,8 +4,8 @@ import javafx.scene.shape.Rectangle;
 
 public class PlayerModel {
     private Rectangle playerFace;
-    private double centerX;
-    private double centerY;
+    private double startX;
+    private double startY;
 
     private static final int DEF_MOVE_AMOUNT = 5;
     private int moveAmount;
@@ -14,19 +14,15 @@ public class PlayerModel {
     private double max;
 
     public PlayerModel(Rectangle player, Rectangle wall) {
-        centerX = player.getX();
-        centerY = player.getY();
+        startX = player.getX();
+        startY = player.getY();
 
-        playerFace = new Rectangle(centerX, centerY, player.getWidth(), player.getHeight());
+        playerFace = new Rectangle(startX, startY, player.getWidth(), player.getHeight());
 
         moveAmount = 0;
 
         min = wall.getX();
         max = min + wall.getWidth() - playerFace.getWidth();
-    }
-
-    public Rectangle getPlayerFace() {
-        return playerFace;
     }
 
     public void move() {
@@ -49,8 +45,12 @@ public class PlayerModel {
         moveAmount = 0;
     }
 
-    public void moveTo() {
-        playerFace.setX(centerX);
-        playerFace.setY(centerY);
+    public void moveToStart() {
+        playerFace.setX(startX);
+        playerFace.setY(startY);
+    }
+
+    public Rectangle getPlayerFace() {
+        return playerFace;
     }
 }
