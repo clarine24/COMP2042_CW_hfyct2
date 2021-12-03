@@ -1,5 +1,7 @@
 package com.game.BrickDestroy;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
@@ -57,6 +59,14 @@ public class Stages {
         root = loadFXML("GameBoardView");
         scene = new Scene(root);
         initialize(gameStage);
+        gameStage.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
+                if (! newValue) {
+                    GameBoardModel.getInstance().onLostFocus();
+                }
+            }
+        });
     }
 
     static void setRoot(String fxml) throws IOException {

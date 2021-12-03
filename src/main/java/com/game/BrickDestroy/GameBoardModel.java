@@ -9,11 +9,19 @@ public class GameBoardModel {
 
     private GameTimer gameTimer;
 
+    private static GameBoardModel instance;
+
     public GameBoardModel(Rectangle wall, Rectangle player, Circle ball) {
         wallModel = new WallModel(wall, player, ball);
         pauseMenuModel = PauseMenuModel.getInstance();
 
         gameTimer = new GameTimer(wallModel);
+
+        instance = this;
+    }
+
+    public static GameBoardModel getInstance() {
+        return instance;
     }
 
     public WallModel getWallModel() {
@@ -26,5 +34,9 @@ public class GameBoardModel {
 
     public GameTimer getGameTimer() {
         return gameTimer;
+    }
+
+    public void onLostFocus() {
+        gameTimer.stop();
     }
 }
