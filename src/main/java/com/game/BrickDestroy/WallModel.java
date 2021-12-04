@@ -6,6 +6,8 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
+import static java.lang.Boolean.getBoolean;
+
 public class WallModel {
     private PlayerModel player;
     private BallModel ball;
@@ -100,16 +102,16 @@ public class WallModel {
     }
 
     public void findImpacts() {
-        if(impactBottomBorder()) {
+        if(impactBottomWall()) {
             ballCount--;
             ballLost = true;
             System.out.println("bottom");
         }
-        else if(impactTopBorder()) {
+        else if(impactTopWall()) {
             ball.reverseY();
             System.out.println("top");
         }
-        else if(impactLeftRightBorder()) {
+        else if(impactLeftRightWall()) {
             ball.reverseX();
             System.out.println("Hit border");
         }
@@ -117,37 +119,55 @@ public class WallModel {
             ball.reverseY();
             System.out.println("player");
         }
+        else if (impactBrick()) {
+            brickCount--;
+            System.out.println("brick");
+        }
     }
 
-    private boolean impactLeftRightBorder() {
+    private boolean impactLeftRightWall() {
         Shape intersect = Shape.intersect(wall, ball.getBallFace());
 
         boolean left = intersect.getBoundsInLocal().getMinX() == wall.getBoundsInLocal().getMinX();
         boolean right = intersect.getBoundsInLocal().getMaxX() == wall.getBoundsInLocal().getMaxX();
 
-        if(left || right) {
-            return true;
-        }
-        return false;
+        return left || right;
     }
 
-    private boolean impactTopBorder() {
+    private boolean impactTopWall() {
         Shape intersect = Shape.intersect(wall, ball.getBallFace());
-        if(intersect.getBoundsInLocal().getMinY() == wall.getY()) {
-                return true;
-        }
-        return false;
+        return intersect.getBoundsInLocal().getMinY() == wall.getY();
     }
 
-    private boolean impactBottomBorder() {
-        if(wall.intersects(ball.getBallFace().getBoundsInLocal())) {
-            return false;
-        }
-        return true;
+    private boolean impactBottomWall() {
+        return !wall.intersects(ball.getBallFace().getBoundsInLocal());
     }
 
     private boolean ballHitPlayer() {
         return ball.getBallFace().intersects(player.getPlayerFace().getBoundsInLocal());
+    }
+
+    private boolean impactBrick() {
+        for(BrickModel b : bricks) {
+            if(Boolean.getBoolean(b.isBroken().toString())) {
+                return false;
+            }
+
+            Shape intersect = Shape.intersect(b.brickFace, ball.getBallFace());
+            if(intersect.getBoundsInLocal().getMaxX() != -1) { //ball hits brick
+                System.out.println(intersect.getBoundsInLocal());
+                if(intersect.getBoundsInLocal().getHeight() < intersect.getBoundsInLocal().getWidth()){
+                    ball.reverseY();
+                    System.out.println("top/bottom");
+                }
+                else {
+                    ball.reverseX();
+                    System.out.println("left/right");
+                }
+                return b.setImpact();
+            }
+        }
+        return false;
     }
 
     public void wallReset() {
@@ -202,7 +222,6 @@ public class WallModel {
 
     public void nextLevel() {
         bricks = allLevels[level.get()];
-        System.out.println(bricks);
         level.set(level.get() + 1);
     }
 }

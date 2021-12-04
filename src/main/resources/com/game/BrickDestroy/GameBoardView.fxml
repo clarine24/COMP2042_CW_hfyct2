@@ -8,41 +8,41 @@
 <AnchorPane onKeyPressed="#keyPressed" onKeyReleased="#playerStop" prefHeight="500.0" prefWidth="600.0" stylesheets="@GameBoardStyle.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.game.BrickDestroy.GameBoardController">
    <children>
       <Rectangle fx:id="wall" arcHeight="5.0" arcWidth="5.0" height="450.0" strokeType="INSIDE" width="600.0" y="50.0" />
-      <Circle fx:id="rubberBall" centerX="300.0" centerY="457.0" radius="8.0" strokeType="INSIDE" />
-      <Pane fx:id="bricksPane" layoutX="10.0" layoutY="10.0" prefHeight="450.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+      <Pane fx:id="bricksPane" prefHeight="500.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Rectangle fx:id="brick1" height="30.0" strokeType="INSIDE" width="60.0" />
-            <Rectangle fx:id="brick2" height="30.0" strokeType="INSIDE" width="60.0" x="60.0" />
-            <Rectangle fx:id="brick3" height="30.0" strokeType="INSIDE" width="60.0" x="120.0" />
-            <Rectangle fx:id="brick4" height="30.0" strokeType="INSIDE" width="60.0" x="180.0" />
-            <Rectangle fx:id="brick5" height="30.0" strokeType="INSIDE" width="60.0" x="240.0" />
-            <Rectangle fx:id="brick6" height="30.0" strokeType="INSIDE" width="60.0" x="300.0" />
-            <Rectangle fx:id="brick7" height="30.0" strokeType="INSIDE" width="60.0" x="360.0" />
-            <Rectangle fx:id="brick8" height="30.0" strokeType="INSIDE" width="60.0" x="420.0" />
-            <Rectangle fx:id="brick9" height="30.0" strokeType="INSIDE" width="60.0" x="480.0" />
-            <Rectangle fx:id="brick10" height="30.0" strokeType="INSIDE" width="60.0" x="540.0" />
-            <Rectangle fx:id="brick11" height="30.0" strokeType="INSIDE" width="30.0" y="30.0" />
-            <Rectangle fx:id="brick12" height="30.0" strokeType="INSIDE" width="60.0" x="30.0" y="30.0" />
-            <Rectangle fx:id="brick13" height="30.0" strokeType="INSIDE" width="60.0" x="90.0" y="30.0" />
-            <Rectangle fx:id="brick14" height="30.0" strokeType="INSIDE" width="60.0" x="150.0" y="30.0" />
-            <Rectangle fx:id="brick15" height="30.0" strokeType="INSIDE" width="60.0" x="210.0" y="30.0" />
-            <Rectangle fx:id="brick16" height="30.0" strokeType="INSIDE" width="60.0" x="270.0" y="30.0" />
-            <Rectangle fx:id="brick17" height="30.0" strokeType="INSIDE" width="60.0" x="330.0" y="30.0" />
-            <Rectangle fx:id="brick18" height="30.0" strokeType="INSIDE" width="60.0" x="390.0" y="30.0" />
-            <Rectangle fx:id="brick19" height="30.0" strokeType="INSIDE" width="60.0" x="450.0" y="30.0" />
-            <Rectangle fx:id="brick20" height="30.0" strokeType="INSIDE" width="60.0" x="510.0" y="30.0" />
-            <Rectangle fx:id="brick21" height="30.0" strokeType="INSIDE" width="30.0" x="570.0" y="30.0" />
-            <Rectangle fx:id="brick22" height="30.0" strokeType="INSIDE" width="60.0" y="60.0" />
-            <Rectangle fx:id="brick23" height="30.0" strokeType="INSIDE" width="60.0" x="60.0" y="60.0" />
-            <Rectangle fx:id="brick24" height="30.0" strokeType="INSIDE" width="60.0" x="120.0" y="60.0" />
-            <Rectangle fx:id="brick25" height="30.0" strokeType="INSIDE" width="60.0" x="180.0" y="60.0" />
-            <Rectangle fx:id="brick26" height="30.0" strokeType="INSIDE" width="60.0" x="240.0" y="60.0" />
-            <Rectangle fx:id="brick27" height="30.0" strokeType="INSIDE" width="60.0" x="300.0" y="60.0" />
-            <Rectangle fx:id="brick28" height="30.0" strokeType="INSIDE" width="60.0" x="360.0" y="60.0" />
-            <Rectangle fx:id="brick29" height="30.0" strokeType="INSIDE" width="60.0" x="420.0" y="60.0" />
-            <Rectangle fx:id="brick30" height="30.0" strokeType="INSIDE" width="60.0" x="480.0" y="60.0" />
-            <Rectangle fx:id="brick31" height="30.0" strokeType="INSIDE" width="60.0" x="540.0" y="60.0" />
+            <Rectangle fx:id="brick1" height="30.0" strokeType="INSIDE" width="60.0" y="50.0" />
+            <Rectangle fx:id="brick2" height="30.0" strokeType="INSIDE" width="60.0" x="60.0" y="50.0" />
+            <Rectangle fx:id="brick3" height="30.0" strokeType="INSIDE" width="60.0" x="120.0" y="50.0" />
+            <Rectangle fx:id="brick4" height="30.0" strokeType="INSIDE" width="60.0" x="180.0" y="50.0" />
+            <Rectangle fx:id="brick5" height="30.0" strokeType="INSIDE" width="60.0" x="240.0" y="50.0" />
+            <Rectangle fx:id="brick6" height="30.0" strokeType="INSIDE" width="60.0" x="300.0" y="50.0" />
+            <Rectangle fx:id="brick7" height="30.0" strokeType="INSIDE" width="60.0" x="360.0" y="50.0" />
+            <Rectangle fx:id="brick8" height="30.0" strokeType="INSIDE" width="60.0" x="420.0" y="50.0" />
+            <Rectangle fx:id="brick9" height="30.0" strokeType="INSIDE" width="60.0" x="480.0" y="50.0" />
+            <Rectangle fx:id="brick10" height="30.0" strokeType="INSIDE" width="60.0" x="540.0" y="50.0" />
+            <Rectangle fx:id="brick11" height="30.0" strokeType="INSIDE" width="30.0" y="80.0" />
+            <Rectangle fx:id="brick12" height="30.0" strokeType="INSIDE" width="60.0" x="30.0" y="80.0" />
+            <Rectangle fx:id="brick13" height="30.0" strokeType="INSIDE" width="60.0" x="90.0" y="80.0" />
+            <Rectangle fx:id="brick14" height="30.0" strokeType="INSIDE" width="60.0" x="150.0" y="80.0" />
+            <Rectangle fx:id="brick15" height="30.0" strokeType="INSIDE" width="60.0" x="210.0" y="80.0" />
+            <Rectangle fx:id="brick16" height="30.0" strokeType="INSIDE" width="60.0" x="270.0" y="80.0" />
+            <Rectangle fx:id="brick17" height="30.0" strokeType="INSIDE" width="60.0" x="330.0" y="80.0" />
+            <Rectangle fx:id="brick18" height="30.0" strokeType="INSIDE" width="60.0" x="390.0" y="80.0" />
+            <Rectangle fx:id="brick19" height="30.0" strokeType="INSIDE" width="60.0" x="450.0" y="80.0" />
+            <Rectangle fx:id="brick20" height="30.0" strokeType="INSIDE" width="60.0" x="510.0" y="80.0" />
+            <Rectangle fx:id="brick21" height="30.0" strokeType="INSIDE" width="30.0" x="570.0" y="80.0" />
+            <Rectangle fx:id="brick22" height="30.0" strokeType="INSIDE" width="60.0" y="110.0" />
+            <Rectangle fx:id="brick23" height="30.0" strokeType="INSIDE" width="60.0" x="60.0" y="110.0" />
+            <Rectangle fx:id="brick24" height="30.0" strokeType="INSIDE" width="60.0" x="120.0" y="110.0" />
+            <Rectangle fx:id="brick25" height="30.0" strokeType="INSIDE" width="60.0" x="180.0" y="110.0" />
+            <Rectangle fx:id="brick26" height="30.0" strokeType="INSIDE" width="60.0" x="240.0" y="110.0" />
+            <Rectangle fx:id="brick27" height="30.0" strokeType="INSIDE" width="60.0" x="300.0" y="110.0" />
+            <Rectangle fx:id="brick28" height="30.0" strokeType="INSIDE" width="60.0" x="360.0" y="110.0" />
+            <Rectangle fx:id="brick29" height="30.0" strokeType="INSIDE" width="60.0" x="420.0" y="110.0" />
+            <Rectangle fx:id="brick30" height="30.0" strokeType="INSIDE" width="60.0" x="480.0" y="110.0" />
+            <Rectangle fx:id="brick31" height="30.0" strokeType="INSIDE" width="60.0" x="540.0" y="110.0" />
          </children></Pane>
+      <Circle fx:id="rubberBall" centerX="300.0" centerY="457.0" radius="8.0" strokeType="INSIDE" />
       <Rectangle fx:id="player" arcHeight="5.0" arcWidth="5.0" height="15.0" strokeType="INSIDE" strokeWidth="2.0" width="150.0" x="225.0" y="465.0" />
       <Pane fx:id="playButton" layoutX="200.0" layoutY="125.0" onMouseClicked="#play" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="125.39999999999998" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="175.0" />
       <Pane fx:id="pauseMenu" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />

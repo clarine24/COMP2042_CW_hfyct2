@@ -1,5 +1,7 @@
 package com.game.BrickDestroy;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.shape.Rectangle;
 
 public abstract class BrickModel {
@@ -9,24 +11,36 @@ public abstract class BrickModel {
     private int fullStrength;
     private int currentStrength;
 
-    private boolean broken;
+    private BooleanProperty broken;
 
     public BrickModel(Rectangle brick, String name, int fullStrength) {
         brickFace = makeBrickFace(brick);
         this.name = name;
         this.fullStrength = currentStrength = fullStrength;
-        broken = false;
+        broken = new SimpleBooleanProperty(false);
     }
 
     protected abstract Rectangle makeBrickFace(Rectangle brick);
 
     public abstract Rectangle getBrickFace();
 
+    public boolean setImpact() {
+        if(Boolean.getBoolean(isBroken().toString()))
+            return false;
+        impact();
+        return Boolean.getBoolean(isBroken().toString());
+    }
+
+    public void impact() {
+        currentStrength--;
+        broken.set(currentStrength == 0);
+    }
+
     public String getName() {
         return name;
     }
 
-    public boolean isBroken() {
+    public BooleanProperty isBroken() {
         return broken;
     }
 }
