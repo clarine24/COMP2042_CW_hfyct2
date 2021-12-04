@@ -1,15 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<AnchorPane onKeyPressed="#keyPressed" onKeyReleased="#playerStop" prefHeight="450.0" prefWidth="600.0" stylesheets="@GameBoardStyle.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.game.BrickDestroy.GameBoardController">
+<AnchorPane onKeyPressed="#keyPressed" onKeyReleased="#playerStop" prefHeight="500.0" prefWidth="600.0" stylesheets="@GameBoardStyle.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.game.BrickDestroy.GameBoardController">
    <children>
-      <Rectangle fx:id="wall" arcHeight="5.0" arcWidth="5.0" height="450.0" strokeType="INSIDE" width="600.0" />
-      <Circle fx:id="rubberBall" centerX="300.0" centerY="407.0" radius="8.0" strokeType="INSIDE" />
-      <Rectangle fx:id="player" arcHeight="5.0" arcWidth="5.0" height="15.0" strokeType="INSIDE" strokeWidth="2.0" width="150.0" x="225.0" y="415.0" AnchorPane.bottomAnchor="20.0" />
-      <Pane fx:id="playButton" layoutX="200.0" layoutY="125.0" onMouseClicked="#play" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="125.39999999999998" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="125.0" />
-      <Pane fx:id="pauseMenu" prefHeight="450.4" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <Pane fx:id="gameOverMenu" layoutX="10.0" layoutY="10.0" prefHeight="460.4" prefWidth="610.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Rectangle fx:id="wall" arcHeight="5.0" arcWidth="5.0" height="450.0" strokeType="INSIDE" width="600.0" y="50.0" />
+      <Circle fx:id="rubberBall" centerX="300.0" centerY="457.0" radius="8.0" strokeType="INSIDE" />
+      <Pane fx:id="bricksPane" layoutX="10.0" layoutY="10.0" prefHeight="450.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <Rectangle id="clayBrick" fx:id="brick1" height="30.0" strokeType="INSIDE" width="60.0" />
+            <Rectangle id="cementBrick" fx:id="brick2" height="30.0" layoutX="60.0" strokeType="INSIDE" width="60.0" />
+            <Rectangle id="steelBrick" fx:id="brick3" height="30.0" layoutX="120.0" strokeType="INSIDE" width="60.0" />
+            <Rectangle id="clayBrick" fx:id="brick4" height="30.0" layoutX="180.0" strokeType="INSIDE" width="60.0" />
+            <Rectangle id="clayBrick" fx:id="brick5" height="30.0" layoutX="240.0" strokeType="INSIDE" width="60.0" />
+            <Rectangle id="clayBrick" fx:id="brick6" height="30.0" layoutX="300.0" strokeType="INSIDE" width="60.0" />
+            <Rectangle id="clayBrick" fx:id="brick7" height="30.0" layoutX="360.0" strokeType="INSIDE" width="60.0" />
+            <Rectangle id="cementBrick" fx:id="brick8" height="30.0" layoutX="420.0" strokeType="INSIDE" width="60.0" />
+            <Rectangle id="cementBrick" fx:id="brick9" height="30.0" layoutX="480.0" strokeType="INSIDE" width="60.0" />
+            <Rectangle id="steelBrick" fx:id="brick10" height="30.0" layoutX="540.0" strokeType="INSIDE" width="60.0" />
+         </children></Pane>
+      <Rectangle fx:id="player" arcHeight="5.0" arcWidth="5.0" height="15.0" strokeType="INSIDE" strokeWidth="2.0" width="150.0" x="225.0" y="465.0" />
+      <Pane fx:id="playButton" layoutX="200.0" layoutY="125.0" onMouseClicked="#play" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="125.39999999999998" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="175.0" />
+      <Pane fx:id="pauseMenu" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Pane fx:id="gameOverMenu" prefHeight="500.4" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <HBox fx:id="labelBar" prefHeight="50.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="levelTitle" prefHeight="42.0" prefWidth="83.0" text="LEVEL">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="20.0" top="5.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="levelNumber" layoutX="30.0" layoutY="15.0" prefHeight="42.0" prefWidth="30.0" text="5">
+               <HBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </HBox.margin>
+            </Label>
+         </children></HBox>
    </children>
 </AnchorPane>

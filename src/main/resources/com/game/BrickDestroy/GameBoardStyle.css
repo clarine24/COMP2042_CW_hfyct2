@@ -1,3 +1,13 @@
+#labelBar {
+    -fx-background-color: "#E4D3CF";
+}
+
+Label {
+    -fx-font-family: "Arial Black";
+    -fx-font-size: 20px;
+    -fx-text-fill: "#968C83";
+}
+
 #wall {
     -fx-fill: white;
 }
@@ -16,4 +26,22 @@
     -fx-background-image: url("playButton.png");
     -fx-background-size: cover;
     -fx-cursor: hand;
+}
+
+#clayBrick {
+    -fx-fill: "#DC5539";
+    -fx-stroke: rgb(217, 199, 175);
+    -fx-stroke-width: 3px;
+}
+
+#cementBrick {
+    -fx-fill: "676767";
+    -fx-stroke: rgb(217, 199, 175);
+    -fx-stroke-width: 3px;
+}
+
+#steelBrick {
+    -fx-fill: "B2BEB5";
+    -fx-stroke: rgb(217, 199, 175);
+    -fx-stroke-width: 3px;
 }

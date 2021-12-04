@@ -4,6 +4,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -22,21 +24,70 @@ public class GameBoardController {
     @FXML private Pane playButton;
     @FXML private Pane pauseMenu;
     @FXML private Pane gameOverMenu;
+    @FXML private Pane bricksPane;
+    @FXML private Label levelNumber;
+
+    private Rectangle[] bricks;
 
     @FXML
     public void initialize() throws IOException {
         loadFXML("PauseMenuView", pauseMenu);
         loadFXML("GameOverView", gameOverMenu);
 
+        //initialize bricks array
+        initializeBricks();
+
         //Get model
-        model = new GameBoardModel(wall, player, rubberBall);
+        model = new GameBoardModel(wall, player, rubberBall, bricks);
 
         //Link Model with View
-        player.xProperty().bind(model.getWallModel().getPlayer().getPlayerFace().xProperty());
+        linkModelView();
 
+        playButton.setVisible(true);
+        pauseMenu.setVisible(false);
+        gameOverMenu.setVisible(false);
+    }
+
+    private void loadFXML(String fxml, Pane pane) throws IOException {
+        AnchorPane view = FXMLLoader.load(GameBoardController.class.getResource(fxml + ".fxml"));
+        pane.getChildren().add(view);
+    }
+
+    private void initializeBricks() {
+        int brickCount = bricksPane.getChildren().size();
+        bricks = new Rectangle[brickCount];
+
+        int i = 0;
+        for(Node node: bricksPane.getChildren()) {
+            bricks[i] = (Rectangle) node;
+            i++;
+        }
+    }
+
+    private void linkModelView() {
+        linkLevelNumber();
+        linkPlayerModel();
+        linkRubberBallModel();
+        linkGameTimer();
+        linkPauseMenuModel();
+        linkGameOverMenuModel();
+        //linkBrickModel();
+    }
+
+    private void linkLevelNumber() {
+        levelNumber.textProperty().bind(model.getWallModel().getLevel().asString());
+    }
+
+    private void linkPlayerModel() {
+        player.xProperty().bind(model.getWallModel().getPlayer().getPlayerFace().xProperty());
+    }
+
+    private void linkRubberBallModel() {
         rubberBall.centerXProperty().bind(model.getWallModel().getBall().getBallFace().centerXProperty());
         rubberBall.centerYProperty().bind(model.getWallModel().getBall().getBallFace().centerYProperty());
+    }
 
+    private void linkGameTimer() {
         model.getGameTimer().isRunning().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
@@ -56,7 +107,9 @@ public class GameBoardController {
                 }
             }
         });
-        
+    }
+
+    private void linkPauseMenuModel() {
         model.getPauseMenuModel().isResume().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
@@ -79,7 +132,9 @@ public class GameBoardController {
                 }
             }
         });
+    }
 
+    private void linkGameOverMenuModel() {
         model.getGameOverModel().isRestart().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
@@ -91,15 +146,14 @@ public class GameBoardController {
                 }
             }
         });
-
-        playButton.setVisible(true);
-        pauseMenu.setVisible(false);
-        gameOverMenu.setVisible(false);
     }
 
-    private void loadFXML(String fxml, Pane pane) throws IOException {
-        AnchorPane view = FXMLLoader.load(GameBoardController.class.getResource(fxml + ".fxml"));
-        pane.getChildren().add(view);
+    private void linkBrickModel() {
+        int i = 0;
+        for(Node node: bricksPane.getChildren()) {
+            node.setId(model.getWallModel().getBricks()[i].getName());
+            i++;
+        }
     }
 
     @FXML
