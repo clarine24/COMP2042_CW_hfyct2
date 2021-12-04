@@ -71,7 +71,7 @@ public class GameBoardController {
         linkGameTimer();
         linkPauseMenuModel();
         linkGameOverMenuModel();
-        //linkBrickModel();
+        linkBrickModel();
     }
 
     private void linkLevelNumber() {

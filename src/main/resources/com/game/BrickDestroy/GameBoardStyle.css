@@ -1,11 +1,11 @@
 #labelBar {
-    -fx-background-color: "#E4D3CF";
+    -fx-background-color: "#B67162";
 }
 
 Label {
     -fx-font-family: "Arial Black";
     -fx-font-size: 20px;
-    -fx-text-fill: "#968C83";
+    -fx-text-fill: "#E4D3CF";
 }
 
 #wall {
@@ -30,18 +30,18 @@ Label {
 
 #clayBrick {
     -fx-fill: "#DC5539";
-    -fx-stroke: rgb(217, 199, 175);
-    -fx-stroke-width: 3px;
+    -fx-stroke:"#EBECF0";
+    -fx-stroke-width: 2px;
 }
 
 #cementBrick {
-    -fx-fill: "676767";
-    -fx-stroke: rgb(217, 199, 175);
-    -fx-stroke-width: 3px;
+    -fx-fill: "#676767";
+    -fx-stroke: "#EBECF0";
+    -fx-stroke-width: 2px;
 }
 
 #steelBrick {
-    -fx-fill: "B2BEB5";
-    -fx-stroke: rgb(217, 199, 175);
-    -fx-stroke-width: 3px;
+    -fx-fill: "#B2BEB5";
+    -fx-stroke: "#EBECF0";
+    -fx-stroke-width: 2px;
 }
