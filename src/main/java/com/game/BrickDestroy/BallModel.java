@@ -32,9 +32,28 @@ public abstract class BallModel {
 
     protected abstract Circle makeBall(Circle ball);
 
-    public void move() {
+    public void move(double minX, double width, double minY, double height) {
         double x = ballFace.getCenterX() + getMove(moveX);
         double y = ballFace.getCenterY() + getMove(moveY);
+
+        double upY = y - ballFace.getRadius();
+        double leftX = x - ballFace.getRadius();
+        double rightX = x + ballFace.getRadius();
+
+        double maxX = minX + width;
+        double maxY = minY + height;
+
+        //Allow ball to move only within wall boundary
+        if(upY < minY) {
+            y = minY + ballFace.getRadius();
+        }
+        else if(upY < maxY) {
+            if (leftX < minX) {
+                x = minX + ballFace.getRadius();
+            } else if (rightX > maxX) {
+                x = maxX - ballFace.getRadius();
+            }
+        }
 
         ballFace.setCenterX(x);
         ballFace.setCenterY(y);

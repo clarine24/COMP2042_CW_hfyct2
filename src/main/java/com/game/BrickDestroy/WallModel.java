@@ -100,7 +100,7 @@ public class WallModel {
     }
 
     public void move() {
-        ball.move();
+        ball.move(wall.getX(), wall.getWidth(), wall.getY(), wall.getHeight());
         player.move();
     }
 
