@@ -56,6 +56,29 @@
                   <Insets bottom="5.0" top="5.0" />
                </HBox.margin>
             </Label>
+            <Label id="title" fx:id="brickCountTitle" layoutX="30.0" layoutY="15.0" prefHeight="42.0" prefWidth="124.0" text="BRICK COUNT:">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="150.0" top="5.0" />
+               </HBox.margin>
+            </Label>
+            <Label id="title" fx:id="brickCountNumber" layoutX="113.0" layoutY="15.0" prefHeight="42.0" prefWidth="30.0" text="31">
+               <HBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </HBox.margin>
+            </Label>
+            <Label id="title" fx:id="ballCountTitle" layoutX="144.0" layoutY="15.0" prefHeight="42.0" prefWidth="113.0" text="BALL COUNT:">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="18.0" top="5.0" />
+               </HBox.margin>
+            </Label>
+            <Label id="title" fx:id="ballCountNumber" layoutX="324.0" layoutY="15.0" prefHeight="42.0" prefWidth="14.0" text="3">
+               <HBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets right="20.0" />
+               </padding>
+            </Label>
          </children></HBox>
       <Pane fx:id="playButton" layoutX="200.0" layoutY="125.0" onMouseClicked="#play" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="125.39999999999998" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="175.0" />
       <Pane fx:id="pauseMenu" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />

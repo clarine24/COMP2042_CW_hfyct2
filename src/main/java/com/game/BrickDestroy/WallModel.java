@@ -29,7 +29,7 @@ public class WallModel {
     private int ballCount;
     private boolean ballLost;
 
-    private int brickCount;
+    private IntegerProperty brickCount;
     private int lineCount;
 
     public WallModel(Rectangle wall, Rectangle player, Circle ball, Rectangle[] bricks) {
@@ -40,7 +40,7 @@ public class WallModel {
         ballCount = 3;
         ballLost = false;
 
-        brickCount = bricks.length;
+        brickCount = new SimpleIntegerProperty(bricks.length);
         lineCount = 3;
 
         level = new SimpleIntegerProperty(0);
@@ -60,7 +60,7 @@ public class WallModel {
     }
 
     private BrickModel[] makeSingleTypeLevel(Rectangle[] bricks, int type) {
-        BrickModel[] tmp = new BrickModel[brickCount];
+        BrickModel[] tmp = new BrickModel[brickCount.get()];
 
         for(int i=0; i<tmp.length; i++) {
             tmp[i] = makeBrick(bricks[i], type);
@@ -69,7 +69,7 @@ public class WallModel {
     }
 
     private BrickModel[] makeChessboardLevel(Rectangle[] bricks, int typeA, int typeB) {
-        BrickModel[] tmp = new BrickModel[brickCount];
+        BrickModel[] tmp = new BrickModel[brickCount.get()];
 
         for(int i=0; i<tmp.length; i++) {
             if(i % 2 == 0) {
@@ -109,23 +109,18 @@ public class WallModel {
         if(impactBottomWall()) {
             ballCount--;
             ballLost = true;
-            System.out.println("bottom");
         }
         else if(impactTopWall()) {
             ball.reverseY();
-            System.out.println("top");
         }
         else if(impactLeftRightWall()) {
             ball.reverseX();
-            System.out.println("Hit border");
         }
         else if (ballHitPlayer()) {
             ball.reverseY();
-            System.out.println("player");
         }
         else if (impactBrick()) {
-            brickCount--;
-            System.out.println("brick");
+            brickCount.set(brickCount.get() - 1);
         }
     }
 
@@ -175,7 +170,7 @@ public class WallModel {
         for(BrickModel b : bricks) {
             b.repair();
         }
-        brickCount = bricks.length;
+        brickCount.set(bricks.length);
 
         ballCount = 3;
         ballPlayerReset();
@@ -212,12 +207,12 @@ public class WallModel {
         return bricks;
     }
 
-    public int getBrickCount() {
+    public IntegerProperty getBrickCount() {
         return brickCount;
     }
 
     public boolean isDone() {
-        return brickCount == 0;
+        return brickCount.get() == 0;
     }
 
     public IntegerProperty getLevel() {
@@ -231,7 +226,7 @@ public class WallModel {
     public void nextLevel() {
         bricks = allLevels[level.get()];
         level.set(level.get() + 1);
-        this.brickCount = bricks.length;
+        this.brickCount.set(bricks.length);
         int x = level.get();
         nextLevel.set(x < allLevels.length);
     }

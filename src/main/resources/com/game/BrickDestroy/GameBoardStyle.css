@@ -8,6 +8,10 @@ Label {
     -fx-text-fill: "#E4D3CF";
 }
 
+#title {
+    -fx-font-size: 14px;
+}
+
 #wall {
     -fx-fill: white;
 }
