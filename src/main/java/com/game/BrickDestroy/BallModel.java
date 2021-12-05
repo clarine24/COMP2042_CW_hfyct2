@@ -2,11 +2,14 @@ package com.game.BrickDestroy;
 
 import javafx.scene.shape.Circle;
 
+import java.util.Random;
+
 public abstract class BallModel {
     private Circle ballFace;
     private double startX;
     private double startY;
 
+    private Random rnd;
     private double moveX;
     private double moveY;
 
@@ -16,6 +19,7 @@ public abstract class BallModel {
 
         ballFace = makeBall(ball);
 
+        rnd = new Random();
         setMoveDirection();
     }
 
@@ -37,6 +41,11 @@ public abstract class BallModel {
     public void setMoveDirection() {
         moveX = -5;
         moveY = -3;
+
+        double x = rnd.nextDouble();
+        if(x < 0.5) {
+            reverseX();
+        }
     }
 
     public void reverseX() {
