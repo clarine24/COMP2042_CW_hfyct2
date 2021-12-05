@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="200.0" prefWidth="300.0" stylesheets="@DebugConsoleStyle.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.game.BrickDestroy.DebugConsoleController">
+   <children>
+      <Button fx:id="nextLevel" alignment="CENTER" layoutY="30.0" mnemonicParsing="false" onAction="#nextLevelButtonClicked" prefWidth="150.0" text="Next Level" textAlignment="CENTER" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" />
+      <Button fx:id="resetBallCount" alignment="CENTER" layoutY="60.0" mnemonicParsing="false" onAction="#resetBallCountButtonClicked" prefWidth="150.0" text="Reset Ball Count" textAlignment="CENTER" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" />
+      <Label alignment="CENTER" layoutY="120.0" text="Ball Speed" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" />
+      <Slider fx:id="ballSpeed" blockIncrement="1.0" layoutY="140.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+   </children>
+</AnchorPane>

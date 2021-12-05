@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -14,9 +15,11 @@ import java.io.IOException;
 
 public class Stages {
     private static final String DEF_TITLE = "Brick Destroy";
+    private static final String DEBUG_TITLE = "Debug Console";
 
     private Stage homeStage;
     private Stage gameStage;
+    private Stage debugStage;
 
     private static Scene scene;
 
@@ -31,6 +34,10 @@ public class Stages {
         gameStage = new Stage();
         gameStage.initStyle(StageStyle.DECORATED);
 
+        debugStage = new Stage();
+        debugStage.initStyle(StageStyle.DECORATED);
+        debugStage.initModality(Modality.APPLICATION_MODAL);
+
         instance = this;
     }
 
@@ -39,11 +46,9 @@ public class Stages {
     }
 
     public void initialize(Stage stage) {
-        stage.setTitle(DEF_TITLE);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
-        autoLocate(stage);
         setFocus();
     }
 
@@ -51,14 +56,18 @@ public class Stages {
         gameStage.hide();
         root = loadFXML("HomeMenuView");
         scene = new Scene(root);
+        homeStage.setTitle(DEF_TITLE);
         initialize(homeStage);
+        setLocation(homeStage);
     }
 
     public void gameStage() throws IOException {
         homeStage.hide();
         root = loadFXML("GameBoardView");
         scene = new Scene(root);
+        gameStage.setTitle(DEF_TITLE);
         initialize(gameStage);
+        setLocation(gameStage);
         gameStage.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
@@ -67,6 +76,14 @@ public class Stages {
                 }
             }
         });
+    }
+
+    public void debugConsole() throws IOException {
+        root = loadFXML("DebugConsoleView");
+        scene = new Scene(root);
+        debugStage.setTitle(DEBUG_TITLE);
+        initialize(debugStage);
+        setDebugLocation();
     }
 
     static void setRoot(String fxml) throws IOException {
@@ -78,11 +95,19 @@ public class Stages {
         return fxmlLoader.load();
     }
 
-    private void autoLocate(Stage stage) {
+    private void setLocation(Stage stage) {
         Rectangle2D primaryScreen = Screen.getPrimary().getVisualBounds();
 
         stage.setX((primaryScreen.getWidth() - stage.getWidth()) / 2);
         stage.setY((primaryScreen.getHeight() - stage.getHeight()) / 2);
+    }
+
+    private void setDebugLocation() {
+        double x = (gameStage.getWidth() - debugStage.getWidth()) / 2 + gameStage.getX();
+        double y = (gameStage.getHeight() - debugStage.getHeight()) / 2 + gameStage.getY();
+
+        debugStage.setX(x);
+        debugStage.setY(y);
     }
 
     public void setFocus() {

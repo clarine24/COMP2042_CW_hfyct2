@@ -198,7 +198,7 @@ public class GameBoardController {
     }
 
     @FXML
-    private void keyPressed(KeyEvent event) {
+    private void keyPressed(KeyEvent event) throws IOException {
         KeyCode key = event.getCode();
         if (key == KeyCode.SPACE) {
             if(!playButton.isVisible()) {
@@ -218,6 +218,12 @@ public class GameBoardController {
             else if (!gameOverMenu.isVisible()){
                 stop();
                 pauseMenu.setVisible(true);
+            }
+        }
+        else if (key == KeyCode.F1) {
+            if(event.isAltDown() && event.isShiftDown()) {
+                Stages stages = Stages.getInstance();
+                stages.debugConsole();
             }
         }
     }
