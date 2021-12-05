@@ -26,6 +26,7 @@ public class Stages {
     private static Stages instance;
 
     private Parent root;
+    private Parent gameRoot;
 
     public Stages(Stage stage) {
         homeStage = stage;
@@ -46,6 +47,7 @@ public class Stages {
     }
 
     public void initialize(Stage stage) {
+        scene = new Scene(root);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
@@ -55,7 +57,6 @@ public class Stages {
     public void homeStage() throws IOException {
         gameStage.hide();
         root = loadFXML("HomeMenuView");
-        scene = new Scene(root);
         homeStage.setTitle(DEF_TITLE);
         initialize(homeStage);
         setLocation(homeStage);
@@ -63,27 +64,26 @@ public class Stages {
 
     public void gameStage() throws IOException {
         homeStage.hide();
-        root = loadFXML("GameBoardView");
-        scene = new Scene(root);
+        gameRoot = loadFXML("GameBoardView");
+        root = gameRoot;
         gameStage.setTitle(DEF_TITLE);
         initialize(gameStage);
         setLocation(gameStage);
-        gameStage.focusedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
-                if (! newValue) {
-                    GameBoardModel.getInstance().onLostFocus();
-                }
+        gameStage.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (! newValue) {
+                GameBoardModel.getInstance().onLostFocus();
             }
         });
     }
 
     public void debugConsole() throws IOException {
         root = loadFXML("DebugConsoleView");
-        scene = new Scene(root);
         debugStage.setTitle(DEBUG_TITLE);
         initialize(debugStage);
         setDebugLocation();
+        debugStage.setOnCloseRequest(event -> {
+            root = gameRoot;
+        });
     }
 
     static void setRoot(String fxml) throws IOException {
