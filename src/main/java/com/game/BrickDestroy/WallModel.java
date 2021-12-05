@@ -1,6 +1,8 @@
 package com.game.BrickDestroy;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -18,6 +20,7 @@ public class WallModel {
     private static final int LEVELS_COUNT = 4;
     private BrickModel[][] allLevels;
     private IntegerProperty level;
+    private BooleanProperty nextLevel;
 
     private static final int CLAY = 1;
     private static final int STEEL = 2;
@@ -42,6 +45,7 @@ public class WallModel {
 
         level = new SimpleIntegerProperty(0);
         allLevels = makeLevels(bricks);
+        nextLevel = new SimpleBooleanProperty(true);
     }
 
     private BrickModel[][] makeLevels(Rectangle[] bricks) {
@@ -220,14 +224,15 @@ public class WallModel {
         return level;
     }
 
-    public boolean hasNextLevel() {
-        int x = level.get();
-        return x < allLevels.length;
+    public BooleanProperty hasNextLevel() {
+        return nextLevel;
     }
 
     public void nextLevel() {
         bricks = allLevels[level.get()];
         level.set(level.get() + 1);
         this.brickCount = bricks.length;
+        int x = level.get();
+        nextLevel.set(x < allLevels.length);
     }
 }

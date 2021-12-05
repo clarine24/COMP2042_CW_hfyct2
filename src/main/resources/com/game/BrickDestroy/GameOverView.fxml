@@ -13,7 +13,7 @@
             <Label fx:id="title" alignment="CENTER" layoutX="117.0" layoutY="38.0" prefHeight="72.0" prefWidth="365.0" text="GAME OVER" />
             <Label fx:id="score" alignment="CENTER" layoutX="227.0" layoutY="140.0" prefHeight="47.0" prefWidth="145.0" text="500" />
             <Label fx:id="scoreTitle" alignment="CENTER" layoutX="112.0" layoutY="115.0" prefHeight="27.0" prefWidth="374.0" text="SCORE" />
-            <Button fx:id="nextLevelButton" layoutX="162.5" layoutY="211.5" mnemonicParsing="false" onAction="#nextLevelButtonClicked" prefHeight="50.0" prefWidth="275.0" text="NEXT LEVEL" />
+            <Button id="nextLevelButton" fx:id="nextLevelButton" layoutX="162.5" layoutY="211.5" mnemonicParsing="false" onAction="#nextLevelButtonClicked" prefHeight="50.0" prefWidth="275.0" text="NEXT LEVEL" />
             <Button fx:id="restartButton" layoutX="162.5" layoutY="276.5" mnemonicParsing="false" onAction="#restartButtonClicked" prefHeight="50.0" prefWidth="275.0" text="RESTART" />
             <Button layoutX="162.5" layoutY="341.5" mnemonicParsing="false" onAction="#exitButtonClicked" prefHeight="50.0" prefWidth="275.0" text="EXIT TO MAIN MENU" />
             <Button fx:id="scoreBoardButton" layoutX="162.5" layoutY="406.5" mnemonicParsing="false" onAction="#scoreBoardButtonClicked" prefHeight="50.0" prefWidth="275.0" text="VIEW SCOREBOARD" />

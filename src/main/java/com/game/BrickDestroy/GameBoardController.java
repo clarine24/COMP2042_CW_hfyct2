@@ -65,17 +65,13 @@ public class GameBoardController {
     }
 
     private void linkModelView() {
-        linkLevelNumber();
         linkPlayerModel();
         linkRubberBallModel();
         linkGameTimer();
         linkPauseMenuModel();
         linkGameOverMenuModel();
         linkBrickModel();
-    }
-
-    private void linkLevelNumber() {
-        levelNumber.textProperty().bind(model.getWallModel().getLevel().asString());
+        linkWallModel();
     }
 
     private void linkPlayerModel() {
@@ -180,6 +176,19 @@ public class GameBoardController {
 
             i++;
         }
+    }
+
+    private void linkWallModel() {
+        levelNumber.textProperty().bind(model.getWallModel().getLevel().asString());
+
+        model.getWallModel().hasNextLevel().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
+                if(! newValue) {
+                    gameOverMenu.lookup("#nextLevelButton").setVisible(false);
+                }
+            }
+        });
     }
 
     @FXML
