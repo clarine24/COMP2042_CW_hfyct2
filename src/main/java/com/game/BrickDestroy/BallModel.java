@@ -35,8 +35,8 @@ public abstract class BallModel {
     }
 
     public void setMoveDirection() {
-        moveX = -3;
-        moveY = -2;
+        moveX = -5;
+        moveY = -3;
     }
 
     public void reverseX() {

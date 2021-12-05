@@ -25,10 +25,8 @@ public abstract class BrickModel {
     public abstract Rectangle getBrickFace();
 
     public boolean setImpact() {
-        if(Boolean.getBoolean(isBroken().toString()))
-            return false;
         impact();
-        return Boolean.getBoolean(isBroken().toString());
+        return isBroken().get();
     }
 
     public void impact() {

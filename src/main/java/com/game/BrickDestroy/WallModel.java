@@ -149,20 +149,17 @@ public class WallModel {
 
     private boolean impactBrick() {
         for(BrickModel b : bricks) {
-            if(Boolean.getBoolean(b.isBroken().toString())) {
-                return false;
+            if(b.isBroken().get()) {
+                continue;
             }
 
             Shape intersect = Shape.intersect(b.brickFace, ball.getBallFace());
             if(intersect.getBoundsInLocal().getMaxX() != -1) { //ball hits brick
-                System.out.println(intersect.getBoundsInLocal());
                 if(intersect.getBoundsInLocal().getHeight() < intersect.getBoundsInLocal().getWidth()){
                     ball.reverseY();
-                    System.out.println("top/bottom");
                 }
                 else {
                     ball.reverseX();
-                    System.out.println("left/right");
                 }
                 return b.setImpact();
             }

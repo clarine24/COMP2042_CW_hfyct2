@@ -152,19 +152,17 @@ public class GameBoardController {
         int i = 0;
         for(Node node: bricksPane.getChildren()) {
             node.setId(model.getWallModel().getBricks()[i].getName());
-            /*
             model.getWallModel().getBricks()[i].isBroken().addListener(new ChangeListener<Boolean>() {
                 @Override
                 public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
                     if(newValue) {
                         node.setVisible(false);
                     }
-                    else
+                    else {
                         node.setVisible(true);
+                    }
                 }
             });
-
-             */
             i++;
         }
     }
