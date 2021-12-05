@@ -34,7 +34,7 @@ public class WallModel {
     public WallModel(Rectangle wall, Rectangle player, Circle ball, Rectangle[] bricks) {
         this.wall = new Rectangle(wall.getX(), wall.getY(), wall.getWidth(), wall.getHeight());
         this.player = new PlayerModel(player, this.wall);
-        this.ball = new RubberBallModel(ball);
+        this.ball = new RubberBallModel(ball, this.wall);
 
         ballCount = new SimpleIntegerProperty(DEFAULT_BALL_COUNT);
         ballLost = false;
@@ -100,7 +100,7 @@ public class WallModel {
     }
 
     public void move() {
-        ball.move(wall.getX(), wall.getWidth(), wall.getY(), wall.getHeight());
+        ball.move();
         player.move();
     }
 

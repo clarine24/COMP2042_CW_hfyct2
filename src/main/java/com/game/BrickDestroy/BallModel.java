@@ -3,6 +3,7 @@ package com.game.BrickDestroy;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 
 import java.util.Random;
 
@@ -12,18 +13,27 @@ public abstract class BallModel {
     private final double startY;
 
     private Random rnd;
+    private final double DEFAULT_MOVE = -3;
     private double moveX;
     private double moveY;
-    private final double DEFAULT_MOVE = -3;
+    private final double minX;
+    private final double maxX;
+    private final double minY;
+    private final double maxY;
 
     private DoubleProperty speed;
     private final double DEFAULT_SPEED = 1;
 
-    public BallModel(Circle ball) {
+    public BallModel(Circle ball, Rectangle wall) {
         startX = ball.getCenterX();
         startY = ball.getCenterY();
 
         ballFace = makeBall(ball);
+
+        minX = wall.getX() + ball.getRadius();
+        maxX = wall.getX() + wall.getWidth() - ball.getRadius();
+        minY = wall.getY() + ball.getRadius();
+        maxY = wall.getY() + wall.getHeight() - ball.getRadius();
 
         rnd = new Random();
         speed = new SimpleDoubleProperty(DEFAULT_SPEED);
@@ -32,26 +42,19 @@ public abstract class BallModel {
 
     protected abstract Circle makeBall(Circle ball);
 
-    public void move(double minX, double width, double minY, double height) {
+    public void move() {
         double x = ballFace.getCenterX() + getMove(moveX);
         double y = ballFace.getCenterY() + getMove(moveY);
 
-        double upY = y - ballFace.getRadius();
-        double leftX = x - ballFace.getRadius();
-        double rightX = x + ballFace.getRadius();
-
-        double maxX = minX + width;
-        double maxY = minY + height;
-
         //Allow ball to move only within wall boundary
-        if(upY < minY) {
-            y = minY + ballFace.getRadius();
+        if(y < minY) {
+            y = minY;
         }
-        else if(upY < maxY) {
-            if (leftX < minX) {
-                x = minX + ballFace.getRadius();
-            } else if (rightX > maxX) {
-                x = maxX - ballFace.getRadius();
+        else if(y < maxY) {
+            if (x < minX) {
+                x = minX;
+            } else if (x > maxX) {
+                x = maxX;
             }
         }
 
