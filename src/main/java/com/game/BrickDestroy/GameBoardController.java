@@ -27,6 +27,7 @@ public class GameBoardController {
     @FXML private Pane bricksPane;
     @FXML private Label levelNumber;
     @FXML private Label brickCountNumber;
+    @FXML private Label ballCountNumber;
 
     private Rectangle[] bricks;
 
@@ -192,6 +193,8 @@ public class GameBoardController {
         });
 
         brickCountNumber.textProperty().bind(model.getWallModel().getBrickCount().asString());
+
+        ballCountNumber.textProperty().bind(model.getWallModel().getBallCount().asString());
     }
 
     @FXML

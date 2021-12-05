@@ -26,7 +26,7 @@ public class WallModel {
     private static final int STEEL = 2;
     private static final int CEMENT = 3;
 
-    private int ballCount;
+    private IntegerProperty ballCount;
     private boolean ballLost;
 
     private IntegerProperty brickCount;
@@ -37,7 +37,7 @@ public class WallModel {
         this.player = new PlayerModel(player, this.wall);
         this.ball = new RubberBallModel(ball);
 
-        ballCount = 3;
+        ballCount = new SimpleIntegerProperty(3);
         ballLost = false;
 
         brickCount = new SimpleIntegerProperty(bricks.length);
@@ -107,7 +107,7 @@ public class WallModel {
 
     public void findImpacts() {
         if(impactBottomWall()) {
-            ballCount--;
+            ballCount.set(ballCount.get() - 1);
             ballLost = true;
         }
         else if(impactTopWall()) {
@@ -172,7 +172,7 @@ public class WallModel {
         }
         brickCount.set(bricks.length);
 
-        ballCount = 3;
+        ballCount.set(3);
         ballPlayerReset();
     }
 
@@ -195,8 +195,12 @@ public class WallModel {
         return ball;
     }
 
+    public IntegerProperty getBallCount() {
+        return ballCount;
+    }
+
     public boolean ballEnd(){
-        return ballCount == 0;
+        return ballCount.get() == 0;
     }
 
     public boolean isBallLost() {
