@@ -141,8 +141,21 @@ public class GameBoardController {
                 if(newValue) {
                     gameOverMenu.setVisible(false);
                     model.getGameOverModel().setRestart(false);
-                    Stages.getInstance().setFocus();
                     model.getWallModel().wallReset();
+                    Stages.getInstance().setFocus();
+                }
+            }
+        });
+
+        model.getGameOverModel().isNextLevel().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
+                if(newValue) {
+                    gameOverMenu.setVisible(false);
+                    model.getGameOverModel().setNextLevel(false);
+                    model.getWallModel().nextLevel();
+                    model.getWallModel().wallReset();
+                    Stages.getInstance().setFocus();
                 }
             }
         });
@@ -151,7 +164,8 @@ public class GameBoardController {
     private void linkBrickModel() {
         int i = 0;
         for(Node node: bricksPane.getChildren()) {
-            node.setId(model.getWallModel().getBricks()[i].getName());
+            node.idProperty().bind(model.getWallModel().getBricks()[i].getName());
+
             model.getWallModel().getBricks()[i].isBroken().addListener(new ChangeListener<Boolean>() {
                 @Override
                 public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {

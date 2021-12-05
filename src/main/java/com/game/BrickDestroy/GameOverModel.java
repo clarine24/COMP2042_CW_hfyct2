@@ -32,5 +32,5 @@ public class GameOverModel {
         return restart;
     }
 
-    public BooleanProperty getNextLevel() { return nextLevel; }
+    public BooleanProperty isNextLevel() { return nextLevel; }
 }

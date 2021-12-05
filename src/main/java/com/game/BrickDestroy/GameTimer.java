@@ -24,7 +24,6 @@ public class GameTimer extends AnimationTimer {
         if(wall.isBallLost()) {
             if(wall.ballEnd()) {
                 gameOver.setValue(true);
-                wall.wallReset();
             }
             stop();
             wall.ballPlayerReset();
@@ -32,8 +31,6 @@ public class GameTimer extends AnimationTimer {
         else if(wall.isDone()) {
             stop();
             gameOver.setValue(true);
-            wall.wallReset();
-            wall.ballPlayerReset();
         }
     }
 

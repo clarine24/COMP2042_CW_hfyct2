@@ -168,11 +168,10 @@ public class WallModel {
     }
 
     public void wallReset() {
-        /*
-        for(Brick b : bricks)
+        for(BrickModel b : bricks) {
             b.repair();
+        }
         brickCount = bricks.length;
-         */
 
         ballCount = 3;
         ballPlayerReset();
@@ -221,7 +220,7 @@ public class WallModel {
         return level;
     }
 
-    public boolean hasLevel() {
+    public boolean hasNextLevel() {
         int x = level.get();
         return x < allLevels.length;
     }
