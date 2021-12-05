@@ -1,7 +1,5 @@
 package com.game.BrickDestroy;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -86,76 +84,58 @@ public class GameBoardController {
     }
 
     private void linkGameTimer() {
-        model.getGameTimer().isRunning().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
-                if(!newValue) {
-                    stop();
-                }
+        model.getGameTimer().isRunning().addListener((observableValue, oldValue, newValue) -> {
+            if(!newValue) {
+                stop();
             }
         });
 
-        model.getGameTimer().isGameOver().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
-                if(newValue) {
-                    stop();
-                    gameOverMenu.setVisible(true);
-                    model.getGameTimer().setGameOver(false);
-                }
+        model.getGameTimer().isGameOver().addListener((observableValue, oldValue, newValue) -> {
+            if(newValue) {
+                stop();
+                gameOverMenu.setVisible(true);
+                model.getGameTimer().setGameOver(false);
             }
         });
     }
 
     private void linkPauseMenuModel() {
-        model.getPauseMenuModel().isResume().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
-                if(newValue) {
-                    pauseMenu.setVisible(false);
-                    model.getPauseMenuModel().setResume(false);
-                    Stages.getInstance().setFocus();
-                }
+        model.getPauseMenuModel().isResume().addListener((observableValue, oldValue, newValue) -> {
+            if(newValue) {
+                pauseMenu.setVisible(false);
+                model.getPauseMenuModel().setResume(false);
+                Stages.getInstance().setFocus();
             }
         });
 
-        model.getPauseMenuModel().isRestart().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
-                if(newValue){
-                    pauseMenu.setVisible(false);
-                    model.getPauseMenuModel().setRestart(false);
-                    Stages.getInstance().setFocus();
-                    model.getWallModel().wallReset();
-                }
+        model.getPauseMenuModel().isRestart().addListener((observableValue, oldValue, newValue) -> {
+            if(newValue){
+                pauseMenu.setVisible(false);
+                model.getPauseMenuModel().setRestart(false);
+                Stages.getInstance().setFocus();
+                model.getWallModel().wallReset();
             }
         });
     }
 
     private void linkGameOverMenuModel() {
-        model.getGameOverModel().isRestart().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
-                if(newValue) {
-                    gameOverMenu.setVisible(false);
-                    model.getGameOverModel().setRestart(false);
-                    model.getWallModel().wallReset();
-                    Stages.getInstance().setFocus();
-                }
+        model.getGameOverModel().isRestart().addListener((observableValue, oldValue, newValue) -> {
+            if(newValue) {
+                gameOverMenu.setVisible(false);
+                model.getGameOverModel().setRestart(false);
+                model.getWallModel().wallReset();
+                Stages.getInstance().setFocus();
             }
         });
 
-        model.getGameOverModel().isNextLevel().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
-                if(newValue) {
-                    gameOverMenu.setVisible(false);
-                    model.getGameOverModel().setNextLevel(false);
-                    model.getWallModel().wallReset();
-                    model.getWallModel().nextLevel();
-                    linkBrickModel();
-                    Stages.getInstance().setFocus();
-                }
+        model.getGameOverModel().isNextLevel().addListener((observableValue, oldValue, newValue) -> {
+            if(newValue) {
+                gameOverMenu.setVisible(false);
+                model.getGameOverModel().setNextLevel(false);
+                model.getWallModel().wallReset();
+                model.getWallModel().nextLevel();
+                linkBrickModel();
+                Stages.getInstance().setFocus();
             }
         });
     }
@@ -164,15 +144,12 @@ public class GameBoardController {
         int i = 0;
         for(Node node: bricksPane.getChildren()) {
             node.idProperty().bind(model.getWallModel().getBricks()[i].getName());
-            model.getWallModel().getBricks()[i].isBroken().addListener(new ChangeListener<Boolean>() {
-                @Override
-                public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
-                    if(newValue) {
-                        node.setVisible(false);
-                    }
-                    else {
-                        node.setVisible(true);
-                    }
+            model.getWallModel().getBricks()[i].isBroken().addListener((observableValue, oldValue, newValue) -> {
+                if(newValue) {
+                    node.setVisible(false);
+                }
+                else {
+                    node.setVisible(true);
                 }
             });
 
@@ -183,12 +160,9 @@ public class GameBoardController {
     private void linkWallModel() {
         levelNumber.textProperty().bind(model.getWallModel().getLevel().asString());
 
-        model.getWallModel().hasNextLevel().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
-                if(! newValue) {
-                    gameOverMenu.lookup("#nextLevelButton").setVisible(false);
-                }
+        model.getWallModel().hasNextLevel().addListener((observableValue, oldValue, newValue) -> {
+            if(! newValue) {
+                gameOverMenu.lookup("#nextLevelButton").setVisible(false);
             }
         });
 
