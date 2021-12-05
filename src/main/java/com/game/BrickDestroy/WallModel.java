@@ -117,6 +117,10 @@ public class WallModel {
         }
         else if (ballHitTopPlayer()) {
             ball.reverseY();
+
+            if(ball.getBallFace().getBoundsInLocal().getMaxY() > player.getPlayerFace().getY()) { //move ball on paddle if ball is in paddle
+                ball.getBallFace().setCenterY(player.getPlayerFace().getY() - ball.getBallFace().getRadius());
+            }
         }
         else if (impactBrick()) {
             brickCount.set(brickCount.get() - 1);
