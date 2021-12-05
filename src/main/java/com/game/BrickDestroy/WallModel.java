@@ -115,7 +115,7 @@ public class WallModel {
         else if(impactLeftRightWall()) {
             ball.reverseX();
         }
-        else if (ballHitPlayer()) {
+        else if (ballHitTopPlayer()) {
             ball.reverseY();
         }
         else if (impactBrick()) {
@@ -141,8 +141,9 @@ public class WallModel {
         return !wall.intersects(ball.getBallFace().getBoundsInLocal());
     }
 
-    private boolean ballHitPlayer() {
-        return ball.getBallFace().intersects(player.getPlayerFace().getBoundsInLocal());
+    private boolean ballHitTopPlayer() {
+        Shape intersect = Shape.intersect(ball.getBallFace(), player.getPlayerFace());
+        return intersect.getBoundsInLocal().getMinY() == player.getPlayerFace().getY();
     }
 
     private boolean impactBrick() {
