@@ -7,9 +7,11 @@ public class GameOverModel {
     private static GameOverModel instance;
 
     private BooleanProperty restart;
+    private BooleanProperty nextLevel;
 
     public GameOverModel() {
         restart = new SimpleBooleanProperty(false);
+        nextLevel = new SimpleBooleanProperty(false);
 
         instance = this;
     }
@@ -22,7 +24,13 @@ public class GameOverModel {
         this.restart.set(restart);
     }
 
+    public void setNextLevel(boolean nextLevel) {
+        this.nextLevel.set(nextLevel);
+    }
+
     public BooleanProperty isRestart() {
         return restart;
     }
+
+    public BooleanProperty getNextLevel() { return nextLevel; }
 }

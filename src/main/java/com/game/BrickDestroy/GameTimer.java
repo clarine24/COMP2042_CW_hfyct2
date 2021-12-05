@@ -29,6 +29,12 @@ public class GameTimer extends AnimationTimer {
             stop();
             wall.ballPlayerReset();
         }
+        else if(wall.isDone()) {
+            stop();
+            gameOver.setValue(true);
+            wall.wallReset();
+            wall.ballPlayerReset();
+        }
     }
 
     @Override

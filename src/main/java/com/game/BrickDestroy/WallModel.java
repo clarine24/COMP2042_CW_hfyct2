@@ -213,12 +213,22 @@ public class WallModel {
         return brickCount;
     }
 
+    public boolean isDone() {
+        return brickCount == 0;
+    }
+
     public IntegerProperty getLevel() {
         return level;
+    }
+
+    public boolean hasLevel() {
+        int x = level.get();
+        return x < allLevels.length;
     }
 
     public void nextLevel() {
         bricks = allLevels[level.get()];
         level.set(level.get() + 1);
+        this.brickCount = bricks.length;
     }
 }

@@ -19,8 +19,14 @@ public class GameOverController {
     }
 
     @FXML
+    private void nextLevelButtonClicked() { model.setNextLevel(true); }
+
+    @FXML
     private void exitButtonClicked() throws IOException {
         Stages stages = Stages.getInstance();
         stages.homeStage();
     }
+
+    @FXML
+    private void scoreBoardButtonClicked() {}
 }
