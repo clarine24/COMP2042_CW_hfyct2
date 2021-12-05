@@ -1,17 +1,23 @@
 package com.game.BrickDestroy;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.shape.Circle;
 
 import java.util.Random;
 
 public abstract class BallModel {
     private Circle ballFace;
-    private double startX;
-    private double startY;
+    private final double startX;
+    private final double startY;
 
     private Random rnd;
     private double moveX;
     private double moveY;
+    private final double DEFAULT_MOVE = -3;
+
+    private DoubleProperty speed;
+    private final double DEFAULT_SPEED = 1;
 
     public BallModel(Circle ball) {
         startX = ball.getCenterX();
@@ -20,14 +26,15 @@ public abstract class BallModel {
         ballFace = makeBall(ball);
 
         rnd = new Random();
+        speed = new SimpleDoubleProperty(DEFAULT_SPEED);
         setMoveDirection();
     }
 
     protected abstract Circle makeBall(Circle ball);
 
     public void move() {
-        double x = ballFace.getCenterX() + moveX;
-        double y = ballFace.getCenterY() + moveY;
+        double x = ballFace.getCenterX() + getMove(moveX);
+        double y = ballFace.getCenterY() + getMove(moveY);
 
         ballFace.setCenterX(x);
         ballFace.setCenterY(y);
@@ -39,8 +46,7 @@ public abstract class BallModel {
     }
 
     public void setMoveDirection() {
-        moveX = -5;
-        moveY = -3;
+        moveX = moveY = DEFAULT_MOVE;
 
         double x = rnd.nextDouble();
         if(x < 0.5) {
@@ -60,11 +66,14 @@ public abstract class BallModel {
         return ballFace;
     }
 
-    public double getMoveX(){
-        return moveX;
+    private double getMove(double move) {
+        if(move < 0) {
+            return move - (1 * speed.get());
+        }
+        return move + 1 * speed.get();
     }
 
-    public double getMoveY(){
-        return moveY;
+    public DoubleProperty getSpeed() {
+        return speed;
     }
 }

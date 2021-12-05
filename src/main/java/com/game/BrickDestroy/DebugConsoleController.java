@@ -8,19 +8,26 @@ public class DebugConsoleController {
     private GameBoardModel model;
 
     @FXML private Button nextLevel;
-    @FXML private Button resetBallCount;
     @FXML private Slider ballSpeed;
 
     @FXML
     private void initialize() {
         model = GameBoardModel.getInstance();
 
-        //Link with wall model
+        linkWallModel();
+        linkBallModel();
+    }
+
+    private void linkWallModel() {
         model.getWallModel().hasNextLevel().addListener((observableValue, oldValue, newValue) -> {
             if(! newValue) {
                 nextLevel.setVisible(false);
             }
         });
+    }
+
+    private void linkBallModel() {
+        ballSpeed.valueProperty().bindBidirectional(model.getWallModel().getBall().getSpeed());
     }
 
     @FXML
