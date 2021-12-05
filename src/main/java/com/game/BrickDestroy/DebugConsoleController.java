@@ -29,5 +29,7 @@ public class DebugConsoleController {
     }
 
     @FXML
-    private void resetBallCountButtonClicked() {}
+    private void resetBallCountButtonClicked() {
+        model.getWallModel().resetBallCount();
+    }
 }

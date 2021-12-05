@@ -8,8 +8,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
-import static java.lang.Boolean.getBoolean;
-
 public class WallModel {
     private PlayerModel player;
     private BallModel ball;
@@ -27,6 +25,7 @@ public class WallModel {
     private static final int CEMENT = 3;
 
     private IntegerProperty ballCount;
+    private int DEFAULT_BALL_COUNT = 3;
     private boolean ballLost;
 
     private IntegerProperty brickCount;
@@ -37,7 +36,7 @@ public class WallModel {
         this.player = new PlayerModel(player, this.wall);
         this.ball = new RubberBallModel(ball);
 
-        ballCount = new SimpleIntegerProperty(3);
+        ballCount = new SimpleIntegerProperty(DEFAULT_BALL_COUNT);
         ballLost = false;
 
         brickCount = new SimpleIntegerProperty(bricks.length);
@@ -198,6 +197,8 @@ public class WallModel {
     public IntegerProperty getBallCount() {
         return ballCount;
     }
+
+    public void resetBallCount() { ballCount.set(DEFAULT_BALL_COUNT); }
 
     public boolean ballEnd(){
         return ballCount.get() == 0;
