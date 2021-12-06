@@ -5,7 +5,6 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
@@ -16,7 +15,7 @@ public class WallModel {
 
     private Rectangle wall;
 
-    private static final int LEVELS_COUNT = 5;
+    private static final int LEVELS_COUNT = 4;
     private BrickModel[][] allLevels;
     private IntegerProperty level;
     private BooleanProperty nextLevel;
@@ -26,94 +25,65 @@ public class WallModel {
     private static final int CEMENT = 3;
 
     private IntegerProperty ballCount;
-    private int[] maxBallCount;
+    private final int DEFAULT_BALL_COUNT = 3;
     private boolean ballLost;
 
     private IntegerProperty brickCount;
 
-    public WallModel(Rectangle wall, Rectangle player, Circle ball, Rectangle[] bricks, Path[] cracks) {
+    public WallModel(Rectangle wall, Rectangle player, Circle ball, Rectangle[] bricks) {
         this.wall = new Rectangle(wall.getX(), wall.getY(), wall.getWidth(), wall.getHeight());
         this.player = new PlayerModel(player, this.wall);
         this.ball = new RubberBallModel(ball, this.wall);
 
-        maxBallCount = new int[LEVELS_COUNT];
-        ballCount = new SimpleIntegerProperty();
+        ballCount = new SimpleIntegerProperty(DEFAULT_BALL_COUNT);
         ballLost = false;
 
         brickCount = new SimpleIntegerProperty(bricks.length);
 
         level = new SimpleIntegerProperty(0);
-        allLevels = makeLevels(bricks, cracks);
+        allLevels = makeLevels(bricks);
         nextLevel = new SimpleBooleanProperty(true);
     }
 
-    private BrickModel[][] makeLevels(Rectangle[] bricks, Path[] cracks) {
+    private BrickModel[][] makeLevels(Rectangle[] bricks) {
         BrickModel[][] tmp = new BrickModel[LEVELS_COUNT][];
 
-        tmp[0] = makeSingleTypeLevel(bricks, cracks);
-        tmp[1] = makeChessboardLevel(bricks, CLAY, CEMENT, cracks);
-        tmp[2] = makeChessboardLevel(bricks, CLAY, STEEL, cracks);
-        tmp[3] = makeChessboardLevel(bricks, STEEL, CEMENT, cracks);
-        tmp[4] = makeTripleTypeLevel(bricks, cracks);
-
-        setMaxBallCount();
+        tmp[0] = makeSingleTypeLevel(bricks);
+        tmp[1] = makeChessboardLevel(bricks, CLAY, CEMENT);
+        tmp[2] = makeChessboardLevel(bricks, CLAY, STEEL);
+        tmp[3] = makeChessboardLevel(bricks, STEEL, CEMENT);
 
         return tmp;
     }
 
-    private BrickModel[] makeSingleTypeLevel(Rectangle[] bricks, Path[] cracks) {
+    private BrickModel[] makeSingleTypeLevel(Rectangle[] bricks) {
         BrickModel[] tmp = new BrickModel[brickCount.get()];
 
         for(int i=0; i<tmp.length; i++) {
-            tmp[i] = makeBrick(bricks[i], WallModel.CLAY, cracks[i]);
+            tmp[i] = makeBrick(bricks[i], WallModel.CLAY);
         }
         return tmp;
     }
 
-    private BrickModel[] makeChessboardLevel(Rectangle[] bricks, int typeA, int typeB, Path[] cracks) {
+    private BrickModel[] makeChessboardLevel(Rectangle[] bricks, int typeA, int typeB) {
         BrickModel[] tmp = new BrickModel[brickCount.get()];
 
         for(int i=0; i<tmp.length; i++) {
             if(i % 2 == 0) {
-                tmp[i] = makeBrick(bricks[i], typeA, cracks[i]);
+                tmp[i] = makeBrick(bricks[i], typeA);
             }
             else {
-                tmp[i] = makeBrick(bricks[i], typeB, cracks[i]);
+                tmp[i] = makeBrick(bricks[i], typeB);
             }
         }
         return tmp;
     }
 
-    private BrickModel[] makeTripleTypeLevel(Rectangle[] bricks, Path[] cracks) {
-        BrickModel[] tmp = new BrickModel[brickCount.get()];
-
-        for(int i=0; i<tmp.length; i++) {
-            if(i % 3 == 0) {
-                tmp[i] = makeBrick(bricks[i], WallModel.CEMENT, cracks[i]);
-            }
-            else if (i % 3 == 1) {
-                tmp[i] = makeBrick(bricks[i], WallModel.CLAY, cracks[i]);
-            }
-            else {
-                tmp[i] = makeBrick(bricks[i], WallModel.STEEL, cracks[i]);
-            }
-        }
-        return tmp;
-    }
-
-    private void setMaxBallCount() {
-        maxBallCount[0] = 3;
-        maxBallCount[1] = 3;
-        maxBallCount[2] = 3;
-        maxBallCount[3] = 2;
-        maxBallCount[4] = 2;
-    }
-
-    private BrickModel makeBrick(Rectangle brick, int type, Path crack) {
+    private BrickModel makeBrick(Rectangle brick, int type) {
         return switch (type) {
             case CLAY -> new ClayBrickModel(brick);
             case STEEL -> new SteelBrickModel(brick);
-            case CEMENT -> new CementBrickModel(brick, crack);
+            case CEMENT -> new CementBrickModel(brick);
             default -> throw new IllegalArgumentException(String.format("Unknown Type:%d\n", type));
         };
     }
@@ -195,7 +165,7 @@ public class WallModel {
         }
         brickCount.set(bricks.length);
 
-        resetBallCount();
+        ballCount.set(3);
         ballPlayerReset();
     }
 
@@ -218,7 +188,7 @@ public class WallModel {
         return ballCount;
     }
 
-    public void resetBallCount() { ballCount.set(maxBallCount[level.get() - 1]); }
+    public void resetBallCount() { ballCount.set(DEFAULT_BALL_COUNT); }
 
     public boolean ballEnd(){
         return ballCount.get() == 0;
@@ -249,7 +219,6 @@ public class WallModel {
     }
 
     public void nextLevel() {
-        ballCount.set(maxBallCount[level.get()]);
         bricks = allLevels[level.get()];
         level.set(level.get() + 1);
         this.brickCount.set(bricks.length);

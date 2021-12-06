@@ -2,16 +2,13 @@ package com.game.BrickDestroy;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
 
 public abstract class BrickCrackModel extends BrickModel {
-    private Path crackPath;
     private BooleanProperty crack;
 
-    public BrickCrackModel(Rectangle brick, String name, int fullStrength, Path crack) {
+    public BrickCrackModel(Rectangle brick, String name, int fullStrength) {
         super(brick, name, fullStrength);
-        crackPath = new Path(crack.getElements());
         this.crack = new SimpleBooleanProperty(false);
     }
 

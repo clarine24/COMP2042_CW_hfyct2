@@ -1,7 +1,5 @@
 package com.game.BrickDestroy;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
@@ -81,9 +79,7 @@ public class Stages {
         debugStage.setTitle(DEBUG_TITLE);
         initialize(debugStage);
         setDebugLocation();
-        debugStage.setOnCloseRequest(event -> {
-            root = gameRoot;
-        });
+        debugStage.setOnCloseRequest(event -> root = gameRoot);
     }
 
     static void setRoot(String fxml) throws IOException {
