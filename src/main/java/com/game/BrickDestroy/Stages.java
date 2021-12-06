@@ -46,7 +46,7 @@ public class Stages {
         return instance;
     }
 
-    public void initialize(Stage stage) {
+    private void initialize(Stage stage) {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.setResizable(false);
