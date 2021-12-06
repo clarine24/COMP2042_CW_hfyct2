@@ -4,14 +4,14 @@ import javafx.scene.shape.Rectangle;
 
 public class PlayerModel {
     private Rectangle playerFace;
-    private double startX;
-    private double startY;
+    private final double startX;
+    private final double startY;
 
     private static final int DEF_MOVE_AMOUNT = 5;
     private int moveAmount;
 
-    private double min;
-    private double max;
+    private final double min;
+    private final double max;
 
     public PlayerModel(Rectangle player, Rectangle wall) {
         startX = player.getX();
