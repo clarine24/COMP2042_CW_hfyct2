@@ -80,13 +80,12 @@ public class WallModel {
     }
 
     private BrickModel makeBrick(Rectangle brick, int type) {
-        BrickModel out = switch (type) {
+        return switch (type) {
             case CLAY -> new ClayBrickModel(brick);
             case STEEL -> new SteelBrickModel(brick);
             case CEMENT -> new CementBrickModel(brick);
             default -> throw new IllegalArgumentException(String.format("Unknown Type:%d\n", type));
         };
-        return out;
     }
 
     public void move() {
