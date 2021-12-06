@@ -227,7 +227,7 @@
             </Path>
             <Path id="crack" fx:id="crack13" fill="WHITE" layoutX="90.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE">
                <elements>
-                  <MoveTo x="20.0" />
+                  <MoveTo x="20.0" y="2.0" />
                   <LineTo x="23.0" y="3.0" />
                   <LineTo x="21.0" y="9.0" />
                   <LineTo x="21.0" y="12.0" />
@@ -237,7 +237,7 @@
                   <LineTo x="26.0" y="21.0" />
                   <LineTo x="27.0" y="24.0" />
                   <LineTo x="28.0" y="27.0" />
-                  <LineTo x="30.0" y="30.0" />
+                  <LineTo x="30.0" y="28.0" />
                </elements>
             </Path>
             <Path id="crack" fx:id="crack14" fill="WHITE" layoutX="150.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE">
