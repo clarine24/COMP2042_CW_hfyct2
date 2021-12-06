@@ -13,8 +13,8 @@ public class GameBoardModel {
 
     private static GameBoardModel instance;
 
-    public GameBoardModel(Rectangle wall, Rectangle player, Circle ball, Rectangle[] bricks, Path[] cracks) {
-        wallModel = new WallModel(wall, player, ball, bricks, cracks);
+    public GameBoardModel(Rectangle wall, Rectangle player, Circle ball, Rectangle[] bricks) {
+        wallModel = new WallModel(wall, player, ball, bricks);
         pauseMenuModel = PauseMenuModel.getInstance();
         gameOverModel = GameOverModel.getInstance();
 

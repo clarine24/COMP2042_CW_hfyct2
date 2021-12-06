@@ -9,7 +9,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
@@ -30,7 +29,6 @@ public class GameBoardController {
     @FXML private Label ballCountNumber;
 
     private Rectangle[] bricks;
-    private Path[] cracks;
 
     @FXML
     public void initialize() throws IOException {
@@ -42,7 +40,7 @@ public class GameBoardController {
         initializeCracks();
 
         //Get model
-        model = new GameBoardModel(wall, player, rubberBall, bricks, cracks);
+        model = new GameBoardModel(wall, player, rubberBall, bricks);
 
         //Link Model with View
         linkModelView();
@@ -69,14 +67,8 @@ public class GameBoardController {
     }
 
     private void initializeCracks() {
-        int crackCount = cracksPane.getChildren().size();
-        cracks = new Path[crackCount];
-
-        int i = 0;
         for(Node node: cracksPane.getChildren()) {
-            cracks[i] = (Path) node;
             node.setVisible(false);
-            i++;
         }
     }
 
