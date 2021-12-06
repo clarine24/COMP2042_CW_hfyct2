@@ -1,7 +1,6 @@
 package com.game.BrickDestroy;
 
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
 
 public class GameBoardModel {
