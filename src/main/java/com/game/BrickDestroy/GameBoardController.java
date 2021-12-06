@@ -9,6 +9,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
@@ -23,22 +24,25 @@ public class GameBoardController {
     @FXML private Pane pauseMenu;
     @FXML private Pane gameOverMenu;
     @FXML private Pane bricksPane;
+    @FXML private Pane cracksPane;
     @FXML private Label levelNumber;
     @FXML private Label brickCountNumber;
     @FXML private Label ballCountNumber;
 
     private Rectangle[] bricks;
+    private Path[] cracks;
 
     @FXML
     public void initialize() throws IOException {
         loadFXML("PauseMenuView", pauseMenu);
         loadFXML("GameOverView", gameOverMenu);
 
-        //initialize bricks array
+        //initialize arrays
         initializeBricks();
+        initializeCracks();
 
         //Get model
-        model = new GameBoardModel(wall, player, rubberBall, bricks);
+        model = new GameBoardModel(wall, player, rubberBall, bricks, cracks);
 
         //Link Model with View
         linkModelView();
@@ -60,6 +64,18 @@ public class GameBoardController {
         int i = 0;
         for(Node node: bricksPane.getChildren()) {
             bricks[i] = (Rectangle) node;
+            i++;
+        }
+    }
+
+    private void initializeCracks() {
+        int crackCount = cracksPane.getChildren().size();
+        cracks = new Path[crackCount];
+
+        int i = 0;
+        for(Node node: cracksPane.getChildren()) {
+            cracks[i] = (Path) node;
+            node.setVisible(false);
             i++;
         }
     }
@@ -143,15 +159,16 @@ public class GameBoardController {
     private void linkBrickModel() {
         int i = 0;
         for(Node node: bricksPane.getChildren()) {
-            node.idProperty().bind(model.getWallModel().getBricks()[i].getName());
-            model.getWallModel().getBricks()[i].isBroken().addListener((observableValue, oldValue, newValue) -> {
-                if(newValue) {
-                    node.setVisible(false);
-                }
-                else {
-                    node.setVisible(true);
-                }
-            });
+            BrickModel brick = model.getWallModel().getBricks()[i];
+
+            node.idProperty().bind(brick.getName());
+
+            brick.isBroken().addListener((observableValue, oldValue, newValue) -> node.setVisible(!newValue));
+
+            if(brick.getClass().getSuperclass().getSimpleName().equalsIgnoreCase("BrickCrackModel")) {
+                Node crackNode = cracksPane.getChildren().get(i);
+                ((BrickCrackModel)brick).isCrack().addListener((observableValue, oldValue, newValue) -> crackNode.setVisible(newValue));
+            }
 
             i++;
         }

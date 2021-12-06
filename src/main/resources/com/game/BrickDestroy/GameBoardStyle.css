@@ -49,3 +49,8 @@ Label {
     -fx-stroke: "#EBECF0";
     -fx-stroke-width: 2px;
 }
+
+#crack {
+    -fx-fill: transparent;
+    -fx-stroke: black;
+}

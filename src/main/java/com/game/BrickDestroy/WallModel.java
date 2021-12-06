@@ -5,6 +5,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
@@ -25,13 +26,13 @@ public class WallModel {
     private static final int CEMENT = 3;
 
     private IntegerProperty ballCount;
-    private int DEFAULT_BALL_COUNT = 3;
+    private final int DEFAULT_BALL_COUNT = 3;
     private boolean ballLost;
 
     private IntegerProperty brickCount;
     private int lineCount;
 
-    public WallModel(Rectangle wall, Rectangle player, Circle ball, Rectangle[] bricks) {
+    public WallModel(Rectangle wall, Rectangle player, Circle ball, Rectangle[] bricks, Path[] cracks) {
         this.wall = new Rectangle(wall.getX(), wall.getY(), wall.getWidth(), wall.getHeight());
         this.player = new PlayerModel(player, this.wall);
         this.ball = new RubberBallModel(ball, this.wall);
@@ -43,45 +44,45 @@ public class WallModel {
         lineCount = 3;
 
         level = new SimpleIntegerProperty(0);
-        allLevels = makeLevels(bricks);
+        allLevels = makeLevels(bricks, cracks);
         nextLevel = new SimpleBooleanProperty(true);
     }
 
-    private BrickModel[][] makeLevels(Rectangle[] bricks) {
+    private BrickModel[][] makeLevels(Rectangle[] bricks, Path[] cracks) {
         BrickModel[][] tmp = new BrickModel[LEVELS_COUNT][];
 
-        tmp[0] = makeSingleTypeLevel(bricks, CLAY);
-        tmp[1] = makeChessboardLevel(bricks, CLAY, CEMENT);
-        tmp[2] = makeChessboardLevel(bricks, CLAY, STEEL);
-        tmp[3] = makeChessboardLevel(bricks, STEEL, CEMENT);
+        tmp[0] = makeSingleTypeLevel(bricks, CLAY, cracks);
+        tmp[1] = makeChessboardLevel(bricks, CLAY, CEMENT, cracks);
+        tmp[2] = makeChessboardLevel(bricks, CLAY, STEEL, cracks);
+        tmp[3] = makeChessboardLevel(bricks, STEEL, CEMENT, cracks);
 
         return tmp;
     }
 
-    private BrickModel[] makeSingleTypeLevel(Rectangle[] bricks, int type) {
+    private BrickModel[] makeSingleTypeLevel(Rectangle[] bricks, int type, Path[] cracks) {
         BrickModel[] tmp = new BrickModel[brickCount.get()];
 
         for(int i=0; i<tmp.length; i++) {
-            tmp[i] = makeBrick(bricks[i], type);
+            tmp[i] = makeBrick(bricks[i], type, cracks[i]);
         }
         return tmp;
     }
 
-    private BrickModel[] makeChessboardLevel(Rectangle[] bricks, int typeA, int typeB) {
+    private BrickModel[] makeChessboardLevel(Rectangle[] bricks, int typeA, int typeB, Path[] cracks) {
         BrickModel[] tmp = new BrickModel[brickCount.get()];
 
         for(int i=0; i<tmp.length; i++) {
             if(i % 2 == 0) {
-                tmp[i] = makeBrick(bricks[i], typeA);
+                tmp[i] = makeBrick(bricks[i], typeA, cracks[i]);
             }
             else {
-                tmp[i] = makeBrick(bricks[i], typeB);
+                tmp[i] = makeBrick(bricks[i], typeB, cracks[i]);
             }
         }
         return tmp;
     }
 
-    private BrickModel makeBrick(Rectangle brick, int type) {
+    private BrickModel makeBrick(Rectangle brick, int type, Path crack) {
         BrickModel out;
         switch(type) {
             case CLAY:
@@ -91,7 +92,7 @@ public class WallModel {
                 out = new SteelBrickModel(brick);
                 break;
             case CEMENT:
-                out = new CementBrickModel(brick);
+                out = new CementBrickModel(brick, crack);
                 break;
             default:
                 throw  new IllegalArgumentException(String.format("Unknown Type:%d\n",type));
@@ -156,7 +157,7 @@ public class WallModel {
                 continue;
             }
 
-            Shape intersect = Shape.intersect(b.brickFace, ball.getBallFace());
+            Shape intersect = Shape.intersect(b.getBrickFace(), ball.getBallFace());
             if(intersect.getBoundsInLocal().getMaxX() != -1) { //ball hits brick
                 if(intersect.getBoundsInLocal().getHeight() < intersect.getBoundsInLocal().getWidth()){
                     ball.reverseY();
@@ -187,10 +188,6 @@ public class WallModel {
         ballLost = false;
     }
 
-    public Rectangle getWall() {
-        return wall;
-    }
-
     public PlayerModel getPlayer() {
         return player;
     }
@@ -216,6 +213,8 @@ public class WallModel {
     public BrickModel[] getBricks() {
         return bricks;
     }
+
+    public BrickCrackModel[] getBrickCracks() {return getBrickCracks(); }
 
     public IntegerProperty getBrickCount() {
         return brickCount;
