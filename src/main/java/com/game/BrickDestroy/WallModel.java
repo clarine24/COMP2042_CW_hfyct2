@@ -63,7 +63,7 @@ public class WallModel {
         BrickModel[] tmp = new BrickModel[brickCount.get()];
 
         for(int i=0; i<tmp.length; i++) {
-            tmp[i] = makeBrick(bricks[i], type, cracks[i]);
+            tmp[i] = makeBrick(bricks[i], type);
         }
         return tmp;
     }
@@ -73,16 +73,16 @@ public class WallModel {
 
         for(int i=0; i<tmp.length; i++) {
             if(i % 2 == 0) {
-                tmp[i] = makeBrick(bricks[i], typeA, cracks[i]);
+                tmp[i] = makeBrick(bricks[i], typeA);
             }
             else {
-                tmp[i] = makeBrick(bricks[i], typeB, cracks[i]);
+                tmp[i] = makeBrick(bricks[i], typeB);
             }
         }
         return tmp;
     }
 
-    private BrickModel makeBrick(Rectangle brick, int type, Path crack) {
+    private BrickModel makeBrick(Rectangle brick, int type) {
         BrickModel out;
         switch(type) {
             case CLAY:
@@ -92,7 +92,7 @@ public class WallModel {
                 out = new SteelBrickModel(brick);
                 break;
             case CEMENT:
-                out = new CementBrickModel(brick, crack);
+                out = new CementBrickModel(brick);
                 break;
             default:
                 throw  new IllegalArgumentException(String.format("Unknown Type:%d\n",type));
