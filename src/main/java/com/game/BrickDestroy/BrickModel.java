@@ -8,9 +8,9 @@ import javafx.scene.shape.Rectangle;
 
 public abstract class BrickModel {
     private Rectangle brickFace;
-    private StringProperty name;
+    private final StringProperty name;
 
-    private int fullStrength;
+    private final int fullStrength;
     private int currentStrength;
 
     private BooleanProperty broken;
