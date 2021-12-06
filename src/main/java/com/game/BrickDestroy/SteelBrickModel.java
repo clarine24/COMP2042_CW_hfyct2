@@ -5,7 +5,6 @@ import javafx.scene.shape.Rectangle;
 import java.util.Random;
 
 public class SteelBrickModel extends BrickModel {
-    private Rectangle brickFace;
     private static final String NAME = "steelBrick";
 
     private static final int FULL_STRENGTH = 1;
@@ -21,11 +20,6 @@ public class SteelBrickModel extends BrickModel {
     @Override
     protected Rectangle makeBrickFace(Rectangle brick) {
         return new Rectangle(brick.getX(), brick.getY(), brick.getWidth(), brick.getHeight());
-    }
-
-    @Override
-    public Rectangle getBrickFace() {
-        return brickFace;
     }
 
     @Override

@@ -14,9 +14,4 @@ public class ClayBrickModel extends BrickModel {
     protected Rectangle makeBrickFace(Rectangle brick) {
         return new Rectangle(brick.getX(), brick.getY(), brick.getWidth(), brick.getHeight());
     }
-
-    @Override
-    public Rectangle getBrickFace() {
-        return super.brickFace;
-    }
 }

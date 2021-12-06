@@ -7,7 +7,7 @@ import javafx.beans.property.StringProperty;
 import javafx.scene.shape.Rectangle;
 
 public abstract class BrickModel {
-    Rectangle brickFace;
+    private Rectangle brickFace;
     private StringProperty name;
 
     private int fullStrength;
@@ -24,7 +24,9 @@ public abstract class BrickModel {
 
     protected abstract Rectangle makeBrickFace(Rectangle brick);
 
-    public abstract Rectangle getBrickFace();
+    public Rectangle getBrickFace() {
+        return brickFace;
+    }
 
     public boolean setImpact() {
         impact();
