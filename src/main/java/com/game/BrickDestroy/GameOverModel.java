@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 
 public class GameOverModel {
     private static GameOverModel instance;
+    private Score score;
 
     private BooleanProperty restart;
     private BooleanProperty nextLevel;
@@ -12,6 +13,8 @@ public class GameOverModel {
     public GameOverModel() {
         restart = new SimpleBooleanProperty(false);
         nextLevel = new SimpleBooleanProperty(false);
+
+        score = new Score();
 
         instance = this;
     }
@@ -33,4 +36,8 @@ public class GameOverModel {
     }
 
     public BooleanProperty isNextLevel() { return nextLevel; }
+
+    public Score getScore() {
+        return score;
+    }
 }

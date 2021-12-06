@@ -7,7 +7,6 @@ public class GameBoardModel {
     private WallModel wallModel;
     private PauseMenuModel pauseMenuModel;
     private GameOverModel gameOverModel;
-    private Score score;
 
     private GameTimer gameTimer;
 
@@ -17,7 +16,6 @@ public class GameBoardModel {
         wallModel = new WallModel(wall, player, ball, bricks);
         pauseMenuModel = PauseMenuModel.getInstance();
         gameOverModel = GameOverModel.getInstance();
-        score = new Score();
 
         gameTimer = new GameTimer(wallModel);
 
@@ -44,10 +42,6 @@ public class GameBoardModel {
 
     public GameTimer getGameTimer() {
         return gameTimer;
-    }
-
-    public Score getScore() {
-        return score;
     }
 
     public void onLostFocus() {

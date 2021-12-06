@@ -102,7 +102,7 @@ public class GameBoardController {
             if(newValue) {
                 stop();
                 gameOverMenu.setVisible(true);
-                model.getScore().calculateTotalScore();
+                model.getGameOverModel().getScore().calculateTotalScore();
                 model.getGameTimer().setGameOver(false);
             }
         });
@@ -123,7 +123,7 @@ public class GameBoardController {
                 model.getPauseMenuModel().setRestart(false);
                 Stages.getInstance().setFocus();
                 model.getWallModel().wallReset();
-                model.getScore().resetScore();
+                model.getGameOverModel().getScore().resetScore();
             }
         });
     }
@@ -134,7 +134,7 @@ public class GameBoardController {
                 gameOverMenu.setVisible(false);
                 model.getGameOverModel().setRestart(false);
                 model.getWallModel().wallReset();
-                model.getScore().resetScore();
+                model.getGameOverModel().getScore().resetScore();
                 Stages.getInstance().setFocus();
             }
         });
@@ -144,7 +144,7 @@ public class GameBoardController {
                 gameOverMenu.setVisible(false);
                 model.getGameOverModel().setNextLevel(false);
                 model.getWallModel().wallReset();
-                model.getScore().resetScore();
+                model.getGameOverModel().getScore().resetScore();
                 model.getWallModel().nextLevel();
                 linkBrickModel();
                 Stages.getInstance().setFocus();
@@ -161,16 +161,10 @@ public class GameBoardController {
 
             brick.isBroken().addListener((observableValue, oldValue, newValue) -> {
                 node.setVisible(!newValue);
-                switch(node.getId()) {
-                    case "clayBrick":
-                        model.getScore().clayBrickScore();
-                        break;
-                    case "cementBrick":
-                        model.getScore().cementBrickScore();
-                        break;
-                    case "steelBrick":
-                        model.getScore().steelBrickScore();
-                        break;
+                switch (node.getId()) {
+                    case "clayBrick" -> model.getGameOverModel().getScore().clayBrickScore();
+                    case "cementBrick" -> model.getGameOverModel().getScore().cementBrickScore();
+                    case "steelBrick" -> model.getGameOverModel().getScore().steelBrickScore();
                 }
             });
 

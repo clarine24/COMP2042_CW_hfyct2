@@ -32,9 +32,7 @@ public class Score {
     }
 
     public void calculateTotalScore() {
-        int totalScore = this.totalScore.get();
-        totalScore += ballScore();
-        System.out.println(totalScore);
+        totalScore.set(totalScore.get() + ballScore());
     }
 
     private int ballScore() {
@@ -60,5 +58,9 @@ public class Score {
 
     public void resetScore() {
         totalScore.set(0);
+    }
+
+    public IntegerProperty getTotalScore() {
+        return totalScore;
     }
 }
