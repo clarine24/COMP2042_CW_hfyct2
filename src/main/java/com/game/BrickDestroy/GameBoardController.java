@@ -142,10 +142,10 @@ public class GameBoardController {
         model.getGameOverModel().isNextLevel().addListener((observableValue, oldValue, newValue) -> {
             if(newValue) {
                 gameOverMenu.setVisible(false);
-                model.getGameOverModel().setNextLevel(false);
                 model.getWallModel().wallReset();
                 model.getGameOverModel().getScore().resetScore();
                 model.getWallModel().nextLevel();
+                model.getGameOverModel().setNextLevel(false);
                 linkBrickModel();
                 Stages.getInstance().setFocus();
             }

@@ -10,7 +10,7 @@ public class Score {
     private File scoreBoardFile;
     private RandomAccessFile file;
 
-    private static final String FILE_PATH = "src/main/resources/com/game/BrickDestroy/scoreBoard.txt";
+    private static final String FILE_PATH = "src/main/resources/com/game/BrickDestroy/scoreBoard";
 
     private final int CLAY_BRICK_SCORE = 100;
     private final int CEMENT_BRICK_SCORE = 200;
@@ -18,13 +18,13 @@ public class Score {
 
     private int[] highScores;
 
-    public Score() {
+    public Score(int level) {
         totalScore = new SimpleIntegerProperty(0);
 
-        scoreBoardFile = new File(FILE_PATH);
+        scoreBoardFile = new File(FILE_PATH + "Level" + level + ".txt");
         try {
             if(scoreBoardFile.createNewFile()) {
-                System.out.print("File created: " + scoreBoardFile.getName());
+                System.out.println("File created: " + scoreBoardFile.getName());
             }
             else {
                 System.out.println("File already exists");
