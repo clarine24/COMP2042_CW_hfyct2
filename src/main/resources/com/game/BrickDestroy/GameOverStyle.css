@@ -3,7 +3,7 @@
     -fx-opacity: 0.8px;
 }
 
-#gameOverMenu {
+#menu {
     -fx-fill: "#E4D3CF";
     -fx-stroke: "#E2BCB7";
     -fx-stroke-width: 5px;
@@ -15,7 +15,7 @@
     -fx-font-family: "Bahnschrift";
     -fx-font-size: 54px;
     -fx-font-weight: bold;
-    -fx-text-fill: "#968C83";
+    -fx-text-fill: black;
 }
 
 #scoreTitle {
@@ -43,4 +43,12 @@ Button {
     -fx-border-radius: 30px;
     -fx-border-width: 5px;
     -fx-cursor: hand;
+}
+
+#topScores {
+    -fx-background-color: transparent;
+    -fx-font-family: "Bahnschrift";
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: "#968C83";
 }

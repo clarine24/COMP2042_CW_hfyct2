@@ -2,11 +2,14 @@ package com.game.BrickDestroy;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 
 public class GameOverController {
     @FXML private Label score;
+    @FXML private Pane gameOver;
+    @FXML private Pane scoreBoard;
 
     private GameOverModel model;
 
@@ -15,7 +18,11 @@ public class GameOverController {
         //Get model
         model = new GameOverModel();
 
+        //Link view and model
         score.textProperty().bind(model.getInstance().getScore().getTotalScore().asString());
+
+        gameOver.setVisible(true);
+        scoreBoard.setVisible(false);
     }
 
     @FXML
@@ -33,5 +40,14 @@ public class GameOverController {
     }
 
     @FXML
-    private void scoreBoardButtonClicked() {}
+    private void scoreBoardButtonClicked() {
+        gameOver.setVisible(false);
+        scoreBoard.setVisible(true);
+    }
+
+    @FXML
+    private void closeScoreBoardButtonClicked() {
+        gameOver.setVisible(true);
+        scoreBoard.setVisible(false);
+    }
 }
