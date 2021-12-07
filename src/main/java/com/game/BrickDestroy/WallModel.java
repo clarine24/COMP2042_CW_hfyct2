@@ -248,7 +248,7 @@ public class WallModel {
     }
 
     public void nextLevel() {
-        GameOverModel.getInstance().setLevel(level);
+        GameOverModel.getInstance().getScoreBoardModel().setLevel(level);
 
         ballCount.set(maxBallCount[level.get()]);
         bricks = allLevels[level.get()];

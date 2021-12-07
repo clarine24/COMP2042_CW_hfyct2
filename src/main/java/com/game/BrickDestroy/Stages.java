@@ -112,7 +112,7 @@ public class Stages {
         root.requestFocus();
     }
 
-    private void onCloseGame() {
-        GameBoardModel.getInstance().getGameOverModel().getScore().closeFile();
+    public void onCloseGame() {
+        GameBoardModel.getInstance().getGameOverModel().getScoreBoardModel().closeAllFiles();
     }
 }

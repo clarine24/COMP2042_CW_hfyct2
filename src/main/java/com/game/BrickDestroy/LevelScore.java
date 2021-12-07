@@ -5,7 +5,9 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 import java.io.*;
 
-public class Score {
+public class LevelScore {
+    private static LevelScore instance;
+
     private IntegerProperty totalScore;
     private File scoreBoardFile;
     private RandomAccessFile file;
@@ -18,7 +20,7 @@ public class Score {
 
     private int[] highScores;
 
-    public Score(int level) {
+    public LevelScore(int level) {
         totalScore = new SimpleIntegerProperty(0);
 
         scoreBoardFile = new File(FILE_PATH + "Level" + level + ".txt");
@@ -27,7 +29,7 @@ public class Score {
                 System.out.println("File created: " + scoreBoardFile.getName());
             }
             else {
-                System.out.println("File already exists");
+                System.out.println("File already exists: " + scoreBoardFile.getName());
             }
         } catch (IOException e) {
             System.out.println("An error occurred");
@@ -35,6 +37,12 @@ public class Score {
         }
 
         calculateTopScores();
+
+        instance = this;
+    }
+
+    public static LevelScore getInstance() {
+        return instance;
     }
 
     public void calculateTotalScore() {
@@ -197,9 +205,9 @@ public class Score {
     public void closeFile() {
         try {
             file.close();
-            System.out.println("File is closed");
+            System.out.println("File closed: " + scoreBoardFile.getName());
         } catch (IOException e) {
-            System.out.println("File cannot be closed");
+            System.out.println("File cannot be closed: " + scoreBoardFile.getName());
             e.printStackTrace();
         }
     }
