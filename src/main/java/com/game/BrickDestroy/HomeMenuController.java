@@ -18,7 +18,6 @@ public class HomeMenuController {
 
     @FXML
     private void exitButtonClicked() {
-        GameBoardModel.getInstance().getGameOverModel().getScore().closeFile();
         System.out.println("Goodbye " + System.getProperty("user.name"));
         System.exit(0);
     }

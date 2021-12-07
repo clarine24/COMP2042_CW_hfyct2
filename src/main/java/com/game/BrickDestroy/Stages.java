@@ -58,6 +58,7 @@ public class Stages {
         homeStage.setTitle(DEF_TITLE);
         initialize(homeStage);
         setLocation(homeStage);
+        homeStage.setOnCloseRequest(e -> onCloseGame());
     }
 
     public void gameStage() throws IOException {
@@ -72,6 +73,7 @@ public class Stages {
                 GameBoardModel.getInstance().onLostFocus();
             }
         });
+        gameStage.setOnCloseRequest(e -> onCloseGame());
     }
 
     public void debugConsole() throws IOException {
@@ -108,5 +110,9 @@ public class Stages {
 
     public void setFocus() {
         root.requestFocus();
+    }
+
+    private void onCloseGame() {
+        GameBoardModel.getInstance().getGameOverModel().getScore().closeFile();
     }
 }
