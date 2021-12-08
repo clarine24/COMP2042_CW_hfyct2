@@ -149,9 +149,17 @@ public class WallModel {
             if(intersect.getBoundsInLocal().getMaxX() != -1) { //ball hits brick
                 if(intersect.getBoundsInLocal().getHeight() < intersect.getBoundsInLocal().getWidth()){
                     ball.reverseY();
+
+                    //move ball next to brick, so that ball is not inside brick
+                    double y = intersect.getBoundsInLocal().getHeight();
+                    ball.getBallFace().setCenterY(ball.getBallFace().getCenterY() + y);
                 }
                 else {
                     ball.reverseX();
+
+                    //move ball next to brick, so that ball is not inside brick
+                    double x = intersect.getBoundsInLocal().getWidth();
+                    ball.getBallFace().setCenterX(ball.getBallFace().getCenterX() + x);
                 }
                 return b.setImpact();
             }
