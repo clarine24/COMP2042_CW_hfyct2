@@ -18,7 +18,8 @@ public class LevelScore {
     private final int CEMENT_BRICK_SCORE = 200;
     private final int STEEL_BRICK_SCORE = 150;
 
-    private int[] highScores;
+    private IntegerProperty[] highScores;
+    private final int TOP_SCORES= 5;
 
     public LevelScore(int level) {
         totalScore = new SimpleIntegerProperty(0);
@@ -76,9 +77,6 @@ public class LevelScore {
         createHighScoreArray(scoreCount);
         long[] tmp = getTopScoresPointer();
         saveHighScoresInArray(tmp);
-        for (int highScore : highScores) {
-            System.out.println(highScore);
-        }
     }
 
     private int numberOfScoreInFile() {
@@ -104,10 +102,14 @@ public class LevelScore {
 
     private void createHighScoreArray(int scoreCount) {
         if(scoreCount < 5) {
-            highScores = new int[scoreCount];
+            highScores = new SimpleIntegerProperty[scoreCount];
         }
         else {
-            highScores = new int[5];
+            highScores = new SimpleIntegerProperty[TOP_SCORES];
+        }
+
+        for(int i=0; i<highScores.length; i++) {
+            highScores[i] = new SimpleIntegerProperty();
         }
     }
 
@@ -115,22 +117,34 @@ public class LevelScore {
         long[] tmp = new long[highScores.length];
         long previousPointer;
         long currentPointer;
+        int score;
+        int nextScore;
 
         try {
             for(int i=0; i<highScores.length; i++) {
                 file.seek(0); //read from start of file
 
+                int x=0;
+                while(x<i){
+                    for (int j = 0; j < i; j++) {
+                        if (tmp[j] == file.getFilePointer()) {
+                            file.readInt();
+                            break;
+                        }
+                    }
+                    x++;
+                }
+
                 previousPointer = file.getFilePointer();
                 tmp[i] = previousPointer;
-
-                int score = file.readInt();
+                score = file.readInt();
                 currentPointer = file.getFilePointer();
 
                 while (true) {
                     try {
                         boolean skip = false;
 
-                        int nextScore = file.readInt();
+                        nextScore = file.readInt();
                         previousPointer = currentPointer;
                         currentPointer = file.getFilePointer();
 
@@ -140,6 +154,7 @@ public class LevelScore {
                                 break;
                             }
                         }
+
                         if (skip) {
                             continue;
                         }
@@ -165,7 +180,7 @@ public class LevelScore {
         for(int i=0; i<highScores.length; i++) {
             try {
                 file.seek(tmp[i]);
-                highScores[i] = file.readInt();
+                highScores[i].set(file.readInt());
             } catch (IOException e) {
                 System.out.println("Error occurred during saving high scores in array");
                 e.printStackTrace();
@@ -200,6 +215,10 @@ public class LevelScore {
 
     public IntegerProperty getTotalScore() {
         return totalScore;
+    }
+
+    public IntegerProperty[] getHighScores() {
+        return highScores;
     }
 
     public void closeFile() {

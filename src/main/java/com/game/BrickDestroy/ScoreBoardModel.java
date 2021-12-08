@@ -40,8 +40,8 @@ public class ScoreBoardModel {
     }
 
     public void closeAllFiles() {
-        for(int i=0; i<allScore.length; i++) {
-            allScore[i].closeFile();
+        for (LevelScore levelScore : allScore) {
+            levelScore.closeFile();
         }
     }
 
