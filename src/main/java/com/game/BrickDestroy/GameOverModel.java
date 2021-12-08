@@ -5,13 +5,17 @@ import javafx.beans.property.SimpleBooleanProperty;
 
 public class GameOverModel {
     private static GameOverModel instance;
+    private ScoreBoardModel scoreBoardModel;
 
     private BooleanProperty restart;
     private BooleanProperty nextLevel;
 
+
     public GameOverModel() {
         restart = new SimpleBooleanProperty(false);
         nextLevel = new SimpleBooleanProperty(false);
+
+        scoreBoardModel = ScoreBoardModel.getInstance();
 
         instance = this;
     }
@@ -32,5 +36,11 @@ public class GameOverModel {
         return restart;
     }
 
-    public BooleanProperty isNextLevel() { return nextLevel; }
+    public BooleanProperty isNextLevel() {
+        return nextLevel;
+    }
+
+    public ScoreBoardModel getScoreBoardModel() {
+        return scoreBoardModel;
+    }
 }

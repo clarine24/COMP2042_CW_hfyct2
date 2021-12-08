@@ -102,6 +102,7 @@ public class GameBoardController {
             if(newValue) {
                 stop();
                 gameOverMenu.setVisible(true);
+                model.getGameOverModel().getScoreBoardModel().getScore().calculateTotalScore();
                 model.getGameTimer().setGameOver(false);
             }
         });
@@ -122,6 +123,7 @@ public class GameBoardController {
                 model.getPauseMenuModel().setRestart(false);
                 Stages.getInstance().setFocus();
                 model.getWallModel().wallReset();
+                model.getGameOverModel().getScoreBoardModel().getScore().resetScore();
             }
         });
     }
@@ -132,6 +134,7 @@ public class GameBoardController {
                 gameOverMenu.setVisible(false);
                 model.getGameOverModel().setRestart(false);
                 model.getWallModel().wallReset();
+                model.getGameOverModel().getScoreBoardModel().getScore().resetScore();
                 Stages.getInstance().setFocus();
             }
         });
@@ -139,9 +142,10 @@ public class GameBoardController {
         model.getGameOverModel().isNextLevel().addListener((observableValue, oldValue, newValue) -> {
             if(newValue) {
                 gameOverMenu.setVisible(false);
-                model.getGameOverModel().setNextLevel(false);
                 model.getWallModel().wallReset();
+                model.getGameOverModel().getScoreBoardModel().getScore().resetScore();
                 model.getWallModel().nextLevel();
+                model.getGameOverModel().setNextLevel(false);
                 linkBrickModel();
                 Stages.getInstance().setFocus();
             }
@@ -155,7 +159,14 @@ public class GameBoardController {
 
             node.idProperty().bind(brick.getName());
 
-            brick.isBroken().addListener((observableValue, oldValue, newValue) -> node.setVisible(!newValue));
+            brick.isBroken().addListener((observableValue, oldValue, newValue) -> {
+                node.setVisible(!newValue);
+                switch (node.getId()) {
+                    case "clayBrick" -> model.getGameOverModel().getScoreBoardModel().getScore().clayBrickScore();
+                    case "cementBrick" -> model.getGameOverModel().getScoreBoardModel().getScore().cementBrickScore();
+                    case "steelBrick" -> model.getGameOverModel().getScoreBoardModel().getScore().steelBrickScore();
+                }
+            });
 
             if(brick.getClass().getSuperclass().getSimpleName().equalsIgnoreCase("BrickCrackModel")) {
                 Node crackNode = cracksPane.getChildren().get(i);

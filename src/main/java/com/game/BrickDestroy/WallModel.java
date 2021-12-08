@@ -15,7 +15,7 @@ public class WallModel {
 
     private Rectangle wall;
 
-    private static final int LEVELS_COUNT = 4;
+    static final int LEVELS_COUNT = 5;
     private BrickModel[][] allLevels;
     private IntegerProperty level;
     private BooleanProperty nextLevel;
@@ -25,7 +25,7 @@ public class WallModel {
     private static final int CEMENT = 3;
 
     private IntegerProperty ballCount;
-    private final int DEFAULT_BALL_COUNT = 3;
+    private int[] maxBallCount;
     private boolean ballLost;
 
     private IntegerProperty brickCount;
@@ -35,7 +35,8 @@ public class WallModel {
         this.player = new PlayerModel(player, this.wall);
         this.ball = new RubberBallModel(ball, this.wall);
 
-        ballCount = new SimpleIntegerProperty(DEFAULT_BALL_COUNT);
+        maxBallCount = new int[LEVELS_COUNT];
+        ballCount = new SimpleIntegerProperty();
         ballLost = false;
 
         brickCount = new SimpleIntegerProperty(bricks.length);
@@ -52,6 +53,9 @@ public class WallModel {
         tmp[1] = makeChessboardLevel(bricks, CLAY, CEMENT);
         tmp[2] = makeChessboardLevel(bricks, CLAY, STEEL);
         tmp[3] = makeChessboardLevel(bricks, STEEL, CEMENT);
+        tmp[4] = makeTripleTypeLevel(bricks);
+
+        setMaxBallCount();
 
         return tmp;
     }
@@ -79,6 +83,21 @@ public class WallModel {
         return tmp;
     }
 
+    private BrickModel[] makeTripleTypeLevel(Rectangle[] bricks) {
+        BrickModel[] tmp = new BrickModel[brickCount.get()];
+
+        for(int i=0; i<tmp.length; i++) {
+            if (i % 3 == 0) {
+                tmp[i] = makeBrick(bricks[i], WallModel.CEMENT);
+            } else if (i % 3 == 1) {
+                tmp[i] = makeBrick(bricks[i], WallModel.CLAY);
+            } else {
+                tmp[i] = makeBrick(bricks[i], WallModel.STEEL);
+            }
+        }
+        return tmp;
+    }
+
     private BrickModel makeBrick(Rectangle brick, int type) {
         return switch (type) {
             case CLAY -> new ClayBrickModel(brick);
@@ -86,6 +105,14 @@ public class WallModel {
             case CEMENT -> new CementBrickModel(brick);
             default -> throw new IllegalArgumentException(String.format("Unknown Type:%d\n", type));
         };
+    }
+
+    private void setMaxBallCount() {
+        maxBallCount[0] = 3;
+        maxBallCount[1] = 3;
+        maxBallCount[2] = 3;
+        maxBallCount[3] = 2;
+        maxBallCount[4] = 2;
     }
 
     public void move() {
@@ -173,7 +200,7 @@ public class WallModel {
         }
         brickCount.set(bricks.length);
 
-        ballCount.set(3);
+        resetBallCount();
         ballPlayerReset();
     }
 
@@ -196,7 +223,9 @@ public class WallModel {
         return ballCount;
     }
 
-    public void resetBallCount() { ballCount.set(DEFAULT_BALL_COUNT); }
+    public void resetBallCount() {
+        ballCount.set(maxBallCount[level.get() - 1]);
+    }
 
     public boolean ballEnd(){
         return ballCount.get() == 0;
@@ -227,6 +256,9 @@ public class WallModel {
     }
 
     public void nextLevel() {
+        GameOverModel.getInstance().getScoreBoardModel().setLevel(level);
+
+        ballCount.set(maxBallCount[level.get()]);
         bricks = allLevels[level.get()];
         level.set(level.get() + 1);
         this.brickCount.set(bricks.length);
