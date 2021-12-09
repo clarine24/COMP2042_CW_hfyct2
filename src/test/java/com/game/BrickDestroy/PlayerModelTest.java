@@ -12,7 +12,7 @@ class PlayerModelTest {
 
 
     @Test
-    void getPlayerFace_createPlayerFace_playerFaceSameAsPlayerTest() {
+    void getPlayerFace_playerFaceSameAsPlayerPassedInFromParameter() {
         assertEquals(playerTest.getX(), playerModel.getPlayerFace().getX());
         assertEquals(playerTest.getY(), playerModel.getPlayerFace().getY());
         assertEquals(playerTest.getWidth(), playerModel.getPlayerFace().getWidth());
