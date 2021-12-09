@@ -9,16 +9,6 @@ class LevelScoreTest {
     LevelScore levelScore = new LevelScore(level);
 
     @Test
-    void getInstance() {
-    }
-
-    @Test
-    void calculateTotalScore_ballScoreIs0_brickScoreIs0_totalScoreIs0() {
-        //levelScore.calculateTotalScore();
-        //assertEquals(levelScore.getTotalScore().get(), 0);
-    }
-
-    @Test
     void clayBrickScore_defaultScoreAdded_scoreAdd100() {
         levelScore.clayBrickScore();
         assertEquals(levelScore.getTotalScore().get(), 100);
@@ -40,14 +30,5 @@ class LevelScoreTest {
     void resetScore_totalScoreIs0() {
         levelScore.resetScore();
         assertEquals(levelScore.getTotalScore().get(), 0);
-    }
-
-    @Test
-    void getTotalScore() {
-        //return 0;
-    }
-
-    @Test
-    void getHighScores() {
     }
 }
