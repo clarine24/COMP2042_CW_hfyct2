@@ -2,13 +2,17 @@ package com.game.BrickDestroy;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 import java.util.Random;
 
-public abstract class BallModel {
+public class BallModel {
     private Circle ballFace;
+    private final StringProperty name;
+
     private final double startX;
     private final double startY;
 
@@ -16,6 +20,7 @@ public abstract class BallModel {
     private final double DEFAULT_MOVE = -3;
     private double moveX;
     private double moveY;
+
     private final double minX;
     private final double maxX;
     private final double minY;
@@ -24,7 +29,9 @@ public abstract class BallModel {
     private DoubleProperty speed;
     private final double DEFAULT_SPEED = 1;
 
-    public BallModel(Circle ball, Rectangle wall) {
+    public BallModel(String name, Circle ball, Rectangle wall) {
+        this.name = new SimpleStringProperty(name);
+
         startX = ball.getCenterX();
         startY = ball.getCenterY();
 
@@ -40,7 +47,9 @@ public abstract class BallModel {
         setMoveDirection();
     }
 
-    protected abstract Circle makeBall(Circle ball);
+    private Circle makeBall(Circle ball) {
+        return new Circle(ball.getCenterX(), ball.getCenterY(), ball.getRadius());
+    }
 
     public void move() {
         double x = ballFace.getCenterX() + getMove(moveX);
@@ -97,5 +106,9 @@ public abstract class BallModel {
 
     public DoubleProperty getSpeed() {
         return speed;
+    }
+
+    public StringProperty getName() {
+        return name;
     }
 }

@@ -4,12 +4,9 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 public class RubberBallModel extends BallModel {
-    public RubberBallModel(Circle ball, Rectangle wall) {
-        super(ball, wall);
-    }
+    private static final String NAME = "rubberBall";
 
-    @Override
-    protected Circle makeBall(Circle ball) {
-        return new Circle(ball.getCenterX(), ball.getCenterY(), ball.getRadius());
+    public RubberBallModel(Circle ball, Rectangle wall) {
+        super(NAME, ball, wall);
     }
 }
