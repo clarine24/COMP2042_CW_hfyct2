@@ -9,12 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class BallModelTest {
     Circle ballTest = new Circle(300, 425, 10);
     Rectangle wallTest = new Rectangle(0, 50, 600, 450);
-    BallModel ballModel = new BallModel(ballTest, wallTest) {
-        @Override
-        protected Circle makeBall(Circle ball) {
-            return ballTest;
-        }
-    };
+    BallModel ballModel = new BallModel("ballTest", ballTest, wallTest);
 
     @Test
     void getBallFace_createdBallFaceSameAsBallPassedInParameter() {
@@ -51,5 +46,10 @@ class BallModelTest {
     @Test
     void getSpeed_defaultSpeed_1() {
         assertEquals(1, ballModel.getSpeed().get());
+    }
+
+    @Test
+    void getName() {
+        assertEquals("ballTest", ballModel.getName().get());
     }
 }
