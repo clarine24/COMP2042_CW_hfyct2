@@ -59,7 +59,7 @@ public class BallModel {
         if(y < minY) {
             y = minY;
         }
-        else if(y < maxY) {
+        if(y < maxY) {
             if (x < minX) {
                 x = minX;
             } else if (x > maxX) {
