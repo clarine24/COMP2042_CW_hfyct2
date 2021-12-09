@@ -10,15 +10,6 @@ class SteelBrickModelTest {
     SteelBrickModel steelBrickModel = new SteelBrickModel(brickTest);
 
     @Test
-    void makeBrickFace_brickFaceSameAsBrickPassedInFromParameter() {
-        steelBrickModel.makeBrickFace(brickTest);
-        assertEquals(brickTest.getX(), steelBrickModel.getBrickFace().getX());
-        assertEquals(brickTest.getY(), steelBrickModel.getBrickFace().getY());
-        assertEquals(brickTest.getWidth(), steelBrickModel.getBrickFace().getWidth());
-        assertEquals(brickTest.getHeight(), steelBrickModel.getBrickFace().getHeight());
-    }
-
-    @Test
     void impact() {
     }
 }
