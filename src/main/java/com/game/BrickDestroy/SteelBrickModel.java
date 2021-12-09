@@ -18,11 +18,6 @@ public class SteelBrickModel extends BrickModel {
     }
 
     @Override
-    protected Rectangle makeBrickFace(Rectangle brick) {
-        return new Rectangle(brick.getX(), brick.getY(), brick.getWidth(), brick.getHeight());
-    }
-
-    @Override
     public void impact() {
         double x = rnd.nextDouble();
         if (x < BREAK_PROBABILITY) {
