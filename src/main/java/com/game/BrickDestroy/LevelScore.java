@@ -24,6 +24,18 @@ public class LevelScore {
     public LevelScore(int level) {
         totalScore = new SimpleIntegerProperty(0);
 
+        createFile(level);
+
+        calculateTopScores();
+
+        instance = this;
+    }
+
+    public static LevelScore getInstance() {
+        return instance;
+    }
+
+    private void createFile(int level) {
         scoreBoardFile = new File(FILE_PATH + "Level" + level + ".txt");
         try {
             if(scoreBoardFile.createNewFile()) {
@@ -36,14 +48,6 @@ public class LevelScore {
             System.out.println("An error occurred");
             e.printStackTrace();
         }
-
-        calculateTopScores();
-
-        instance = this;
-    }
-
-    public static LevelScore getInstance() {
-        return instance;
     }
 
     public void calculateTotalScore() {
