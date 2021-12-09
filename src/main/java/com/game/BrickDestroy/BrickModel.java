@@ -6,7 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.shape.Rectangle;
 
-public abstract class BrickModel {
+public class BrickModel {
     private Rectangle brickFace;
     private final StringProperty name;
 
@@ -22,7 +22,9 @@ public abstract class BrickModel {
         broken = new SimpleBooleanProperty(false);
     }
 
-    protected abstract Rectangle makeBrickFace(Rectangle brick);
+    protected Rectangle makeBrickFace(Rectangle brick) {
+        return new Rectangle(brick.getX(), brick.getY(), brick.getWidth(), brick.getHeight());
+    }
 
     public Rectangle getBrickFace() {
         return brickFace;

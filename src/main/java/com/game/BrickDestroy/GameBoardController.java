@@ -18,7 +18,7 @@ public class GameBoardController {
 
     @FXML private Rectangle wall;
     @FXML private Rectangle player;
-    @FXML private Circle rubberBall;
+    @FXML private Circle ball;
     @FXML private Pane playButton;
     @FXML private Pane pauseMenu;
     @FXML private Pane gameOverMenu;
@@ -40,7 +40,7 @@ public class GameBoardController {
         initializeCracks();
 
         //Get model
-        model = new GameBoardModel(wall, player, rubberBall, bricks);
+        model = new GameBoardModel(wall, player, ball, bricks);
 
         //Link Model with View
         linkModelView();
@@ -87,8 +87,10 @@ public class GameBoardController {
     }
 
     private void linkRubberBallModel() {
-        rubberBall.centerXProperty().bind(model.getWallModel().getBall().getBallFace().centerXProperty());
-        rubberBall.centerYProperty().bind(model.getWallModel().getBall().getBallFace().centerYProperty());
+        ball.idProperty().bind(model.getWallModel().getBall().getName());
+
+        ball.centerXProperty().bind(model.getWallModel().getBall().getBallFace().centerXProperty());
+        ball.centerYProperty().bind(model.getWallModel().getBall().getBallFace().centerYProperty());
     }
 
     private void linkGameTimer() {

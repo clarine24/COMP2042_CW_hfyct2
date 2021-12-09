@@ -9,9 +9,4 @@ public class ClayBrickModel extends BrickModel {
     public ClayBrickModel(Rectangle brick) {
         super(brick, NAME, FULL_STRENGTH);
     }
-
-    @Override
-    protected Rectangle makeBrickFace(Rectangle brick) {
-        return new Rectangle(brick.getX(), brick.getY(), brick.getWidth(), brick.getHeight());
-    }
 }
