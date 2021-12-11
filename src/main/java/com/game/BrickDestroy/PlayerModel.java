@@ -7,7 +7,7 @@ public class PlayerModel {
     private final double startX;
     private final double startY;
 
-    private static final int DEF_MOVE_AMOUNT = 5;
+    private static final int DEF_MOVE_AMOUNT = 7;
     private int moveAmount;
 
     private final double min;
