@@ -18,45 +18,19 @@ import java.io.IOException;
  * @since 11/12/21
  */
 public class Stages {
-    /**
-     * The default title of homeStage and gameStage.
-     */
     private static final String GAME_TITLE = "Brick Destroy";
-    /**
-     * The title of debugStage.
-     */
     private static final String DEBUG_TITLE = "Debug Console";
 
-    /**
-     * The home menu stage.
-     */
     private Stage homeStage;
-    /**
-     * The game board stage.
-     */
     private Stage gameStage;
-    /**
-     * The debug panel stage.
-     */
+
     private Stage debugStage;
 
-    /**
-     * The scene on the stage.
-     */
     private static Scene scene;
 
-    /**
-     * The created instance of Stages.
-     */
     private static Stages instance;
 
-    /**
-     * The loaded object.
-     */
     private Parent root;
-    /**
-     * The loaded game board fxml.
-     */
     private Parent gameRoot;
 
     /**
