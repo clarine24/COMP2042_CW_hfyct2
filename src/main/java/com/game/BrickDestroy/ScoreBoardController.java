@@ -3,6 +3,12 @@ package com.game.BrickDestroy;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
+/**
+ * The ScoreBoardController class is the controller for score board view.
+ * @author Clarine Tan Kaili (20194533)
+ * @version 2.0
+ * @since 11/12/21
+ */
 public class ScoreBoardController {
     @FXML private Label top1Score;
     @FXML private Label top2Score;
@@ -13,7 +19,10 @@ public class ScoreBoardController {
     private ScoreBoardModel model;
     private Label[] topScores;
 
-
+    /**
+     * Initialise the score board controller.
+     * Link the model and view.
+     */
     @FXML
     private void initialize() {
         model = new ScoreBoardModel();
@@ -24,6 +33,9 @@ public class ScoreBoardController {
         model.isOpen().addListener((observableValue, oldValue, newValue) -> linkScoreBoardModel());
     }
 
+    /**
+     * Initialise the array of top scores.
+     */
     private void initializeTopScores() {
         topScores = new Label[5];
         topScores[0] = top1Score;
@@ -33,6 +45,9 @@ public class ScoreBoardController {
         topScores[4] = top5Score;
     }
 
+    /**
+     * Link the score board model and the score board view.
+     */
     private void linkScoreBoardModel() {
         for (Label topScore : topScores) {
             topScore.textProperty().unbind();
@@ -45,6 +60,10 @@ public class ScoreBoardController {
         }
     }
 
+    /**
+     * Set the boolean Open to false.
+     * Close the score board.
+     */
     @FXML
     private void closeButtonClicked() {
         model.setOpen(false);
