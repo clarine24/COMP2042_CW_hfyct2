@@ -13,7 +13,6 @@ import java.io.IOException;
 public class HomeMenuController {
     /**
      * Show the game stage.
-     * Method called when start button is clicked.
      * @throws IOException
      */
     @FXML
@@ -24,7 +23,6 @@ public class HomeMenuController {
 
     /**
      * Switch scene to info menu view.
-     * Method called when info button is clicked.
      * @throws IOException
      */
     @FXML
@@ -34,7 +32,6 @@ public class HomeMenuController {
 
     /**
      * Exit the program.
-     * Method called when the exit button is clicked.
      */
     @FXML
     private void exitButtonClicked() {
