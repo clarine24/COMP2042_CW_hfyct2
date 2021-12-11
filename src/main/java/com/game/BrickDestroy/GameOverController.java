@@ -8,12 +8,24 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 
+/**
+ * The GameOverController is the controller of the game over view.
+ * @author Clarine Tan Kaili (20194533)
+ * @version 2.0
+ * @since 11/12/21
+ */
 public class GameOverController {
     @FXML private Label score;
     @FXML private Pane scoreBoard;
 
     private GameOverModel model;
 
+    /**
+     * Initialise the game over controller.
+     * Load the score board view.
+     * Links the model and view.
+     * @throws IOException
+     */
     @FXML
     public void initialize() throws IOException {
         AnchorPane view = FXMLLoader.load(GameBoardController.class.getResource("ScoreBoardView.fxml"));
@@ -29,6 +41,9 @@ public class GameOverController {
         scoreBoard.setVisible(false);
     }
 
+    /**
+     * Links the score board model and the game over view.
+     */
     private void linkScoreBoard() {
         score.textProperty().bind(model.getScoreBoardModel().getScore().getTotalScore().asString());
 
@@ -39,22 +54,35 @@ public class GameOverController {
         });
     }
 
+    /**
+     * Sets restart boolean to true.
+     */
     @FXML
     private void restartButtonClicked() {
         model.setRestart(true);
     }
 
+    /**
+     * Sets nextLevel boolean to true.
+     */
     @FXML
     private void nextLevelButtonClicked() {
         model.setNextLevel(true);
     }
 
+    /**
+     * Shows the home menu.
+     * @throws IOException
+     */
     @FXML
     private void exitButtonClicked() throws IOException {
         Stages stages = Stages.getInstance();
         stages.homeStage();
     }
 
+    /**
+     * Shows the score board.
+     */
     @FXML
     private void scoreBoardButtonClicked() {
         scoreBoard.setVisible(true);
