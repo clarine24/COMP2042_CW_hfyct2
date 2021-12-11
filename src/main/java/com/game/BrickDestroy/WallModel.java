@@ -106,7 +106,6 @@ public class WallModel {
 
             if(ballLocation == i) {
                 tmp[i].setAdditionalBall(true);
-                System.out.println(i);
             }
         }
         return tmp;
@@ -231,7 +230,6 @@ public class WallModel {
             if(level.get() >= 4) {
                 if(ballLocation == i) {
                     bricks[i].setAdditionalBall(true);
-                    System.out.println(i);
                 }
             }
         }
