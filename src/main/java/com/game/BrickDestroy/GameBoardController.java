@@ -147,7 +147,7 @@ public class GameBoardController {
             }
         });
 
-        model.getGameTimer().displayAddBallTextProperty().addListener((observableValue, oldValue, newValue) -> addBall.setVisible(newValue));
+        model.getGameTimer().getDisplayAddBallText().addListener((observableValue, oldValue, newValue) -> addBall.setVisible(newValue));
     }
 
     /**

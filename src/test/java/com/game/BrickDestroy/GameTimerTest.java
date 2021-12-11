@@ -3,7 +3,6 @@ package com.game.BrickDestroy;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -45,13 +44,13 @@ class GameTimerTest {
     }
 
     @Test
-    void displayAddBallTextProperty_defaultValue_false() {
-        assertFalse(gameTimer.displayAddBallTextProperty().get());
+    void displayAddBallText_defaultValue_false() {
+        assertFalse(gameTimer.getDisplayAddBallText().get());
     }
 
     @Test
     void setDisplayAddBallText_true() {
         gameTimer.setDisplayAddBallText(true);
-        assertTrue(gameTimer.displayAddBallTextProperty().get());
+        assertTrue(gameTimer.getDisplayAddBallText().get());
     }
 }
