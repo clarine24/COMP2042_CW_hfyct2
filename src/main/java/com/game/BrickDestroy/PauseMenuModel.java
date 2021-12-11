@@ -4,7 +4,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
 /**
- * The PauseMenuModel is the model for pause menu view.
+ * The PauseMenuModel class is the model for the pause menu view.
  * @author Clarine Tan Kaili (20194533)
  * @version 2.0
  * @since 11/12/21

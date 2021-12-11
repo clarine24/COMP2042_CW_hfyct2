@@ -4,7 +4,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 /**
- * The GameBoardModel is the model of game board view.
+ * The GameBoardModel class is the model for the game board view.
  * @author Clarine Tan Kaili (20194533)
  * @version 2.0
  * @since 11/12/21

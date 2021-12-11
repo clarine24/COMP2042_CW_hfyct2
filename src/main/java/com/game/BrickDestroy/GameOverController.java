@@ -9,7 +9,7 @@ import javafx.scene.layout.Pane;
 import java.io.IOException;
 
 /**
- * The GameOverController is the controller of the game over view.
+ * The GameOverController class is the controller of the game over view.
  * @author Clarine Tan Kaili (20194533)
  * @version 2.0
  * @since 11/12/21

@@ -14,7 +14,7 @@ import javafx.scene.shape.Rectangle;
 import java.io.IOException;
 
 /**
- * The GameBoardController is the controller for game board view.
+ * The GameBoardController class is the controller of game board view.
  * @author Clarine Tan Kaili (20194533)
  * @version 2.0
  * @since 11/12/21

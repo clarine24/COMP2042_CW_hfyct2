@@ -4,7 +4,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
 /**
- * The GameOverModel is the model of the game over view.
+ * The GameOverModel class is the model for the game over view.
  * @author Clarine Tan Kaili (20194533)
  * @version 2.0
  * @since 11/12/21

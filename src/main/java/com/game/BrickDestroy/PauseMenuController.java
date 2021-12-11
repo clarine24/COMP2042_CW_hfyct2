@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import java.io.IOException;
 
 /**
- * The PauseMenuController is the controller of pause menu view.
+ * The PauseMenuController class is the controller of the pause menu view.
  * @author Clarine Tan Kaili (20194533)
  * @version 2.0
  * @since 11/12/21
