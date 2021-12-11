@@ -10,6 +10,12 @@ import javafx.scene.shape.Shape;
 
 import java.util.Random;
 
+/**
+ * The WallModel class is the wall model.
+ * @author Clarine Tan Kaili (20194533)
+ * @version 2.0
+ * @since 11/12/21
+ */
 public class WallModel {
     private final PlayerModel player;
     private final BallModel ball;
@@ -34,6 +40,13 @@ public class WallModel {
 
     private final IntegerProperty brickCount;
 
+    /**
+     * Creates a new instance of WallModel with the given wall shape, player shape, ball shape and bricks shapes.
+     * @param wall the shape of the wall
+     * @param player the shape of the player
+     * @param ball the shape of the ball
+     * @param bricks the shapes of all the bricks
+     */
     public WallModel(Rectangle wall, Rectangle player, Circle ball, Rectangle[] bricks) {
         rnd = new Random();
 
@@ -53,6 +66,11 @@ public class WallModel {
         nextLevel = new SimpleBooleanProperty(true);
     }
 
+    /**
+     * Creates new BrickModel instances for all levels.
+     * @param bricks the shapes of the bricks
+     * @return the array of all the levels' bricks
+     */
     private BrickModel[][] makeLevels(Rectangle[] bricks) {
         BrickModel[][] tmp = new BrickModel[LEVELS_COUNT][];
 
@@ -67,6 +85,11 @@ public class WallModel {
         return tmp;
     }
 
+    /**
+     * Creates new BrickModel instances of levels with a single type brick.
+     * @param bricks the shapes of the bricks
+     * @return the array of BrickModel instances
+     */
     private BrickModel[] makeSingleTypeLevel(Rectangle[] bricks) {
         BrickModel[] tmp = new BrickModel[brickCount.get()];
 
@@ -76,6 +99,13 @@ public class WallModel {
         return tmp;
     }
 
+    /**
+     * Creates new BrickModel instances of levels with two types of bricks.
+     * @param bricks the shapes of the bricks
+     * @param typeA the first type of brick
+     * @param typeB the second type of brick
+     * @return the array of BrickModel instances
+     */
     private BrickModel[] makeChessboardLevel(Rectangle[] bricks, int typeA, int typeB) {
         BrickModel[] tmp = new BrickModel[brickCount.get()];
 
@@ -90,6 +120,11 @@ public class WallModel {
         return tmp;
     }
 
+    /**
+     * Creates new BrickModel instances of levels with three types bricks.
+     * @param bricks the shapes of the bricks
+     * @return the array of BrickModel instances
+     */
     private BrickModel[] makeTripleTypeLevel(Rectangle[] bricks) {
         BrickModel[] tmp = new BrickModel[brickCount.get()];
 
@@ -111,6 +146,12 @@ public class WallModel {
         return tmp;
     }
 
+    /**
+     * Creates a new BrickModel instance based on the given brick shape and brick type.
+     * @param brick the shape of the brick
+     * @param type the type of brick
+     * @return the BrickModel instance
+     */
     private BrickModel makeBrick(Rectangle brick, int type) {
         return switch (type) {
             case CLAY -> new ClayBrickModel(brick);
@@ -120,10 +161,18 @@ public class WallModel {
         };
     }
 
+    /**
+     * Gets the position of the additional ball in the bricks.
+     * @param totalBrickCount the total number of bricks
+     * @return the location of the additional ball
+     */
     private int additionalBallLocation(int totalBrickCount) {
         return rnd.nextInt(totalBrickCount);
     }
 
+    /**
+     * Sets the maximum ball count for each level.
+     */
     private void setMaxBallCount() {
         maxBallCount[0] = 3;
         maxBallCount[1] = 3;
@@ -132,11 +181,17 @@ public class WallModel {
         maxBallCount[4] = 2;
     }
 
+    /**
+     * Moves the ball and player.
+     */
     public void move() {
         ball.move();
         player.move();
     }
 
+    /**
+     * Finds and sets the effects of the impact of the ball.
+     */
     public void findImpacts() {
         if(impactBottomWall()) {
             ballCount.set(ballCount.get() - 1);
@@ -160,6 +215,10 @@ public class WallModel {
         }
     }
 
+    /**
+     * Determines if the ball hits the left or right sides of the wall.
+     * @return the boolean value of whether the ball hits the sides of the wall
+     */
     private boolean impactLeftRightWall() {
         Shape intersect = Shape.intersect(wall, ball.getBallFace());
 
@@ -169,20 +228,37 @@ public class WallModel {
         return left || right;
     }
 
+    /**
+     * Determines if the ball hits the top of the wall.
+     * @return the boolean value of whether the ball hits the top of the wall
+     */
     private boolean impactTopWall() {
         Shape intersect = Shape.intersect(wall, ball.getBallFace());
         return intersect.getBoundsInLocal().getMinY() == wall.getY();
     }
 
+    /**
+     * Determines if the ball moves out of the wall boundary from the bottom.
+     * @return the boolean value of whether the ball moves out of wall from the bottom
+     */
     private boolean impactBottomWall() {
         return !wall.intersects(ball.getBallFace().getBoundsInLocal());
     }
 
+    /**
+     * Determines if the ball hits the player paddle.
+     * @return the boolean value of whether the ball hits the player paddle
+     */
     private boolean ballHitTopPlayer() {
         Shape intersect = Shape.intersect(ball.getBallFace(), player.getPlayerFace());
         return intersect.getBoundsInLocal().getMinY() == player.getPlayerFace().getY();
     }
 
+    /**
+     * Determines if the ball hits the brick.
+     * Sets the impact on the brick.
+     * @return the boolean value of whether the brick breaks
+     */
     private boolean impactBrick() {
         for(BrickModel b : bricks) {
             if(b.isBroken().get()) {
@@ -220,6 +296,12 @@ public class WallModel {
         return false;
     }
 
+    /**
+     * Resets the entire level.
+     * Resets all the bricks.
+     * Resets the ball and player position.
+     * Resets the ball count.
+     */
     public void wallReset() {
         int ballLocation = additionalBallLocation(bricks.length);
 
@@ -241,6 +323,10 @@ public class WallModel {
         setAddAdditionalBall(false);
     }
 
+    /**
+     * Resets the ball and player.
+     * Resets the position of the ball and player.
+     */
     public void ballPlayerReset() {
         player.moveToStart();
         ball.moveToStart();
@@ -248,50 +334,96 @@ public class WallModel {
         ballLost = false;
     }
 
+    /**
+     * Gets the created playerModel instance.
+     * @return the playerModel instance
+     */
     public PlayerModel getPlayer() {
         return player;
     }
 
+    /**
+     * Gets the created ballModel instance.
+     * @return the ballModel instance
+     */
     public BallModel getBall() {
         return ball;
     }
 
+    /**
+     * Gets the integer property of ballCount
+     * @return the integer property of ball count
+     */
     public IntegerProperty getBallCount() {
         return ballCount;
     }
 
+    /**
+     * Resets the ball count.
+     */
     public void resetBallCount() {
         ballCount.set(maxBallCount[level.get() - 1]);
     }
 
+    /**
+     * Determines if it is the last ball.
+     * @return the boolean value whether if it is the last ball
+     */
     public boolean ballEnd(){
         return ballCount.get() == 0;
     }
 
+    /**
+     * Determines if the ball is lost.
+     * @return the boolean value of ball lost
+     */
     public boolean isBallLost() {
         return ballLost;
     }
 
+    /**
+     * Gets the array of BrickModel of the level.
+     * @return the array of bricks.
+     */
     public BrickModel[] getBricks() {
         return bricks;
     }
 
+    /**
+     * Gets the integer property of brickCount.
+     * @return the integer property of brick count
+     */
     public IntegerProperty getBrickCount() {
         return brickCount;
     }
 
+    /**
+     * Determines if all the bricks are broken.
+     * @return the boolean value of whether all the bricks are broken.
+     */
     public boolean isDone() {
         return brickCount.get() == 0;
     }
 
+    /**
+     * Gets the integer property of level.
+     * @return the integer property of level
+     */
     public IntegerProperty getLevel() {
         return level;
     }
 
+    /**
+     * Determines if there is a next level.
+     * @return the boolean property of nextLevel
+     */
     public BooleanProperty hasNextLevel() {
         return nextLevel;
     }
 
+    /**
+     * Go to the next level.
+     */
     public void nextLevel() {
         GameOverModel.getInstance().getScoreBoardModel().setLevel(level);
 
@@ -303,10 +435,18 @@ public class WallModel {
         nextLevel.set(x < allLevels.length);
     }
 
+    /**
+     * Gets the boolean property of addAdditionalBall.
+     * @return the boolean property of addAdditionalBall
+     */
     public BooleanProperty isAddAdditionalBall() {
         return addAdditionalBall;
     }
 
+    /**
+     * Sets the boolean addAdditionalBall.
+     * @param addAdditionalBall the new boolean value of addAdditionalBall
+     */
     public void setAddAdditionalBall(boolean addAdditionalBall) {
         this.addAdditionalBall.set(addAdditionalBall);
     }
