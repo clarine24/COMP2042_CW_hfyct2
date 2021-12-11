@@ -2,19 +2,21 @@ package com.game.BrickDestroy;
 
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class WallModelTest {
-    static Rectangle playerTest;
-    static Circle ballTest;
-    static Rectangle[] bricksTest;
-    static WallModel wallModel;
+    Rectangle playerTest;
+    Circle ballTest;
+    Rectangle[] bricksTest;
+    WallModel wallModel;
 
-    @BeforeAll
-    static void setUp() {
+    @BeforeEach
+    void setUp() {
         Rectangle wallTest = new Rectangle(10,20,600,500);
         playerTest = new Rectangle(550, 200,50,10);
         ballTest = new Circle(400,250,10);
@@ -25,6 +27,14 @@ class WallModelTest {
         }
 
         wallModel = new WallModel(wallTest, playerTest, ballTest, bricksTest);
+    }
+
+    @AfterEach
+    void tearDown() {
+        playerTest = null;
+        ballTest = null;
+        bricksTest = null;
+        wallModel = null;
     }
 
     @Test
@@ -80,7 +90,18 @@ class WallModelTest {
     }
 
     @Test
-    void hasNextLevel_defaultValue() {
+    void hasNextLevel_defaultValue_true() {
         assertTrue(wallModel.hasNextLevel().get());
+    }
+
+    @Test
+    void isAddAdditionalBall_defaultValue_false() {
+        assertFalse(wallModel.isAddAdditionalBall().get());
+    }
+
+    @Test
+    void setAddAdditionalBall_true() {
+        wallModel.setAddAdditionalBall(true);
+        assertTrue(wallModel.isAddAdditionalBall().get());
     }
 }
