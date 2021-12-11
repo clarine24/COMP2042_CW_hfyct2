@@ -13,6 +13,12 @@ import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
 
+/**
+ * The GameBoardController is the controller for game board view.
+ * @author Clarine Tan Kaili (20194533)
+ * @version 2.0
+ * @since 11/12/21
+ */
 public class GameBoardController {
     private GameBoardModel model;
 
@@ -31,6 +37,12 @@ public class GameBoardController {
 
     private Rectangle[] bricks;
 
+    /**
+     * Initialise the game board controller.
+     * Load the pause menu and game over view.
+     * Link the model and view.
+     * @throws IOException
+     */
     @FXML
     public void initialize() throws IOException {
         loadFXML("PauseMenuView", pauseMenu);
@@ -52,11 +64,20 @@ public class GameBoardController {
         addBall.setVisible(false);
     }
 
+    /**
+     * Load a fxml file.
+     * @param fxml the fxml name without the file extension
+     * @param pane the pane the fxml is added into
+     * @throws IOException
+     */
     private void loadFXML(String fxml, Pane pane) throws IOException {
         AnchorPane view = FXMLLoader.load(GameBoardController.class.getResource(fxml + ".fxml"));
         pane.getChildren().add(view);
     }
 
+    /**
+     * Get array of bricks from the bricks pane.
+     */
     private void initializeBricks() {
         int brickCount = bricksPane.getChildren().size();
         bricks = new Rectangle[brickCount];
@@ -68,15 +89,21 @@ public class GameBoardController {
         }
     }
 
+    /**
+     * Set all cracks to be invisible.
+     */
     private void initializeCracks() {
         for(Node node: cracksPane.getChildren()) {
             node.setVisible(false);
         }
     }
 
+    /**
+     * Link the models and the game board view.
+     */
     private void linkModelView() {
         linkPlayerModel();
-        linkRubberBallModel();
+        linkBallModel();
         linkGameTimer();
         linkPauseMenuModel();
         linkGameOverMenuModel();
@@ -84,17 +111,26 @@ public class GameBoardController {
         linkWallModel();
     }
 
+    /**
+     * Link the player model and the game board view.
+     */
     private void linkPlayerModel() {
         player.xProperty().bind(model.getWallModel().getPlayer().getPlayerFace().xProperty());
     }
 
-    private void linkRubberBallModel() {
+    /**
+     * Link the ball model and the game board view.
+     */
+    private void linkBallModel() {
         ball.idProperty().bind(model.getWallModel().getBall().getName());
 
         ball.centerXProperty().bind(model.getWallModel().getBall().getBallFace().centerXProperty());
         ball.centerYProperty().bind(model.getWallModel().getBall().getBallFace().centerYProperty());
     }
 
+    /**
+     * Link the game timer and the game board view.
+     */
     private void linkGameTimer() {
         model.getGameTimer().isRunning().addListener((observableValue, oldValue, newValue) -> {
             if(!newValue) {
@@ -114,6 +150,9 @@ public class GameBoardController {
         model.getGameTimer().displayAddBallTextProperty().addListener((observableValue, oldValue, newValue) -> addBall.setVisible(newValue));
     }
 
+    /**
+     * Link the pause menu model and the game board view.
+     */
     private void linkPauseMenuModel() {
         model.getPauseMenuModel().isResume().addListener((observableValue, oldValue, newValue) -> {
             if(newValue) {
@@ -134,6 +173,9 @@ public class GameBoardController {
         });
     }
 
+    /**
+     * Link the game over model and the game board view.
+     */
     private void linkGameOverMenuModel() {
         model.getGameOverModel().isRestart().addListener((observableValue, oldValue, newValue) -> {
             if(newValue) {
@@ -160,6 +202,9 @@ public class GameBoardController {
         gameOverMenu.lookup("#nextLevelButton").visibleProperty().bind(model.getWallModel().hasNextLevel());
     }
 
+    /**
+     * Link the brick model and the game board view.
+     */
     private void linkBrickModel() {
         int i = 0;
         for(Node node: bricksPane.getChildren()) {
@@ -185,6 +230,9 @@ public class GameBoardController {
         }
     }
 
+    /**
+     * Link the wall model and the game board view.
+     */
     private void linkWallModel() {
         levelNumber.textProperty().bind(model.getWallModel().getLevel().asString());
 
@@ -199,6 +247,11 @@ public class GameBoardController {
         });
     }
 
+    /**
+     * Trigger key pressed events.
+     * @param event the key pressed
+     * @throws IOException
+     */
     @FXML
     private void keyPressed(KeyEvent event) throws IOException {
         KeyCode key = event.getCode();
@@ -230,6 +283,10 @@ public class GameBoardController {
         }
     }
 
+    /**
+     * Move player paddle.
+     * @param key the key pressed
+     */
     private void playerMove(KeyCode key) {
         if (key == KeyCode.A) {
             model.getWallModel().getPlayer().moveLeft();
@@ -239,17 +296,26 @@ public class GameBoardController {
         }
     }
 
+    /**
+     * Stop player paddle.
+     */
     @FXML
     private void playerStop() {
         model.getWallModel().getPlayer().stop();
     }
 
+    /**
+     * Start the game.
+     */
     @FXML
     private void play() {
         playButton.setVisible(false);
         model.getGameTimer().start();
     }
 
+    /**
+     * Pause/stop the game.
+     */
     private void stop() {
         model.getGameTimer().stop();
         playButton.setVisible(true);
