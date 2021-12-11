@@ -44,4 +44,15 @@ class BrickModelTest {
     void isBroken_defaultBrokenValue_false() {
         assertFalse(brickModel.isBroken().get());
     }
+
+    @Test
+    void isAdditionalBall_defaultValue_false() {
+        assertFalse(brickModel.isAdditionalBall());
+    }
+
+    @Test
+    void setAdditionalBall_true() {
+        brickModel.setAdditionalBall(true);
+        assertTrue(brickModel.isAdditionalBall());
+    }
 }
