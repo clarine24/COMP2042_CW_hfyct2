@@ -4,6 +4,12 @@ import javafx.animation.AnimationTimer;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
+/**
+ * The GameTimer class is the animation timer of the game.
+ * @author Clarine Tan Kaili (20194533)
+ * @version 2.0
+ * @since 11/12/21
+ */
 public class GameTimer extends AnimationTimer {
     private WallModel wall;
     
@@ -11,7 +17,7 @@ public class GameTimer extends AnimationTimer {
     private BooleanProperty gameOver;
     private BooleanProperty displayAddBallText;
 
-    int timer;
+    private int timer;
 
     public GameTimer(WallModel wall) {
         this.wall = wall;
