@@ -15,11 +15,15 @@ public class BrickModel {
 
     private BooleanProperty broken;
 
+    private boolean additionalBall;
+
     public BrickModel(Rectangle brick, String name, int fullStrength) {
         brickFace = makeBrickFace(brick);
         this.name = new SimpleStringProperty(name);
         this.fullStrength = currentStrength = fullStrength;
         broken = new SimpleBooleanProperty(false);
+
+        setAdditionalBall(false);
     }
 
     protected Rectangle makeBrickFace(Rectangle brick) {
@@ -51,5 +55,13 @@ public class BrickModel {
 
     public BooleanProperty isBroken() {
         return broken;
+    }
+
+    public boolean isAdditionalBall() {
+        return additionalBall;
+    }
+
+    public void setAdditionalBall(boolean additionalBall) {
+        this.additionalBall = additionalBall;
     }
 }

@@ -27,6 +27,7 @@ public class GameBoardController {
     @FXML private Label levelNumber;
     @FXML private Label brickCountNumber;
     @FXML private Label ballCountNumber;
+    @FXML private Label addBall;
 
     private Rectangle[] bricks;
 
@@ -48,6 +49,7 @@ public class GameBoardController {
         playButton.setVisible(true);
         pauseMenu.setVisible(false);
         gameOverMenu.setVisible(false);
+        addBall.setVisible(false);
     }
 
     private void loadFXML(String fxml, Pane pane) throws IOException {
@@ -108,6 +110,8 @@ public class GameBoardController {
                 model.getGameTimer().setGameOver(false);
             }
         });
+
+        model.getGameTimer().displayAddBallTextProperty().addListener((observableValue, oldValue, newValue) -> addBall.setVisible(newValue));
     }
 
     private void linkPauseMenuModel() {
@@ -152,6 +156,8 @@ public class GameBoardController {
                 Stages.getInstance().setFocus();
             }
         });
+
+        gameOverMenu.lookup("#nextLevelButton").visibleProperty().bind(model.getWallModel().hasNextLevel());
     }
 
     private void linkBrickModel() {
@@ -182,15 +188,15 @@ public class GameBoardController {
     private void linkWallModel() {
         levelNumber.textProperty().bind(model.getWallModel().getLevel().asString());
 
-        model.getWallModel().hasNextLevel().addListener((observableValue, oldValue, newValue) -> {
-            if(! newValue) {
-                gameOverMenu.lookup("#nextLevelButton").setVisible(false);
-            }
-        });
-
         brickCountNumber.textProperty().bind(model.getWallModel().getBrickCount().asString());
 
         ballCountNumber.textProperty().bind(model.getWallModel().getBallCount().asString());
+
+        model.getWallModel().isAddAdditionalBall().addListener((observableValue, oldValue, newValue) -> {
+            if(newValue) {
+                model.getGameTimer().setDisplayAddBallText(true);
+            }
+        });
     }
 
     @FXML

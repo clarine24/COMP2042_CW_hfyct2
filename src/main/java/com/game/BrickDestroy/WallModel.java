@@ -8,29 +8,35 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
+import java.util.Random;
+
 public class WallModel {
-    private PlayerModel player;
-    private BallModel ball;
+    private final PlayerModel player;
+    private final BallModel ball;
     private BrickModel[] bricks;
 
-    private Rectangle wall;
+    private final Rectangle wall;
 
     static final int LEVELS_COUNT = 5;
-    private BrickModel[][] allLevels;
-    private IntegerProperty level;
-    private BooleanProperty nextLevel;
+    private final BrickModel[][] allLevels;
+    private final IntegerProperty level;
+    private final BooleanProperty nextLevel;
 
     private static final int CLAY = 1;
     private static final int STEEL = 2;
     private static final int CEMENT = 3;
 
-    private IntegerProperty ballCount;
-    private int[] maxBallCount;
+    private final Random rnd;
+    private final IntegerProperty ballCount;
+    private final int[] maxBallCount;
     private boolean ballLost;
+    private final BooleanProperty addAdditionalBall;
 
-    private IntegerProperty brickCount;
+    private final IntegerProperty brickCount;
 
     public WallModel(Rectangle wall, Rectangle player, Circle ball, Rectangle[] bricks) {
+        rnd = new Random();
+
         this.wall = new Rectangle(wall.getX(), wall.getY(), wall.getWidth(), wall.getHeight());
         this.player = new PlayerModel(player, this.wall);
         this.ball = new RubberBallModel(ball, this.wall);
@@ -38,6 +44,7 @@ public class WallModel {
         maxBallCount = new int[LEVELS_COUNT];
         ballCount = new SimpleIntegerProperty();
         ballLost = false;
+        addAdditionalBall = new SimpleBooleanProperty(false);
 
         brickCount = new SimpleIntegerProperty(bricks.length);
 
@@ -86,6 +93,8 @@ public class WallModel {
     private BrickModel[] makeTripleTypeLevel(Rectangle[] bricks) {
         BrickModel[] tmp = new BrickModel[brickCount.get()];
 
+        int ballLocation = additionalBallLocation(tmp.length);
+
         for(int i=0; i<tmp.length; i++) {
             if (i % 3 == 0) {
                 tmp[i] = makeBrick(bricks[i], WallModel.CEMENT);
@@ -93,6 +102,11 @@ public class WallModel {
                 tmp[i] = makeBrick(bricks[i], WallModel.CLAY);
             } else {
                 tmp[i] = makeBrick(bricks[i], WallModel.STEEL);
+            }
+
+            if(ballLocation == i) {
+                tmp[i].setAdditionalBall(true);
+                System.out.println(i);
             }
         }
         return tmp;
@@ -105,6 +119,10 @@ public class WallModel {
             case CEMENT -> new CementBrickModel(brick);
             default -> throw new IllegalArgumentException(String.format("Unknown Type:%d\n", type));
         };
+    }
+
+    private int additionalBallLocation(int totalBrickCount) {
+        return rnd.nextInt(totalBrickCount);
     }
 
     private void setMaxBallCount() {
@@ -188,20 +206,41 @@ public class WallModel {
                     double x = intersect.getBoundsInLocal().getWidth();
                     ball.getBallFace().setCenterX(ball.getBallFace().getCenterX() + x);
                 }
-                return b.setImpact();
+
+
+                if(b.setImpact()) {
+                    if(b.isAdditionalBall()) {
+                        ballCount.set(ballCount.get() + 1);
+                        b.setAdditionalBall(false);
+                        setAddAdditionalBall(true);
+                    }
+                    return true;
+                }
             }
         }
         return false;
     }
 
     public void wallReset() {
-        for(BrickModel b : bricks) {
-            b.repair();
+        int ballLocation = additionalBallLocation(bricks.length);
+
+        for(int i=0; i< bricks.length; i++) {
+            bricks[i].repair();
+            bricks[i].setAdditionalBall(false);
+
+            if(level.get() >= 4) {
+                if(ballLocation == i) {
+                    bricks[i].setAdditionalBall(true);
+                    System.out.println(i);
+                }
+            }
         }
         brickCount.set(bricks.length);
 
         resetBallCount();
         ballPlayerReset();
+
+        setAddAdditionalBall(false);
     }
 
     public void ballPlayerReset() {
@@ -264,5 +303,13 @@ public class WallModel {
         this.brickCount.set(bricks.length);
         int x = level.get();
         nextLevel.set(x < allLevels.length);
+    }
+
+    public BooleanProperty isAddAdditionalBall() {
+        return addAdditionalBall;
+    }
+
+    public void setAddAdditionalBall(boolean addAdditionalBall) {
+        this.addAdditionalBall.set(addAdditionalBall);
     }
 }

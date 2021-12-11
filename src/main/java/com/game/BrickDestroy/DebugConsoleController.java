@@ -19,11 +19,7 @@ public class DebugConsoleController {
     }
 
     private void linkWallModel() {
-        model.getWallModel().hasNextLevel().addListener((observableValue, oldValue, newValue) -> {
-            if(! newValue) {
-                nextLevel.setVisible(false);
-            }
-        });
+        nextLevel.visibleProperty().bind(model.getWallModel().hasNextLevel());
     }
 
     private void linkBallModel() {

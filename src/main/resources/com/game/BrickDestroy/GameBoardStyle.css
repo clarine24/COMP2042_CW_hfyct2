@@ -54,3 +54,9 @@ Label {
     -fx-fill: transparent;
     -fx-stroke: black;
 }
+
+#addBall {
+    -fx-font-family: "Arial Black";
+    -fx-font-size: 40px;
+    -fx-text-fill: "#B67162";
+}

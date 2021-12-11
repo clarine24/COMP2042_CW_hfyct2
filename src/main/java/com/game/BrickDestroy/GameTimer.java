@@ -9,17 +9,31 @@ public class GameTimer extends AnimationTimer {
     
     private BooleanProperty running;
     private BooleanProperty gameOver;
+    private BooleanProperty displayAddBallText;
+
+    int timer;
 
     public GameTimer(WallModel wall) {
         this.wall = wall;
         running = new SimpleBooleanProperty(false);
         gameOver = new SimpleBooleanProperty(false);
+
+        displayAddBallText = new SimpleBooleanProperty(false);
+        timer = 0;
     }
 
     @Override
     public void handle(long l) {
         wall.move();
         wall.findImpacts();
+
+        if(displayAddBallTextProperty().get()) {
+            timer++;
+            if(timer > 50) {
+                setDisplayAddBallText(false);
+                timer = 0;
+            }
+        }
 
         if(wall.isBallLost()) {
             if(wall.ballEnd()) {
@@ -56,5 +70,13 @@ public class GameTimer extends AnimationTimer {
 
     public void setGameOver(boolean gameOver) {
         this.gameOver.set(gameOver);
+    }
+
+    public BooleanProperty displayAddBallTextProperty() {
+        return displayAddBallText;
+    }
+
+    public void setDisplayAddBallText(boolean displayAddBallText) {
+        this.displayAddBallText.set(displayAddBallText);
     }
 }

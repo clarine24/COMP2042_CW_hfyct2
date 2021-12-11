@@ -549,6 +549,7 @@
                </padding>
             </Label>
          </children></HBox>
+      <Label fx:id="addBall" alignment="CENTER" prefWidth="180.0" text="Ball +1" AnchorPane.bottomAnchor="195.6" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="210.0" />
       <Pane fx:id="playButton" layoutX="200.0" layoutY="125.0" onMouseClicked="#play" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="125.39999999999998" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="175.0" />
       <Pane fx:id="pauseMenu" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Pane fx:id="gameOverMenu" prefHeight="500.4" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
