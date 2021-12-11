@@ -12,7 +12,7 @@
          <top>
             <Pane prefHeight="47.0" prefWidth="328.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="title" layoutX="101.0" layoutY="13.0" textAlignment="CENTER">
+                  <Label fx:id="title" layoutX="101.0" layoutY="13.0" text="How to Play" textAlignment="CENTER">
                      <font>
                         <Font name="Gill Sans Ultra Bold Condensed" size="24.0" />
                      </font></Label>
@@ -26,16 +26,21 @@
          <center>
             <VBox fx:id="content" prefHeight="58.0" prefWidth="328.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="content1">
+                  <Label text="GOAL: Destroy all Bricks!">
                      <padding>
-                        <Insets bottom="5.0" />
+                        <Insets bottom="10.0" top="5.0" />
                      </padding></Label>
-                  <Label fx:id="content2" />
-                  <Label fx:id="content3" />
-                  <Label fx:id="content4" />
-                  <Label fx:id="content5" />
-                  <Label fx:id="content6" />
-                  <Label fx:id="content7" layoutX="20.0" layoutY="20.0" prefHeight="60.0">
+                  <Label text="Press Space to Start/Pause Game" />
+                  <Label text="Press A Key to Move Left" />
+                  <Label text="Press D Key to Move Right" />
+                  <Label text="Press ESC Key to Enter/Exit Pause Menu" />
+                  <Label text="Press ALT+SHIFT+F1 Key to Open Console" />
+                  <Label text="Game automatically pause when window">
+                     <padding>
+                        <Insets top="15.0" />
+                     </padding>
+                  </Label>
+                  <Label layoutX="20.0" layoutY="146.0" text="loses focus">
                      <padding>
                         <Insets bottom="5.0" />
                      </padding>
