@@ -12,6 +12,6 @@ public class GraphicsMain {
      */
     public static void main(String[] args) {
         LaunchApp launchApp = new LaunchApp();
-        launchApp.start();
+        launchApp.launchApplication();
     }
 }

@@ -5,6 +5,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * The LaunchApp class is the class to launch the application.
+ * This class that extends the Application class.
+ * @author Clarine Tan Kaili (20194533)
+ * @version 2.0
+ * @since 11/12/21
+ */
 public class LaunchApp extends Application {
     /**
      * The main entry point for the application.
@@ -22,7 +29,7 @@ public class LaunchApp extends Application {
     /**
      * Launch the application.
      */
-    public static void start() {
+    public static void launchApplication() {
         launch();
     }
 }
