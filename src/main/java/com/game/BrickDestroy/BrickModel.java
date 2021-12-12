@@ -57,6 +57,7 @@ public class BrickModel {
 
     /**
      * Sets the impact on the brick.
+     * Check if the brick is broken.
      * @return the boolean value of the property broken
      */
     public boolean setImpact() {
@@ -76,6 +77,7 @@ public class BrickModel {
     /**
      * Resets the state of the brick.
      * Restores the full strength of the brick.
+     * Set the boolean broken to false.
      */
     public void repair() {
         broken.set(false);
