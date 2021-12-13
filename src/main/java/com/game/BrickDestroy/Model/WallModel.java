@@ -31,6 +31,7 @@ public class WallModel {
     private static final int CLAY = 1;
     private static final int STEEL = 2;
     private static final int CEMENT = 3;
+    private static final int BLUE = 4;
 
     private final Random rnd;
     private final IntegerProperty ballCount;
@@ -136,7 +137,7 @@ public class WallModel {
             } else if (i % 3 == 1) {
                 tmp[i] = makeBrick(bricks[i], WallModel.CLAY);
             } else {
-                tmp[i] = makeBrick(bricks[i], WallModel.STEEL);
+                tmp[i] = makeBrick(bricks[i], WallModel.BLUE);
             }
 
             if(ballLocation == i) {
@@ -157,6 +158,7 @@ public class WallModel {
             case CLAY -> new ClayBrickModel(brick);
             case STEEL -> new SteelBrickModel(brick);
             case CEMENT -> new CementBrickModel(brick);
+            case BLUE -> new BlueBrickModel(brick);
             default -> throw new IllegalArgumentException(String.format("Unknown Type:%d\n", type));
         };
     }

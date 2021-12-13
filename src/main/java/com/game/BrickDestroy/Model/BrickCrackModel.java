@@ -39,7 +39,7 @@ public class BrickCrackModel extends BrickModel {
      */
     @Override
     public boolean setImpact() {
-        super.impact();
+        impact();
         if(!super.isBroken().get()) {
             setCrack(true);
             return false;

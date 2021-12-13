@@ -23,6 +23,7 @@ public class LevelScore {
     private final int CLAY_BRICK_SCORE = 100;
     private final int CEMENT_BRICK_SCORE = 200;
     private final int STEEL_BRICK_SCORE = 150;
+    private final int BLUE_BRICK_SCORE = 250;
 
     private IntegerProperty[] highScores;
     private final int TOP_SCORES= 5;
@@ -276,6 +277,13 @@ public class LevelScore {
      */
     public void steelBrickScore() {
         totalBrickScore(STEEL_BRICK_SCORE);
+    }
+
+    /**
+     * Adds the steel brick score to the total brick score.
+     */
+    public void blueBrickScore() {
+        totalBrickScore(BLUE_BRICK_SCORE);
     }
 
     /**

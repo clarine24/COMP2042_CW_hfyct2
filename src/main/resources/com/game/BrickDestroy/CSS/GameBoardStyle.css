@@ -50,6 +50,12 @@ Label {
     -fx-stroke-width: 2px;
 }
 
+#blueBrick {
+    -fx-fill: "#1338BE";
+    -fx-stroke: "#EBECF0";
+    -fx-stroke-width: 2px;
+}
+
 #crack {
     -fx-fill: transparent;
     -fx-stroke: black;

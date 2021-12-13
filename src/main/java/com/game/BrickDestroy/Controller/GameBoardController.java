@@ -222,6 +222,7 @@ public class GameBoardController {
                     case "clayBrick" -> model.getGameOverModel().getScoreBoardModel().getScore().clayBrickScore();
                     case "cementBrick" -> model.getGameOverModel().getScoreBoardModel().getScore().cementBrickScore();
                     case "steelBrick" -> model.getGameOverModel().getScoreBoardModel().getScore().steelBrickScore();
+                    case "blueBrick" -> model.getGameOverModel().getScoreBoardModel().getScore().blueBrickScore();
                 }
             });
 
