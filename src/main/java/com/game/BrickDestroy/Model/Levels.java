@@ -157,6 +157,11 @@ public class Levels {
         maxBallCount[4] = 2;
     }
 
+    /**
+     * Gets the maximum ball count of the given level.
+     * @param level the current level
+     * @return the maximum ball count of the level
+     */
     public int getMaxBallCount(int level) {
         return maxBallCount[level];
     }
