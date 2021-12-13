@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LevelScoreTest {
+class ScoreTest {
     int level = 1;
     Score levelScore = new Score(level);
 
