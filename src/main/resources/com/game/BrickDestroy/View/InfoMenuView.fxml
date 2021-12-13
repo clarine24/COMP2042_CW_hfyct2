@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="pane" prefHeight="300.0" prefWidth="450.0" stylesheets="@../CSS/InfoMenuStyle.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.game.BrickDestroy.Controller.InfoMenuController">
+   <children>
+      <Pane fx:id="opaqueLayer" prefHeight="300.0" prefWidth="450.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <BorderPane layoutX="200.0" layoutY="65.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="61.0" AnchorPane.rightAnchor="61.0" AnchorPane.topAnchor="13.0">
+         <top>
+            <Pane prefHeight="47.0" prefWidth="328.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="title" layoutX="101.0" layoutY="13.0" text="How to Play" textAlignment="CENTER">
+                     <font>
+                        <Font name="Gill Sans Ultra Bold Condensed" size="24.0" />
+                     </font></Label>
+                  <Button fx:id="closeButton" cancelButton="true" layoutX="290.0" layoutY="14.0" mnemonicParsing="false" onAction="#closeButtonClicked" text="X" />
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </Pane>
+         </top>
+         <center>
+            <VBox fx:id="content" prefHeight="58.0" prefWidth="328.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="GOAL: Destroy all Bricks!">
+                     <padding>
+                        <Insets bottom="10.0" top="5.0" />
+                     </padding></Label>
+                  <Label text="Press Space to Start/Pause Game" />
+                  <Label text="Press A Key to Move Left" />
+                  <Label text="Press D Key to Move Right" />
+                  <Label text="Press ESC Key to Enter/Exit Pause Menu" />
+                  <Label text="Press ALT+SHIFT+F1 Key to Open Console" />
+                  <Label text="Game automatically pause when window">
+                     <padding>
+                        <Insets top="15.0" />
+                     </padding>
+                  </Label>
+                  <Label layoutX="20.0" layoutY="146.0" text="loses focus">
+                     <padding>
+                        <Insets bottom="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <BorderPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </BorderPane.margin>
+            </VBox>
+         </center></BorderPane>
+   </children>
+</AnchorPane>

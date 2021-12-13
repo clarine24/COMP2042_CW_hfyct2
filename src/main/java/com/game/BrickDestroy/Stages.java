@@ -1,5 +1,6 @@
 package com.game.BrickDestroy;
 
+import com.game.BrickDestroy.Model.GameBoardModel;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
@@ -127,7 +128,7 @@ public class Stages {
      * @param fxml the fxml file name without the file extension
      * @throws IOException
      */
-    static void setRoot(String fxml) throws IOException {
+    public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 
@@ -138,7 +139,7 @@ public class Stages {
      * @throws IOException
      */
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Stages.class.getResource(fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Stages.class.getResource("View/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
 

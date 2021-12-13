@@ -1,0 +1,14 @@
+#background {
+    -fx-background-image: url("../Images/background.png");
+    -fx-background-size: cover;
+}
+
+Label {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+    -fx-background-radius: 7px;
+}
+
+Button {
+    -fx-cursor: hand;
+}

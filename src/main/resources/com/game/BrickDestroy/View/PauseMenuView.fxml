@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="600.0" stylesheets="@../CSS/PauseMenuStyle.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.game.BrickDestroy.Controller.PauseMenuController">
+   <children>
+      <Pane fx:id="opaqueLayer" prefHeight="500.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Pane prefHeight="500.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Rectangle fx:id="pauseMenu" height="325.0" layoutX="113.0" layoutY="87.5" strokeType="INSIDE" width="374.0" />
+            <Label fx:id="title" alignment="CENTER" layoutX="190.0" layoutY="100.0" prefHeight="65.0" prefWidth="220.0" text="PAUSED">
+               <font>
+                  <Font size="10.0" />
+               </font></Label>
+            <Button fx:id="resumeButton" layoutX="162.5" layoutY="200.0" mnemonicParsing="false" onAction="#resumeButtonClicked" prefHeight="50.0" prefWidth="275.0" text="RESUME" />
+            <Button fx:id="restartButton" layoutX="162.5" layoutY="265.0" mnemonicParsing="false" onAction="#restartButtonClicked" prefHeight="50.0" prefWidth="275.0" text="RESTART" />
+            <Button fx:id="exitButton" layoutX="162.5" layoutY="330.0" mnemonicParsing="false" onAction="#exitButtonClicked" prefHeight="50.0" prefWidth="275.0" text="EXIT TO MAIN MENU" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
