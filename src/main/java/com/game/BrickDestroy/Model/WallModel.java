@@ -38,6 +38,7 @@ public class WallModel {
 
     /**
      * Creates a new instance of WallModel with the given wall shape, player shape, ball shape and bricks shapes.
+     * Creates all the levels in the game.
      * @param wall the shape of the wall
      * @param player the shape of the player
      * @param ball the shape of the ball
@@ -138,7 +139,8 @@ public class WallModel {
 
     /**
      * Determines if the ball hits the brick.
-     * Sets the impact on the brick.
+     * If the ball hits the brick, then it will set the impact on the brick.
+     * Ensure that the ball will not move inside the brick, rather it will hit the brick.
      * @return the boolean value of whether the brick breaks
      */
     private boolean impactBrick() {

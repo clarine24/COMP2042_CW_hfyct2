@@ -4,7 +4,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 /**
- * The GameBoardModel class is the model for the game board view.
+ * The GameBoardModel class is the model class for the game board view.
  * @author Clarine Tan Kaili (20194533)
  * @version 2.0
  * @since 11/12/21
@@ -38,7 +38,7 @@ public class GameBoardModel {
     }
 
     /**
-     * Get the created GameBoardModel instance.
+     * Gets the created GameBoardModel instance.
      * @return the GameBoardModel instance
      */
     public static GameBoardModel getInstance() {
@@ -46,7 +46,7 @@ public class GameBoardModel {
     }
 
     /**
-     * Get the created WalLModel instance.
+     * Gets the created WalLModel instance.
      * @return the WalLModel instance
      */
     public WallModel getWallModel() {
@@ -54,7 +54,7 @@ public class GameBoardModel {
     }
 
     /**
-     * Get the created PauseMenuModel instance.
+     * Gets the created PauseMenuModel instance.
      * @return the PauseMenuModel instance
      */
     public PauseMenuModel getPauseMenuModel() {
@@ -62,7 +62,7 @@ public class GameBoardModel {
     }
 
     /**
-     * Get the created GameOverModel instance.
+     * Gets the created GameOverModel instance.
      * @return the GameOverModel instance
      */
     public GameOverModel getGameOverModel() {
@@ -70,7 +70,7 @@ public class GameBoardModel {
     }
 
     /**
-     * Get the created GameTimer instance.
+     * Gets the created GameTimer instance.
      * @return the GameTimer instance
      */
     public GameTimer getGameTimer() {

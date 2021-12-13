@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 
 /**
- * The DebugConsoleController class is the controller for the debug console view.
+ * The DebugConsoleController class is the controller class for the debug console view.
  * @author Clarine Tan Kaili (20194533)
  * @version 2.0
  * @since 11/12/21

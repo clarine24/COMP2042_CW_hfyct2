@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import java.io.IOException;
 
 /**
- * The HomeMenuController class is the controller for home menu view.
+ * The HomeMenuController class is the controller class for home menu view.
  * @author Clarine Tan Kaili (20194533)
  * @version 2.0
  * @since 11/12/21

@@ -11,6 +11,7 @@ import java.util.Random;
 
 /**
  * The BallModel class is the ball model.
+ * It contains all the methods needed for a ball to move.
  * @author Clarine Tan Kaili (20194533)
  * @version 2.0
  * @since 11/12/21
@@ -37,6 +38,8 @@ public class BallModel {
 
     /**
      * Creates a new instance of BallModel.
+     * Stores the min and max coordinates the ball can move within the wall boundary.
+     * Stores the starting point of the ball.
      * @param name the name of the ball
      * @param ball the ball to be created
      * @param wall the wall in which the ball is in
@@ -60,7 +63,7 @@ public class BallModel {
     }
 
     /**
-     * Creates the ball shape.
+     * Creates the ball shape based on the given ball.
      * @param ball the ball to be created
      * @return the created ball
      */
@@ -70,6 +73,7 @@ public class BallModel {
 
     /**
      * Moves the ball.
+     * Ensure that the wall moves within the wall boundary and does not exit from the left/right sides or top of the wall.
      */
     public void move() {
         double x = ballFace.getCenterX() + getMove(moveX);
@@ -127,6 +131,7 @@ public class BallModel {
 
     /**
      * Gets the ball shape.
+     * The ball shape contains information about the ball's position and radius.
      * @return the created ball
      */
     public Circle getBallFace() {
@@ -134,7 +139,7 @@ public class BallModel {
     }
 
     /**
-     * Gets the total move amount the ball.
+     * Gets the total move amount of the ball in one timeframe.
      * @param move the move amount of the ball
      * @return the move amount of the ball
      */

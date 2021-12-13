@@ -29,7 +29,9 @@ public class SteelBrickModel extends BrickModel {
     }
 
     /**
-     * Set the effect of an impact on the steel brick.
+     * Sets the effect of an impact on the steel brick.
+     * Determines whether the impact affects the brick based on the break probability.
+     * If the brick is affected by the impact, then the strength of the brick will be reduced.
      */
     @Override
     public void impact() {

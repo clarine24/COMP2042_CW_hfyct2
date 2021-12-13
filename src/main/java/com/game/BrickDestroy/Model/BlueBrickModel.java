@@ -29,6 +29,11 @@ public class BlueBrickModel extends BrickCrackModel {
         hit = false;
     }
 
+    /**
+     * Sets the impact on the brick.
+     * If an impact is set on the brick, the cracks will appear.
+     * @return the boolean value of broken
+     */
     @Override
     public boolean setImpact() {
         impact();
@@ -42,7 +47,8 @@ public class BlueBrickModel extends BrickCrackModel {
     }
 
     /**
-     * Set the effect of an impact on the blue brick.
+     * Determines if the brick is affected by the impact based on the break probability.
+     * If it is affected, then the brick will reduce in strength.
      */
     @Override
     public void impact() {

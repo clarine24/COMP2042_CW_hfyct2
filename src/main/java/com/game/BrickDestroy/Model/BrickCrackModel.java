@@ -35,6 +35,7 @@ public class BrickCrackModel extends BrickModel {
 
     /**
      * Sets the effect of the impact on the brick.
+     * If the brick is hit but not broken, then cracks will appear on the brick.
      * @return the boolean value of broken
      */
     @Override

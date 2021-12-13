@@ -55,7 +55,7 @@ public class Stages {
     }
 
     /**
-     * Get the created instance of Stages
+     * Gets the created instance of Stages.
      * @return the Stages instance
      */
     public static Stages getInstance() {
@@ -64,8 +64,8 @@ public class Stages {
 
     /**
      * Initialise the stage.
-     * Set the scene on the stage and show the stage.
-     * Set the focus to be on the stage.
+     * Sets the scene on the stage and show the stage.
+     * Sets the focus to be on the shown stage.
      * @param stage the stage name
      */
     private void initialize(Stage stage) {
@@ -112,7 +112,7 @@ public class Stages {
     }
 
     /**
-     * Display the debug panel.
+     * Display the debug panel in the center of the game stage.
      * @throws IOException
      */
     public void debugConsole() throws IOException {
@@ -144,7 +144,7 @@ public class Stages {
     }
 
     /**
-     * Set the location of stage (homeStage or gameStage).
+     * Set the location of a stage to be in the center of the screen.
      * @param stage the stage name
      */
     private void setLocation(Stage stage) {
@@ -155,8 +155,7 @@ public class Stages {
     }
 
     /**
-     * Set the location of debug console.
-     * Debug panel will be placed at the center of the game stage window.
+     * Set the location of the debug stage to be in the center of the game stage.
      */
     private void setDebugLocation() {
         double x = (gameStage.getWidth() - debugStage.getWidth()) / 2 + gameStage.getX();

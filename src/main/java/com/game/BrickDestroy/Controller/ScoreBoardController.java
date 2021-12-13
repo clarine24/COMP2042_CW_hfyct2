@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 /**
- * The ScoreBoardController class is the controller for score board view.
+ * The ScoreBoardController class is the controller class for score board view.
  * @author Clarine Tan Kaili (20194533)
  * @version 2.0
  * @since 11/12/21
@@ -22,7 +22,7 @@ public class ScoreBoardController {
 
     /**
      * Initialise the score board controller.
-     * Link the model and view.
+     * Links the model and the view.
      */
     @FXML
     private void initialize() {
@@ -35,7 +35,7 @@ public class ScoreBoardController {
     }
 
     /**
-     * Initialise the array of top scores.
+     * Creates an array of top scores labels.
      */
     private void initializeTopScores() {
         topScores = new Label[5];
@@ -47,7 +47,7 @@ public class ScoreBoardController {
     }
 
     /**
-     * Link the score board model and the score board view.
+     * Links the score board model and the score board view.
      */
     private void linkScoreBoardModel() {
         for (Label topScore : topScores) {
@@ -62,8 +62,8 @@ public class ScoreBoardController {
     }
 
     /**
-     * Set the boolean Open to false.
-     * Close the score board.
+     * Sets the boolean Open to false.
+     * Closes the score board.
      */
     @FXML
     private void closeButtonClicked() {

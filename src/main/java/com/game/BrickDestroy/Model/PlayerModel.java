@@ -4,6 +4,7 @@ import javafx.scene.shape.Rectangle;
 
 /**
  * The PlayerModel class is the player model.
+ * It contains all the methods for the player to move.
  * @author Clarine Tan Kaili (20194533)
  * @version 2.0
  * @since 11/12/21
@@ -21,6 +22,8 @@ public class PlayerModel {
 
     /**
      * Creates a new instance of PlayerModel.
+     * Stores the information about the min and max x-coordinates that the player can move to.
+     * Stores the starting position of the player.
      * @param player the player shape to be created
      * @param wall the wall in which the player is in
      */
@@ -38,6 +41,7 @@ public class PlayerModel {
 
     /**
      * Moves the player paddle.
+     * If the player reaches the end of the wall, it will not move any further.
      */
     public void move() {
         double x = playerFace.getX() + moveAmount;
@@ -83,6 +87,7 @@ public class PlayerModel {
 
     /**
      * Gets the player shape.
+     * The shape contains information about the player's position and size.
      * @return the player shape
      */
     public Rectangle getPlayerFace() {

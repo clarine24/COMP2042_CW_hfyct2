@@ -7,6 +7,7 @@ import java.io.*;
 
 /**
  * The Score calculates and stores all the scores in external txt file.
+ * It contains all the necessary methods to calculate the top scores as well.
  * @author Clarine Tan Kaili (20194533)
  * @version 2.0
  * @since 11/12/21
@@ -30,6 +31,8 @@ public class Score {
 
     /**
      * Creates a new instance of LevelScore for the given level.
+     * Create a new txt file, if it does not exist.
+     * Calculates the current top 5 scores for the level.
      * @param level the current level
      */
     public Score(int level) {
@@ -176,7 +179,7 @@ public class Score {
                 int x=0;
                 while(x<i){
                     for (int j = 0; j < i; j++) {
-                        if (tmp[j] == file.getFilePointer()) {
+                        if (tmp[j] == file.getFilePointer()) { //skips if the score is one of the top scores found previously
                             file.readInt();
                             break;
                         }
@@ -198,7 +201,7 @@ public class Score {
                         currentPointer = file.getFilePointer();
 
                         for (int j = 0; j < i; j++) {
-                            if (tmp[j] == previousPointer) {
+                            if (tmp[j] == previousPointer) { //skips if the score that it is being compared to is one of the top scores found previously
                                 skip = true;
                                 break;
                             }

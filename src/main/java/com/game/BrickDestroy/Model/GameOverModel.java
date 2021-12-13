@@ -4,7 +4,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
 /**
- * The GameOverModel class is the model for the game over view.
+ * The GameOverModel class is the model class for the game over view.
  * @author Clarine Tan Kaili (20194533)
  * @version 2.0
  * @since 11/12/21
@@ -30,7 +30,7 @@ public class GameOverModel {
     }
 
     /**
-     * Get the created instance of GameOverModel.
+     * Gets the created instance of GameOverModel.
      * @return the GameOverModel instance
      */
     public static GameOverModel getInstance() {
@@ -38,19 +38,11 @@ public class GameOverModel {
     }
 
     /**
-     * Sets the boolean value of restart.
-     * @param restart the new boolean value of restart
+     * Gets the created scoreBoardModel instance.
+     * @return the ScoreBoardModel instance
      */
-    public void setRestart(boolean restart) {
-        this.restart.set(restart);
-    }
-
-    /**
-     * Sets the boolean value of nextLevel.
-     * @param nextLevel the new boolean value of nextLevel
-     */
-    public void setNextLevel(boolean nextLevel) {
-        this.nextLevel.set(nextLevel);
+    public ScoreBoardModel getScoreBoardModel() {
+        return scoreBoardModel;
     }
 
     /**
@@ -62,6 +54,14 @@ public class GameOverModel {
     }
 
     /**
+     * Sets the boolean value of restart.
+     * @param restart the new boolean value of restart
+     */
+    public void setRestart(boolean restart) {
+        this.restart.set(restart);
+    }
+
+    /**
      * Gets the boolean property of nextLevel.
      * @return the boolean property of nextLevel
      */
@@ -70,10 +70,10 @@ public class GameOverModel {
     }
 
     /**
-     * Get the created scoreBoardModel instance.
-     * @return the ScoreBoardModel instance
+     * Sets the boolean value of nextLevel.
+     * @param nextLevel the new boolean value of nextLevel
      */
-    public ScoreBoardModel getScoreBoardModel() {
-        return scoreBoardModel;
+    public void setNextLevel(boolean nextLevel) {
+        this.nextLevel.set(nextLevel);
     }
 }

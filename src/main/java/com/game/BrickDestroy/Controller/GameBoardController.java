@@ -18,7 +18,7 @@ import javafx.scene.shape.Rectangle;
 import java.io.IOException;
 
 /**
- * The GameBoardController class is the controller of game board view.
+ * The GameBoardController class is the controller class of game board view.
  * @author Clarine Tan Kaili (20194533)
  * @version 2.0
  * @since 11/12/21
@@ -289,7 +289,7 @@ public class GameBoardController {
     }
 
     /**
-     * Move player paddle.
+     * Move player paddle based on the given key.
      * @param key the key pressed
      */
     private void playerMove(KeyCode key) {

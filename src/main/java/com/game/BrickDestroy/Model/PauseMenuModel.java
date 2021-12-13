@@ -4,7 +4,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
 /**
- * The PauseMenuModel class is the model for the pause menu view.
+ * The PauseMenuModel class is the model class for the pause menu view.
  * @author Clarine Tan Kaili (20194533)
  * @version 2.0
  * @since 11/12/21
@@ -42,6 +42,14 @@ public class PauseMenuModel {
     }
 
     /**
+     * Gets the boolean property of restart.
+     * @return the boolean property of restart
+     */
+    public BooleanProperty isRestart() {
+        return restart;
+    }
+
+    /**
      * Sets the boolean value of resume.
      * @param resume the new boolean value of resume
      */
@@ -55,13 +63,5 @@ public class PauseMenuModel {
      */
     public BooleanProperty isResume() {
         return resume;
-    }
-
-    /**
-     * Gets the boolean property of restart.
-     * @return the boolean property of restart
-     */
-    public BooleanProperty isRestart() {
-        return restart;
     }
 }

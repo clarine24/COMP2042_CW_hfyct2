@@ -49,6 +49,7 @@ public class BrickModel {
 
     /**
      * Gets the shape of the brick.
+     * The brick shape contains information about the brick's coordinates and size.
      * @return the brick shape
      */
     public Rectangle getBrickFace() {
@@ -94,7 +95,6 @@ public class BrickModel {
 
     /**
      * Gets the boolean property of broken.
-     * Check if the brick is broken.
      * @return the value of boolean property broken
      */
     public BooleanProperty isBroken() {

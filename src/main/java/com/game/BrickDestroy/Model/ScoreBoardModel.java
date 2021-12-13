@@ -37,7 +37,7 @@ public class ScoreBoardModel {
     }
 
     /**
-     * Creates an array of scores.
+     * Creates an array of scores to store the score for each level.
      */
     private void createLevelScores() {
         allScore = new Score[WallModel.LEVELS_COUNT];
