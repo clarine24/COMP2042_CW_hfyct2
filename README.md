@@ -53,6 +53,7 @@ Enjoy ;-)
 2. Additions/Modifications
    - Add info menu in home menu
    - Add background image in home menu
+   - Add clickable play button
    - Increase speed of player and ball
      - Increase the game difficulty, however the player must be fast enough as well 
    - Calculate score for every game
