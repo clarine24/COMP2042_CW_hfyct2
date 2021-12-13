@@ -13,7 +13,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 public class ScoreBoardModel {
     private static ScoreBoardModel instance;
 
-    private LevelScore[] allScore;
+    private Score[] allScore;
     private int level;
 
     private BooleanProperty open;
@@ -40,10 +40,10 @@ public class ScoreBoardModel {
      * Creates an array of scores.
      */
     private void createLevelScores() {
-        allScore = new LevelScore[WallModel.LEVELS_COUNT];
+        allScore = new Score[WallModel.LEVELS_COUNT];
 
         for(int i=0; i<WallModel.LEVELS_COUNT; i++) {
-            allScore[i] = new LevelScore(i + 1);
+            allScore[i] = new Score(i + 1);
         }
     }
 
@@ -59,7 +59,7 @@ public class ScoreBoardModel {
      * Gets the LevelScore model.
      * @return the LevelScore model
      */
-    public LevelScore getScore() {
+    public Score getScore() {
         return allScore[level];
     }
 
@@ -67,7 +67,7 @@ public class ScoreBoardModel {
      * Close all external txt files.
      */
     public void closeAllFiles() {
-        for (LevelScore levelScore : allScore) {
+        for (Score levelScore : allScore) {
             levelScore.closeFile();
         }
     }

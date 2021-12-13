@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LevelScoreTest {
     int level = 1;
-    LevelScore levelScore = new LevelScore(level);
+    Score levelScore = new Score(level);
 
     @Test
     void clayBrickScore_defaultScoreAdded_scoreAdd100() {

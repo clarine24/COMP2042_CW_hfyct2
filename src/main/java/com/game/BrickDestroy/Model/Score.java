@@ -6,13 +6,13 @@ import javafx.beans.property.SimpleIntegerProperty;
 import java.io.*;
 
 /**
- * The LevelScore calculates and stores all the scores.
+ * The Score calculates and stores all the scores in external txt file.
  * @author Clarine Tan Kaili (20194533)
  * @version 2.0
  * @since 11/12/21
  */
-public class LevelScore {
-    private static LevelScore instance;
+public class Score {
+    private static Score instance;
 
     private IntegerProperty totalScore;
     private File scoreBoardFile;
@@ -32,7 +32,7 @@ public class LevelScore {
      * Creates a new instance of LevelScore for the given level.
      * @param level the current level
      */
-    public LevelScore(int level) {
+    public Score(int level) {
         totalScore = new SimpleIntegerProperty(0);
 
         createFile(level);
@@ -46,7 +46,7 @@ public class LevelScore {
      * Gets the created LevelScore instance.
      * @return the LevelScore instance
      */
-    public static LevelScore getInstance() {
+    public static Score getInstance() {
         return instance;
     }
 
