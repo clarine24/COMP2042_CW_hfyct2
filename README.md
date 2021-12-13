@@ -14,10 +14,11 @@ Enjoy ;-)
 ## Work Done:
 1. Refactoring
    - Change the package name
-     - From test to com.game.BrickDestroy 
+     - From test to com.game.BrickDestroy (the main package)
+     - Created more packages inside the main package (eg. View, Controller, Model, CSS)
      - Easier to know what the package contains
-   - Change the file directory 
-     - Follow Maven’s conventions
+   - Change the file directory
+     - Follows Maven’s conventions
      - Easily locate the src and test files
    - Change almost all the class name
      - To match the MVC design pattern
@@ -30,11 +31,13 @@ Enjoy ;-)
      - Encapsulated the instances of BrickModel, BallModel and PlayerModel classes created in the WallModel class.
    - Remove used imports
      - From ClayBrickModel, GameFrame (later on renamed to Stages) classes
-   - Remove unused MIN_CRACK variable from Brick class.
+   - Remove unused MIN_CRACK variable from Brick class
    - Extract Crack (later on renamed as BrickCracks) class from BrickModel class
      - Not all the subclasses use the Crack class.
-     - Made CementBrickModel inherit BrickCracks class, BrickCracks class inherits BrickModel class.
-   - Extract GameTimer class from GameBoardModel 
+     - Made CementBrickModel & BlueBrickModel inherit BrickCracks class, BrickCracks class inherits BrickModel class.
+   - Extract new class to adhere single responsibility
+     - Extract Levels class from WallModel class
+     - Extract GameTimer class from GameBoardModel class
    - Pull up methods
      - Pull up makeBrickFace and getBrick method from all the Brick subclasses to the BrickModel class.
      - After applying the MVC pattern, all the classes have the same implementation of that method.
@@ -44,14 +47,20 @@ Enjoy ;-)
      - A design pattern that many people knows and understand.
      - Do not have to worry about changing anything in the view when changing something in the controller or model class.
    - Create JUnit Tests
+     - Easier to do regression tests in the future
+   - Create Maven build file
 
 2. Additions/Modifications
    - Add info menu in home menu
    - Add background image in home menu
+   - Increase speed of player and ball
+     - Increase the game difficulty, however the player must be fast enough as well 
    - Calculate score for every game
    - Create a permanent high score list
    - Create a game over menu
    - Create a new level
+     - Has 3 brick types (cement, clay and blue)
+     - Blue brick is a new type of brick created
    - Add a hidden additional ball that will be added to the total ball count in levels with 3 types of bricks (currently only level 5)
    - In the debug console, rather than allowing users to change the specific x and y coordinates that the ball moves, users can set the speed of the ball. The default ball speed is 1.
    - Next level button will not appear in game over menu and debug console if it is the last level.
