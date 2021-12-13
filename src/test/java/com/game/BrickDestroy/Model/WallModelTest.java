@@ -100,7 +100,7 @@ class WallModelTest {
 
     @Test
     void setAddAdditionalBall_true() {
-        wallModel.setAddAdditionalBall(true);
+        wallModel.setAddBall(true);
         assertTrue(wallModel.isAddAdditionalBall().get());
     }
 }
